@@ -5,6 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 
+import com.byslin.sip.JSONResult;
+import com.byslin.sip.Sip;
+
+import org.apache.cordova.PluginResult;
 import org.pjsip.pjsua2.pjsip_inv_state;
 import org.pjsip.pjsua2.pjsip_status_code;
 
@@ -138,6 +142,11 @@ public class BroadcastEventReceiver extends BroadcastReceiver implements SipServ
     public void onRegistration(String accountID, pjsip_status_code registrationStateCode) {
         Logger.debug(LOG_TAG, "onRegistration - accountID: " + accountID +
                 ", registrationStateCode: " + registrationStateCode);
+        Sip.sendPluginResult(new PluginResult(PluginResult.Status.OK, JSONResult.builder()
+                .put("action", "onRegistration")
+                .put("accountID", accountID)
+                .put("registrationStateCode", registrationStateCode.toString())
+                .build()));
     }
 
     public void onIncomingCall(String accountID, int callID, String displayName, String remoteUri, boolean isVideo) {
@@ -145,6 +154,14 @@ public class BroadcastEventReceiver extends BroadcastReceiver implements SipServ
                 ", callID: " + callID +
                 ", displayName: " + displayName +
                 ", remoteUri: " + remoteUri);
+        Sip.setCallId(callID);
+        Sip.sendPluginResult(new PluginResult(PluginResult.Status.OK, JSONResult.builder()
+                .put("action", "onIncomingCall")
+                .put("accountID", accountID)
+                .put("callID", callID)
+                .put("displayName", displayName)
+                .put("remoteUri", remoteUri)
+                .build()));
     }
 
     public void onCallState(String accountID, int callID, pjsip_inv_state callStateCode, pjsip_status_code callStatusCode,
@@ -157,16 +174,40 @@ public class BroadcastEventReceiver extends BroadcastReceiver implements SipServ
                 ", isLocalHold: " + isLocalHold +
                 ", isLocalMute: " + isLocalMute +
                 ", isLocalVideoMute: " + isLocalVideoMute);
+
+        Sip.sendPluginResult(new PluginResult(PluginResult.Status.OK, JSONResult.builder()
+                .put("action", "onCallState")
+                .put("accountID", accountID)
+                .put("callID", callID)
+                .put("callStateCode", callStateCode.toString())
+                .put("callStatusCode", callStatusCode.toString())
+                .put("connectTimestamp", connectTimestamp)
+                .put("isLocalHold", isLocalHold)
+                .put("isLocalMute", isLocalMute)
+                .put("isLocalVideoMute", isLocalVideoMute)
+                .build()));
     }
 
     public void onOutgoingCall(String accountID, int callID, String number, boolean isVideo, boolean isVideoConference) {
         Logger.debug(LOG_TAG, "onOutgoingCall - accountID: " + accountID +
                 ", callID: " + callID +
                 ", number: " + number);
+        Sip.setCallId(callID);
+        Sip.sendPluginResult(new PluginResult(PluginResult.Status.OK, JSONResult.builder()
+                .put("action", "onOutgoingCall")
+                .put("accountID", accountID)
+                .put("callID", callID)
+                .put("number", number)
+                .build()));
     }
 
     public void onStackStatus(boolean started) {
         Logger.debug(LOG_TAG, "SIP service stack " + (started ? "started" : "stopped"));
+        Sip.sendPluginResult(new PluginResult(PluginResult.Status.OK, JSONResult.builder()
+                .put("action", "onStackStatus")
+                .put("started", started)
+                .build()));
+
     }
 
     public void onReceivedCodecPriorities(ArrayList<CodecPriority> codecPriorities) {
@@ -182,10 +223,21 @@ public class BroadcastEventReceiver extends BroadcastReceiver implements SipServ
 
     public void onMissedCall(String displayName, String uri) {
         Logger.debug(LOG_TAG, "Missed call from " + displayName);
+        Sip.sendPluginResult(new PluginResult(PluginResult.Status.OK, JSONResult.builder()
+                .put("action", "onMissedCall")
+                .put("displayName", displayName)
+                .put("uri", uri)
+                .build()));
     }
 
     protected void onVideoSize(int width, int height) {
         Logger.debug(LOG_TAG, "Video resolution " + width + "x" + height);
+
+        Sip.sendPluginResult(new PluginResult(PluginResult.Status.OK, JSONResult.builder()
+                .put("action", "onVideoSize")
+                .put("width", width)
+                .put("height", height)
+                .build()));
     }
 
     protected void onCallStats(int duration, String audioCodec, pjsip_status_code callStatusCode, RtpStreamStats rx, RtpStreamStats tx) {
