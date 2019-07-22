@@ -39,51 +39,37 @@
 
         <source-file src="src/android/src/net/gotev/sipservice/BackgroundService.java"
                      target-dir="src/net/gotev/sipservice"/>
-
         <source-file src="src/android/src/net/gotev/sipservice/BroadcastEventEmitter.java"
                      target-dir="src/net/gotev/sipservice"/>
-
         <source-file src="src/android/src/net/gotev/sipservice/BroadcastEventReceiver.java"
                      target-dir="src/net/gotev/sipservice"/>
-
         <source-file src="src/android/src/net/gotev/sipservice/CallerInfo.java"
                      target-dir="src/net/gotev/sipservice"/>
-
         <source-file src="src/android/src/net/gotev/sipservice/CodecPriority.java"
                      target-dir="src/net/gotev/sipservice"/>
-
         <source-file src="src/android/src/net/gotev/sipservice/DefaultLoggerDelegate.java"
                      target-dir="src/net/gotev/sipservice"/>
-
         <source-file src="src/android/src/net/gotev/sipservice/Jitter.java"
                      target-dir="src/net/gotev/sipservice"/>
-
         <source-file src="src/android/src/net/gotev/sipservice/Logger.java"
                      target-dir="src/net/gotev/sipservice"/>
         <source-file src="src/android/src/net/gotev/sipservice/RtpStreamStats.java"
                      target-dir="src/net/gotev/sipservice"/>
-
         <source-file src="src/android/src/net/gotev/sipservice/SipAccount.java"
                      target-dir="src/net/gotev/sipservice"/>
-
         <source-file src="src/android/src/net/gotev/sipservice/SipAccountData.java"
                      target-dir="src/net/gotev/sipservice"/>
-
         <source-file src="src/android/src/net/gotev/sipservice/SipCall.java"
                      target-dir="src/net/gotev/sipservice"/>
-
         <source-file src="src/android/src/net/gotev/sipservice/SipService.java"
                      target-dir="src/net/gotev/sipservice"/>
-
         <source-file src="src/android/src/net/gotev/sipservice/SipServiceCommand.java"
                      target-dir="src/net/gotev/sipservice"/>
-
         <source-file src="src/android/src/net/gotev/sipservice/SipServiceConstants.java"
                      target-dir="src/net/gotev/sipservice"/>
 
         <source-file src="src/android/src/org/pjsip/PjCamera.java" target-dir="src/org/pjsip"/>
         <source-file src="src/android/src/org/pjsip/PjCameraInfo.java" target-dir="src/org/pjsip"/>
-
         <source-file src="src/android/src/org/pjsip/pjsua2/Account.java"
                      target-dir="src/org/pjsip/pjsua2"/>
         <source-file src="src/android/src/org/pjsip/pjsua2/AccountCallConfig.java"
