@@ -1,7 +1,7 @@
 {
-  "name": "cordova-plugin-sipservice",
+  "name": "cordova-plugin-sip",
   "version": "1.0.0",
-  "description": "cordova-plugin-sipservice",
+  "description": "cordova-plugin-sip",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
