@@ -5,6 +5,10 @@
     <description>Cordova for pjsip</description>
     <license>MIT</license>
 
+    <js-module name="SIP" src="www/cordova-plugins-sip.js">
+        <clobbers target="cordova.plugins.sip"/>
+    </js-module>
+
     <!-- android -->
     <platform name="android">
         <framework src="com.google.code.gson:gson:2.8.5"/>
@@ -547,8 +551,5 @@
         <source-file src="src/android/libs/x86_64/libopenh264.so" target-dir="libs/x86_64"/>
         <source-file src="src/android/libs/x86_64/libpjsua2.so" target-dir="libs/x86_64"/>
 
-        <js-module name="SIP" src="www/cordova-plugins-sip.js">
-            <merges target="cordova.plugins.sip"/>
-        </js-module>
     </platform>
 </plugin>
