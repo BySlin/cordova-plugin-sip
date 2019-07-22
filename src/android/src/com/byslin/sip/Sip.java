@@ -63,16 +63,13 @@ public class Sip extends CordovaPlugin {
             SipServiceCommand.makeCall(mContext, currentSipAccount.getIdUri(), number);
             return true;
         } else if (HANG_UP_CALL_ACTION.equals(action)) {
-            int callId = args.getInt(0);
             SipServiceCommand.hangUpCall(mContext, currentSipAccount.getIdUri(), callId);
-
             return true;
         } else if (GET_REGISTRATION_STATUS_ACTION.equals(action)) {
             SipServiceCommand.getRegistrationStatus(mContext, currentSipAccount.getIdUri());
             return true;
         } else if (SEND_DTMF_ACTION.equals(action)) {
-            int callId = args.getInt(0);
-            String dtmf = args.getString(1);
+            String dtmf = args.getString(0);
             SipServiceCommand.sendDTMF(mContext, currentSipAccount.getIdUri(), callId, dtmf);
             return true;
         }
