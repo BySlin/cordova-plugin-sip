@@ -47,9 +47,6 @@ public class Sip extends CordovaPlugin {
             String password = args.getString(1);
             String host = args.getString(2);
             int port = args.getInt(3);
-            if (currentSipAccount != null) {
-                SipServiceCommand.removeAccount(mContext, currentSipAccount.getIdUri());
-            }
             currentSipAccount = new SipAccountData()
                     .setUsername(username)
                     .setPassword(password)
