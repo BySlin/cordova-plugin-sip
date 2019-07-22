@@ -58,7 +58,6 @@ public class SipService extends BackgroundService implements SipServiceConstants
     private Endpoint mEndpoint;
     private volatile boolean mStarted;
     private int callStatus;
-    private BroadcastEventReceiver receiver = new BroadcastEventReceiver();
 
     public static ConcurrentHashMap<String, SipAccount> getActiveSipAccounts() {
         return mActiveSipAccounts;
@@ -81,7 +80,6 @@ public class SipService extends BackgroundService implements SipServiceConstants
                 loadNativeLibraries();
 
                 mBroadcastEmitter = new BroadcastEventEmitter(SipService.this);
-                receiver.register(SipService.this);
                 loadConfiguredAccounts();
                 addAllConfiguredAccounts();
 
@@ -206,7 +204,6 @@ public class SipService extends BackgroundService implements SipServiceConstants
             @Override
             public void run() {
                 Logger.debug(TAG, "Destroying SipService");
-                receiver.unregister(SipService.this);
                 stopStack();
             }
         });
