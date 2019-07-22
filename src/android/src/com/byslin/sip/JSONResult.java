@@ -43,6 +43,14 @@ public class JSONResult {
         return this;
     }
 
+    public JSONResult put(String name, Object value) {
+        try {
+            jsonObject.put(name, value);
+        } catch (JSONException ignored) {
+        }
+        return this;
+    }
+
     public JSONObject build() {
         return jsonObject;
     }

@@ -145,7 +145,7 @@ public class BroadcastEventReceiver extends BroadcastReceiver implements SipServ
         Sip.sendPluginResult(new PluginResult(PluginResult.Status.OK, JSONResult.builder()
                 .put("action", "onRegistration")
                 .put("accountID", accountID)
-                .put("registrationStateCode", registrationStateCode.toString())
+                .put("registrationStateCode", registrationStateCode)
                 .build()));
     }
 
@@ -179,8 +179,8 @@ public class BroadcastEventReceiver extends BroadcastReceiver implements SipServ
                 .put("action", "onCallState")
                 .put("accountID", accountID)
                 .put("callID", callID)
-                .put("callStateCode", callStateCode.toString())
-                .put("callStatusCode", callStatusCode.toString())
+                .put("callStateCode", callStateCode)
+                .put("callStatusCode", callStatusCode)
                 .put("connectTimestamp", connectTimestamp)
                 .put("isLocalHold", isLocalHold)
                 .put("isLocalMute", isLocalMute)
