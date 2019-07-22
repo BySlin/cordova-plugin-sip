@@ -32,6 +32,7 @@
         <config-file parent="/*" target="config.xml">
             <feature name="SipService">
                 <param name="android-package" value="com.byslin.sip.Sip"/>
+                <param name="onload" value="true"/>
             </feature>
         </config-file>
 
