@@ -17,11 +17,11 @@ public class Sip extends CordovaPlugin {
 
     private Context mContext;
 
-    private String SET_ACCOUNT_ACTION = "setAccount";
-    private String MAKE_CALL_ACTION = "makeCall";
-    private String HANG_UP_CALL_ACTION = "hangUpCall";
-    private String GET_REGISTRATION_STATUS_ACTION = "getRegistrationStatus";
-    private String SEND_DTMF_ACTION = "sendDTMF";
+    private final String SET_ACCOUNT_ACTION = "setAccount";
+    private final String MAKE_CALL_ACTION = "makeCall";
+    private final String HANG_UP_CALL_ACTION = "hangUpCall";
+    private final String GET_REGISTRATION_STATUS_ACTION = "getRegistrationStatus";
+    private final String SEND_DTMF_ACTION = "sendDTMF";
 
     private SipAccountData currentSipAccount;
 
