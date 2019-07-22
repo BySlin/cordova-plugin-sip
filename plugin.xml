@@ -25,10 +25,8 @@
                           android:required="false"/>
         </config-file>
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
-            <application>
-                <service android:name="net.gotev.sipservice.SipService" android:enabled="true"
-                         android:exported="true"/>
-            </application>
+            <service android:name="net.gotev.sipservice.SipService" android:enabled="true"
+                     android:exported="true"/>
         </config-file>
 
         <config-file parent="/*" target="config.xml">
