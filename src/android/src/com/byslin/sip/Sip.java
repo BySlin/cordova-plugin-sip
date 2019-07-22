@@ -22,6 +22,7 @@ public class Sip extends CordovaPlugin {
     private final String HANG_UP_CALL_ACTION = "hangUpCall";
     private final String GET_REGISTRATION_STATUS_ACTION = "getRegistrationStatus";
     private final String SEND_DTMF_ACTION = "sendDTMF";
+    private final String ACCEPT_INCOMING_CALL = "acceptIncomingCall";
 
     private SipAccountData currentSipAccount;
 
@@ -71,6 +72,9 @@ public class Sip extends CordovaPlugin {
         } else if (SEND_DTMF_ACTION.equals(action)) {
             String dtmf = args.getString(0);
             SipServiceCommand.sendDTMF(mContext, currentSipAccount.getIdUri(), callId, dtmf);
+            return true;
+        } else if (ACCEPT_INCOMING_CALL.equals(action)) {
+            SipServiceCommand.acceptIncomingCall(mContext, currentSipAccount.getIdUri(), callId);
             return true;
         }
         return false;

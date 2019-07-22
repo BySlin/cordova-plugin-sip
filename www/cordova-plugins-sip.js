@@ -46,4 +46,14 @@ module.exports = function Sip(username, password, host, port, listener) {
       [dtmf]
     );
   };
-}
+
+  this.acceptIncomingCall = function () {
+    cordova.exec(
+      null,
+      null,
+      "Sip",
+      "acceptIncomingCall",
+      []
+    );
+  };
+};
