@@ -11,7 +11,7 @@ package net.gotev.sipservice;
 @SuppressWarnings("unused")
 public class Logger {
 
-    private LogLevel mLogLevel = BuildConfig.DEBUG ? LogLevel.DEBUG : LogLevel.OFF;
+    private LogLevel mLogLevel = LogLevel.OFF;
     private LoggerDelegate mDelegate = new DefaultLoggerDelegate();
 
     private Logger() {
