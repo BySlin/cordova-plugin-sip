@@ -12,6 +12,7 @@ import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 public class Sip extends CordovaPlugin {
 
@@ -85,7 +86,8 @@ public class Sip extends CordovaPlugin {
         }
     }
 
-    public static void sendPluginResult(PluginResult pluginResult) {
+    public static void sendPluginResult(JSONObject jsonObject) {
+        PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, jsonObject);
         pluginResult.setKeepCallback(true);
         if (mCallbackContext != null) {
             mCallbackContext.sendPluginResult(pluginResult);
