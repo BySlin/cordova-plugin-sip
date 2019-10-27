@@ -7,7 +7,7 @@ module.exports = function Sip(
   isTcp,
   listener
 ) {
-  cordova.exec(this.onEvent, null, "Sip", "setAccount", [
+  cordova.exec(onEvent, null, "Sip", "setAccount", [
     username,
     password,
     host,
@@ -16,7 +16,10 @@ module.exports = function Sip(
     isTcp
   ]);
 
-  this.onEvent = function(data) {
+  this.callID = "";
+  this.accountID = "";
+
+  function onEvent(data) {
     if (data.callID) {
       this.callID = data.callID;
     }
@@ -24,7 +27,7 @@ module.exports = function Sip(
       this.accountID = data.accountID;
     }
     listener(data);
-  };
+  }
 
   this.makeCall = function(number) {
     cordova.exec(null, null, "Sip", "makeCall", [this.accountID, number]);
