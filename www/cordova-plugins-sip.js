@@ -7,19 +7,10 @@ module.exports = function Sip(
   isTcp,
   listener
 ) {
-  cordova.exec(onEvent, null, "Sip", "setAccount", [
-    username,
-    password,
-    host,
-    port,
-    regExpirationTimeout,
-    isTcp
-  ]);
-
   this.callID = "";
   this.accountID = "";
 
-  function onEvent(data) {
+  this.onEvent = function(data) {
     if (data.callID) {
       this.callID = data.callID;
     }
@@ -27,7 +18,7 @@ module.exports = function Sip(
       this.accountID = data.accountID;
     }
     listener(data);
-  }
+  };
 
   this.makeCall = function(number) {
     cordova.exec(null, null, "Sip", "makeCall", [this.accountID, number]);
@@ -70,4 +61,13 @@ module.exports = function Sip(
   this.unregister = function() {
     cordova.exec(null, null, "Sip", "removeAccount", [this.accountID]);
   };
+
+  cordova.exec(this.onEvent, null, "Sip", "setAccount", [
+    username,
+    password,
+    host,
+    port,
+    regExpirationTimeout,
+    isTcp
+  ]);
 };
