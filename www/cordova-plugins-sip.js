@@ -7,59 +7,49 @@ function Sip(
   isTcp,
   listener
 ) {
-  this.accountID = "";
-  this.callID = "";
+  var accountID = "";
+  var callID = "";
 
   this.onEvent = function(data) {
     if (data.callID) {
-      this.callID = data.callID;
+      callID = data.callID;
     }
     if (data.accountID) {
-      this.accountID = data.accountID;
+      accountID = data.accountID;
     }
     listener(data);
   };
 
   this.makeCall = function(number) {
-    cordova.exec(null, null, "Sip", "makeCall", [this.accountID, number]);
+    cordova.exec(null, null, "Sip", "makeCall", [accountID, number]);
   };
 
   this.hangUpCall = function() {
-    cordova.exec(null, null, "Sip", "hangUpCall", [
-      this.accountID,
-      this.callID
-    ]);
+    cordova.exec(null, null, "Sip", "hangUpCall", [accountID, callID]);
   };
 
   this.getRegistrationStatus = function() {
-    cordova.exec(null, null, "Sip", "getRegistrationStatus", [this.accountID]);
+    cordova.exec(null, null, "Sip", "getRegistrationStatus", [accountID]);
   };
 
   this.sendDTMF = function(dtmf) {
-    cordova.exec(null, null, "Sip", "sendDTMF", [
-      this.accountID,
-      this.callID,
-      dtmf
-    ]);
+    cordova.exec(null, null, "Sip", "sendDTMF", [accountID, callID, dtmf]);
   };
 
   this.acceptIncomingCall = function() {
-    cordova.exec(null, null, "Sip", "acceptIncomingCall", [
-      this.accountID,
-      this.callID
-    ]);
+    cordova.exec(null, null, "Sip", "acceptIncomingCall", [accountID, callID]);
   };
 
   this.transferCall = function(number) {
     cordova.exec(null, null, "Sip", "transferCall", [
-      this.accountID,
-      this.callID,
+      accountID,
+      callID,
       number
     ]);
   };
 
   this.unregister = function() {
-    cordova.exec(null, null, "Sip", "removeAccount", [this.accountID]);
+    cordova.exec(null, null, "Sip", "removeAccount", [accountID]);
   };
 
   cordova.exec(this.onEvent, null, "Sip", "setAccount", [
