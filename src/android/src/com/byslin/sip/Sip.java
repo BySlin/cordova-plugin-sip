@@ -14,26 +14,27 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+
 public class Sip extends CordovaPlugin {
 
     private Context mContext;
 
     private final String SET_ACCOUNT_ACTION = "setAccount";
+    private final String REMOVE_ACCOUNT_ACTION = "removeAccount";
     private final String MAKE_CALL_ACTION = "makeCall";
     private final String HANG_UP_CALL_ACTION = "hangUpCall";
     private final String GET_REGISTRATION_STATUS_ACTION = "getRegistrationStatus";
     private final String SEND_DTMF_ACTION = "sendDTMF";
     private final String ACCEPT_INCOMING_CALL = "acceptIncomingCall";
-
-    private SipAccountData currentSipAccount;
+    private final String TRANSFER_CALL = "transferCall";
 
     private static CallbackContext mCallbackContext;
 
-    private static int callId;
-
-    public static void setCallId(int callId) {
-        Sip.callId = callId;
-    }
+    private final Set<String> idUris = new HashSet<>();
 
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
@@ -48,31 +49,54 @@ public class Sip extends CordovaPlugin {
             String password = args.getString(1);
             String host = args.getString(2);
             int port = args.getInt(3);
-            currentSipAccount = new SipAccountData()
+            int regExpirationTimeout = args.getInt(4);
+            boolean isTcp = args.getBoolean(5);
+            SipAccountData sipAccountData = new SipAccountData()
                     .setUsername(username)
                     .setPassword(password)
                     .setHost(host)
                     .setRealm(host)
-                    .setPort(port);
-            SipServiceCommand.setAccount(mContext, currentSipAccount);
+                    .setPort(port)
+                    .setRegExpirationTimeout(regExpirationTimeout)
+                    .setTcpTransport(isTcp);
+            idUris.add(sipAccountData.getIdUri());
+            SipServiceCommand.setAccount(mContext, sipAccountData);
             mCallbackContext = callbackContext;
             return true;
+        } else if (REMOVE_ACCOUNT_ACTION.equals(action)) {
+            String accountID = args.getString(0);
+            SipServiceCommand.removeAccount(mContext, accountID);
+            return true;
         } else if (MAKE_CALL_ACTION.equals(action)) {
-            String number = args.getString(0);
-            SipServiceCommand.makeCall(mContext, currentSipAccount.getIdUri(), number);
+            String accountID = args.getString(0);
+            String number = args.getString(1);
+            SipServiceCommand.makeCall(mContext, accountID, number);
             return true;
         } else if (HANG_UP_CALL_ACTION.equals(action)) {
-            SipServiceCommand.hangUpCall(mContext, currentSipAccount.getIdUri(), callId);
+            String accountID = args.getString(0);
+            int callId = args.getInt(1);
+            SipServiceCommand.hangUpCall(mContext, accountID, callId);
             return true;
         } else if (GET_REGISTRATION_STATUS_ACTION.equals(action)) {
-            SipServiceCommand.getRegistrationStatus(mContext, currentSipAccount.getIdUri());
+            String accountID = args.getString(0);
+            SipServiceCommand.getRegistrationStatus(mContext, accountID);
             return true;
         } else if (SEND_DTMF_ACTION.equals(action)) {
-            String dtmf = args.getString(0);
-            SipServiceCommand.sendDTMF(mContext, currentSipAccount.getIdUri(), callId, dtmf);
+            String accountID = args.getString(0);
+            int callId = args.getInt(1);
+            String dtmf = args.getString(2);
+            SipServiceCommand.sendDTMF(mContext, accountID, callId, dtmf);
             return true;
         } else if (ACCEPT_INCOMING_CALL.equals(action)) {
-            SipServiceCommand.acceptIncomingCall(mContext, currentSipAccount.getIdUri(), callId);
+            String accountID = args.getString(0);
+            int callId = args.getInt(1);
+            SipServiceCommand.acceptIncomingCall(mContext, accountID, callId);
+            return true;
+        } else if (TRANSFER_CALL.equals(action)) {
+            String accountID = args.getString(0);
+            int callId = args.getInt(1);
+            String number = args.getString(2);
+            SipServiceCommand.transferCall(mContext, accountID, callId, number);
             return true;
         }
         return false;
@@ -80,9 +104,8 @@ public class Sip extends CordovaPlugin {
 
     @Override
     public void onDestroy() {
-        if (currentSipAccount != null) {
-            SipServiceCommand.removeAccount(mContext, currentSipAccount.getIdUri());
-            currentSipAccount = null;
+        for (String key : idUris) {
+            SipServiceCommand.removeAccount(mContext, key);
         }
     }
 

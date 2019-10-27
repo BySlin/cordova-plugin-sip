@@ -153,7 +153,6 @@ public class BroadcastEventReceiver extends BroadcastReceiver implements SipServ
                 ", callID: " + callID +
                 ", displayName: " + displayName +
                 ", remoteUri: " + remoteUri);
-        Sip.setCallId(callID);
         Sip.sendPluginResult(JSONResult.builder()
                 .put("action", "onIncomingCall")
                 .put("accountID", accountID)
@@ -191,7 +190,6 @@ public class BroadcastEventReceiver extends BroadcastReceiver implements SipServ
         Logger.debug(LOG_TAG, "onOutgoingCall - accountID: " + accountID +
                 ", callID: " + callID +
                 ", number: " + number);
-        Sip.setCallId(callID);
         Sip.sendPluginResult(JSONResult.builder()
                 .put("action", "onOutgoingCall")
                 .put("accountID", accountID)
