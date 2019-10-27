@@ -14,6 +14,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -32,9 +33,7 @@ public class Sip extends CordovaPlugin {
     private final String ACCEPT_INCOMING_CALL = "acceptIncomingCall";
     private final String TRANSFER_CALL = "transferCall";
 
-    private static CallbackContext mCallbackContext;
-
-    private final Set<String> idUris = new HashSet<>();
+    private final static Map<String, CallbackContext> idUriCallbackContextMap = new ConcurrentHashMap<>();
 
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
@@ -59,9 +58,8 @@ public class Sip extends CordovaPlugin {
                     .setPort(port)
                     .setRegExpirationTimeout(regExpirationTimeout)
                     .setTcpTransport(isTcp);
-            idUris.add(sipAccountData.getIdUri());
+            idUriCallbackContextMap.put(sipAccountData.getIdUri(), callbackContext);
             SipServiceCommand.setAccount(mContext, sipAccountData);
-            mCallbackContext = callbackContext;
             return true;
         } else if (REMOVE_ACCOUNT_ACTION.equals(action)) {
             String accountID = args.getString(0);
@@ -104,16 +102,17 @@ public class Sip extends CordovaPlugin {
 
     @Override
     public void onDestroy() {
-        for (String key : idUris) {
+        Set<String> keySet = idUriCallbackContextMap.keySet();
+        for (String key : keySet) {
             SipServiceCommand.removeAccount(mContext, key);
         }
     }
 
-    public static void sendPluginResult(JSONObject jsonObject) {
+    public static void sendPluginResult(String accountID, JSONObject jsonObject) {
         PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, jsonObject);
         pluginResult.setKeepCallback(true);
-        if (mCallbackContext != null) {
-            mCallbackContext.sendPluginResult(pluginResult);
+        if (idUriCallbackContextMap.containsKey(accountID)) {
+            idUriCallbackContextMap.get(accountID).sendPluginResult(pluginResult);
         }
     }
 }

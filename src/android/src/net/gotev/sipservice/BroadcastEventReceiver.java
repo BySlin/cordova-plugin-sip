@@ -141,7 +141,7 @@ public class BroadcastEventReceiver extends BroadcastReceiver implements SipServ
     public void onRegistration(String accountID, pjsip_status_code registrationStateCode) {
         Logger.debug(LOG_TAG, "onRegistration - accountID: " + accountID +
                 ", registrationStateCode: " + registrationStateCode);
-        Sip.sendPluginResult(JSONResult.builder()
+        Sip.sendPluginResult(accountID, JSONResult.builder()
                 .put("action", "onRegistration")
                 .put("accountID", accountID)
                 .put("registrationStateCode", registrationStateCode)
@@ -153,7 +153,7 @@ public class BroadcastEventReceiver extends BroadcastReceiver implements SipServ
                 ", callID: " + callID +
                 ", displayName: " + displayName +
                 ", remoteUri: " + remoteUri);
-        Sip.sendPluginResult(JSONResult.builder()
+        Sip.sendPluginResult(accountID, JSONResult.builder()
                 .put("action", "onIncomingCall")
                 .put("accountID", accountID)
                 .put("callID", callID)
@@ -173,7 +173,7 @@ public class BroadcastEventReceiver extends BroadcastReceiver implements SipServ
                 ", isLocalMute: " + isLocalMute +
                 ", isLocalVideoMute: " + isLocalVideoMute);
 
-        Sip.sendPluginResult(JSONResult.builder()
+        Sip.sendPluginResult(accountID, JSONResult.builder()
                 .put("action", "onCallState")
                 .put("accountID", accountID)
                 .put("callID", callID)
@@ -190,7 +190,7 @@ public class BroadcastEventReceiver extends BroadcastReceiver implements SipServ
         Logger.debug(LOG_TAG, "onOutgoingCall - accountID: " + accountID +
                 ", callID: " + callID +
                 ", number: " + number);
-        Sip.sendPluginResult(JSONResult.builder()
+        Sip.sendPluginResult(accountID, JSONResult.builder()
                 .put("action", "onOutgoingCall")
                 .put("accountID", accountID)
                 .put("callID", callID)
@@ -200,11 +200,6 @@ public class BroadcastEventReceiver extends BroadcastReceiver implements SipServ
 
     public void onStackStatus(boolean started) {
         Logger.debug(LOG_TAG, "SIP service stack " + (started ? "started" : "stopped"));
-        Sip.sendPluginResult(JSONResult.builder()
-                .put("action", "onStackStatus")
-                .put("started", started)
-                .build());
-
     }
 
     public void onReceivedCodecPriorities(ArrayList<CodecPriority> codecPriorities) {
@@ -220,21 +215,10 @@ public class BroadcastEventReceiver extends BroadcastReceiver implements SipServ
 
     public void onMissedCall(String displayName, String uri) {
         Logger.debug(LOG_TAG, "Missed call from " + displayName);
-        Sip.sendPluginResult(JSONResult.builder()
-                .put("action", "onMissedCall")
-                .put("displayName", displayName)
-                .put("uri", uri)
-                .build());
     }
 
     protected void onVideoSize(int width, int height) {
         Logger.debug(LOG_TAG, "Video resolution " + width + "x" + height);
-
-        Sip.sendPluginResult(JSONResult.builder()
-                .put("action", "onVideoSize")
-                .put("width", width)
-                .put("height", height)
-                .build());
     }
 
     protected void onCallStats(int duration, String audioCodec, pjsip_status_code callStatusCode, RtpStreamStats rx, RtpStreamStats tx) {
