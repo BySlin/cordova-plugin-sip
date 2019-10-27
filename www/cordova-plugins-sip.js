@@ -1,4 +1,3 @@
-cordova.define("cordova-plugin-sip.SIP", function(require, exports, module) {
 module.exports = function Sip(
   username,
   password,
@@ -69,5 +68,3 @@ module.exports = function Sip(
     cordova.exec(null, null, "Sip", "removeAccount", [this.accountID]);
   };
 };
-
-});
