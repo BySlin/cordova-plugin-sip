@@ -28,6 +28,10 @@ function Sip(
     cordova.exec(null, null, "Sip", "hangUpCall", [accountID, callID]);
   };
 
+  this.hangUpCalls = function () {
+    cordova.exec(null, null, "Sip", "hangUpActiveCalls", [accountID]);
+  };
+
   this.getRegistrationStatus = function() {
     cordova.exec(null, null, "Sip", "getRegistrationStatus", [accountID]);
   };

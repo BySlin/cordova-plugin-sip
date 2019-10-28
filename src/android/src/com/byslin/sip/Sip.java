@@ -14,8 +14,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -28,6 +26,7 @@ public class Sip extends CordovaPlugin {
     private final String REMOVE_ACCOUNT_ACTION = "removeAccount";
     private final String MAKE_CALL_ACTION = "makeCall";
     private final String HANG_UP_CALL_ACTION = "hangUpCall";
+    private final String HANG_UP_ACTIVE_CALLS_ACTION = "hangUpActiveCalls";
     private final String GET_REGISTRATION_STATUS_ACTION = "getRegistrationStatus";
     private final String SEND_DTMF_ACTION = "sendDTMF";
     private final String ACCEPT_INCOMING_CALL = "acceptIncomingCall";
@@ -74,6 +73,10 @@ public class Sip extends CordovaPlugin {
             String accountID = args.getString(0);
             int callId = args.getInt(1);
             SipServiceCommand.hangUpCall(mContext, accountID, callId);
+            return true;
+        } else if (HANG_UP_ACTIVE_CALLS_ACTION.equals(action)) {
+            String accountID = args.getString(0);
+            SipServiceCommand.hangUpActiveCalls(mContext, accountID);
             return true;
         } else if (GET_REGISTRATION_STATUS_ACTION.equals(action)) {
             String accountID = args.getString(0);
