@@ -11,10 +11,10 @@ function Sip(
   var callID = "";
 
   this.onEvent = function(data) {
-    if (data.callID) {
+    if (data.callID != null) {
       callID = data.callID;
     }
-    if (data.accountID) {
+    if (data.accountID != null) {
       accountID = data.accountID;
     }
     listener(data);
