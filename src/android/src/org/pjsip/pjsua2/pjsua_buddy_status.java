@@ -9,46 +9,47 @@
 package org.pjsip.pjsua2;
 
 public final class pjsua_buddy_status {
-    public final static pjsua_buddy_status PJSUA_BUDDY_STATUS_UNKNOWN = new pjsua_buddy_status("PJSUA_BUDDY_STATUS_UNKNOWN");
-    public final static pjsua_buddy_status PJSUA_BUDDY_STATUS_ONLINE = new pjsua_buddy_status("PJSUA_BUDDY_STATUS_ONLINE");
-    public final static pjsua_buddy_status PJSUA_BUDDY_STATUS_OFFLINE = new pjsua_buddy_status("PJSUA_BUDDY_STATUS_OFFLINE");
-    private static pjsua_buddy_status[] swigValues = {PJSUA_BUDDY_STATUS_UNKNOWN, PJSUA_BUDDY_STATUS_ONLINE, PJSUA_BUDDY_STATUS_OFFLINE};
-    private static int swigNext = 0;
-    private final int swigValue;
-    private final String swigName;
+  public final static pjsua_buddy_status PJSUA_BUDDY_STATUS_UNKNOWN = new pjsua_buddy_status("PJSUA_BUDDY_STATUS_UNKNOWN");
+  public final static pjsua_buddy_status PJSUA_BUDDY_STATUS_ONLINE = new pjsua_buddy_status("PJSUA_BUDDY_STATUS_ONLINE");
+  public final static pjsua_buddy_status PJSUA_BUDDY_STATUS_OFFLINE = new pjsua_buddy_status("PJSUA_BUDDY_STATUS_OFFLINE");
 
-    private pjsua_buddy_status(String swigName) {
-        this.swigName = swigName;
-        this.swigValue = swigNext++;
-    }
+  public final int swigValue() {
+    return swigValue;
+  }
 
-    private pjsua_buddy_status(String swigName, int swigValue) {
-        this.swigName = swigName;
-        this.swigValue = swigValue;
-        swigNext = swigValue + 1;
-    }
+  public String toString() {
+    return swigName;
+  }
 
-    private pjsua_buddy_status(String swigName, pjsua_buddy_status swigEnum) {
-        this.swigName = swigName;
-        this.swigValue = swigEnum.swigValue;
-        swigNext = this.swigValue + 1;
-    }
+  public static pjsua_buddy_status swigToEnum(int swigValue) {
+    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+      return swigValues[swigValue];
+    for (int i = 0; i < swigValues.length; i++)
+      if (swigValues[i].swigValue == swigValue)
+        return swigValues[i];
+    throw new IllegalArgumentException("No enum " + pjsua_buddy_status.class + " with value " + swigValue);
+  }
 
-    public static pjsua_buddy_status swigToEnum(int swigValue) {
-        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-            return swigValues[swigValue];
-        for (int i = 0; i < swigValues.length; i++)
-            if (swigValues[i].swigValue == swigValue)
-                return swigValues[i];
-        throw new IllegalArgumentException("No enum " + pjsua_buddy_status.class + " with value " + swigValue);
-    }
+  private pjsua_buddy_status(String swigName) {
+    this.swigName = swigName;
+    this.swigValue = swigNext++;
+  }
 
-    public final int swigValue() {
-        return swigValue;
-    }
+  private pjsua_buddy_status(String swigName, int swigValue) {
+    this.swigName = swigName;
+    this.swigValue = swigValue;
+    swigNext = swigValue+1;
+  }
 
-    public String toString() {
-        return swigName;
-    }
+  private pjsua_buddy_status(String swigName, pjsua_buddy_status swigEnum) {
+    this.swigName = swigName;
+    this.swigValue = swigEnum.swigValue;
+    swigNext = this.swigValue+1;
+  }
+
+  private static pjsua_buddy_status[] swigValues = { PJSUA_BUDDY_STATUS_UNKNOWN, PJSUA_BUDDY_STATUS_ONLINE, PJSUA_BUDDY_STATUS_OFFLINE };
+  private static int swigNext = 0;
+  private final int swigValue;
+  private final String swigName;
 }
 

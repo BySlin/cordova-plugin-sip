@@ -9,115 +9,115 @@
 package org.pjsip.pjsua2;
 
 public class StreamInfo {
-    protected transient boolean swigCMemOwn;
-    private transient long swigCPtr;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
-    protected StreamInfo(long cPtr, boolean cMemoryOwn) {
-        swigCMemOwn = cMemoryOwn;
-        swigCPtr = cPtr;
-    }
+  protected StreamInfo(long cPtr, boolean cMemoryOwn) {
+    swigCMemOwn = cMemoryOwn;
+    swigCPtr = cPtr;
+  }
 
-    public StreamInfo() {
-        this(pjsua2JNI.new_StreamInfo(), true);
-    }
+  protected static long getCPtr(StreamInfo obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
 
-    protected static long getCPtr(StreamInfo obj) {
-        return (obj == null) ? 0 : obj.swigCPtr;
-    }
+  protected void finalize() {
+    delete();
+  }
 
-    protected void finalize() {
-        delete();
+  public synchronized void delete() {
+    if (swigCPtr != 0) {
+      if (swigCMemOwn) {
+        swigCMemOwn = false;
+        pjsua2JNI.delete_StreamInfo(swigCPtr);
+      }
+      swigCPtr = 0;
     }
+  }
 
-    public synchronized void delete() {
-        if (swigCPtr != 0) {
-            if (swigCMemOwn) {
-                swigCMemOwn = false;
-                pjsua2JNI.delete_StreamInfo(swigCPtr);
-            }
-            swigCPtr = 0;
-        }
-    }
+  public void setType(pjmedia_type value) {
+    pjsua2JNI.StreamInfo_type_set(swigCPtr, this, value.swigValue());
+  }
 
-    public pjmedia_type getType() {
-        return pjmedia_type.swigToEnum(pjsua2JNI.StreamInfo_type_get(swigCPtr, this));
-    }
+  public pjmedia_type getType() {
+    return pjmedia_type.swigToEnum(pjsua2JNI.StreamInfo_type_get(swigCPtr, this));
+  }
 
-    public void setType(pjmedia_type value) {
-        pjsua2JNI.StreamInfo_type_set(swigCPtr, this, value.swigValue());
-    }
+  public void setProto(pjmedia_tp_proto value) {
+    pjsua2JNI.StreamInfo_proto_set(swigCPtr, this, value.swigValue());
+  }
 
-    public pjmedia_tp_proto getProto() {
-        return pjmedia_tp_proto.swigToEnum(pjsua2JNI.StreamInfo_proto_get(swigCPtr, this));
-    }
+  public pjmedia_tp_proto getProto() {
+    return pjmedia_tp_proto.swigToEnum(pjsua2JNI.StreamInfo_proto_get(swigCPtr, this));
+  }
 
-    public void setProto(pjmedia_tp_proto value) {
-        pjsua2JNI.StreamInfo_proto_set(swigCPtr, this, value.swigValue());
-    }
+  public void setDir(pjmedia_dir value) {
+    pjsua2JNI.StreamInfo_dir_set(swigCPtr, this, value.swigValue());
+  }
 
-    public pjmedia_dir getDir() {
-        return pjmedia_dir.swigToEnum(pjsua2JNI.StreamInfo_dir_get(swigCPtr, this));
-    }
+  public pjmedia_dir getDir() {
+    return pjmedia_dir.swigToEnum(pjsua2JNI.StreamInfo_dir_get(swigCPtr, this));
+  }
 
-    public void setDir(pjmedia_dir value) {
-        pjsua2JNI.StreamInfo_dir_set(swigCPtr, this, value.swigValue());
-    }
+  public void setRemoteRtpAddress(String value) {
+    pjsua2JNI.StreamInfo_remoteRtpAddress_set(swigCPtr, this, value);
+  }
 
-    public String getRemoteRtpAddress() {
-        return pjsua2JNI.StreamInfo_remoteRtpAddress_get(swigCPtr, this);
-    }
+  public String getRemoteRtpAddress() {
+    return pjsua2JNI.StreamInfo_remoteRtpAddress_get(swigCPtr, this);
+  }
 
-    public void setRemoteRtpAddress(String value) {
-        pjsua2JNI.StreamInfo_remoteRtpAddress_set(swigCPtr, this, value);
-    }
+  public void setRemoteRtcpAddress(String value) {
+    pjsua2JNI.StreamInfo_remoteRtcpAddress_set(swigCPtr, this, value);
+  }
 
-    public String getRemoteRtcpAddress() {
-        return pjsua2JNI.StreamInfo_remoteRtcpAddress_get(swigCPtr, this);
-    }
+  public String getRemoteRtcpAddress() {
+    return pjsua2JNI.StreamInfo_remoteRtcpAddress_get(swigCPtr, this);
+  }
 
-    public void setRemoteRtcpAddress(String value) {
-        pjsua2JNI.StreamInfo_remoteRtcpAddress_set(swigCPtr, this, value);
-    }
+  public void setTxPt(long value) {
+    pjsua2JNI.StreamInfo_txPt_set(swigCPtr, this, value);
+  }
 
-    public long getTxPt() {
-        return pjsua2JNI.StreamInfo_txPt_get(swigCPtr, this);
-    }
+  public long getTxPt() {
+    return pjsua2JNI.StreamInfo_txPt_get(swigCPtr, this);
+  }
 
-    public void setTxPt(long value) {
-        pjsua2JNI.StreamInfo_txPt_set(swigCPtr, this, value);
-    }
+  public void setRxPt(long value) {
+    pjsua2JNI.StreamInfo_rxPt_set(swigCPtr, this, value);
+  }
 
-    public long getRxPt() {
-        return pjsua2JNI.StreamInfo_rxPt_get(swigCPtr, this);
-    }
+  public long getRxPt() {
+    return pjsua2JNI.StreamInfo_rxPt_get(swigCPtr, this);
+  }
 
-    public void setRxPt(long value) {
-        pjsua2JNI.StreamInfo_rxPt_set(swigCPtr, this, value);
-    }
+  public void setCodecName(String value) {
+    pjsua2JNI.StreamInfo_codecName_set(swigCPtr, this, value);
+  }
 
-    public String getCodecName() {
-        return pjsua2JNI.StreamInfo_codecName_get(swigCPtr, this);
-    }
+  public String getCodecName() {
+    return pjsua2JNI.StreamInfo_codecName_get(swigCPtr, this);
+  }
 
-    public void setCodecName(String value) {
-        pjsua2JNI.StreamInfo_codecName_set(swigCPtr, this, value);
-    }
+  public void setCodecClockRate(long value) {
+    pjsua2JNI.StreamInfo_codecClockRate_set(swigCPtr, this, value);
+  }
 
-    public long getCodecClockRate() {
-        return pjsua2JNI.StreamInfo_codecClockRate_get(swigCPtr, this);
-    }
+  public long getCodecClockRate() {
+    return pjsua2JNI.StreamInfo_codecClockRate_get(swigCPtr, this);
+  }
 
-    public void setCodecClockRate(long value) {
-        pjsua2JNI.StreamInfo_codecClockRate_set(swigCPtr, this, value);
-    }
+  public void setCodecParam(SWIGTYPE_p_void value) {
+    pjsua2JNI.StreamInfo_codecParam_set(swigCPtr, this, SWIGTYPE_p_void.getCPtr(value));
+  }
 
-    public SWIGTYPE_p_void getCodecParam() {
-        long cPtr = pjsua2JNI.StreamInfo_codecParam_get(swigCPtr, this);
-        return (cPtr == 0) ? null : new SWIGTYPE_p_void(cPtr, false);
-    }
+  public SWIGTYPE_p_void getCodecParam() {
+    long cPtr = pjsua2JNI.StreamInfo_codecParam_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_void(cPtr, false);
+  }
 
-    public void setCodecParam(SWIGTYPE_p_void value) {
-        pjsua2JNI.StreamInfo_codecParam_set(swigCPtr, this, SWIGTYPE_p_void.getCPtr(value));
-    }
+  public StreamInfo() {
+    this(pjsua2JNI.new_StreamInfo(), true);
+  }
 
 }

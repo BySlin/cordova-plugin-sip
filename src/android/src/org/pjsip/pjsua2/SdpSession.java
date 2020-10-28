@@ -9,51 +9,51 @@
 package org.pjsip.pjsua2;
 
 public class SdpSession {
-    protected transient boolean swigCMemOwn;
-    private transient long swigCPtr;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
-    protected SdpSession(long cPtr, boolean cMemoryOwn) {
-        swigCMemOwn = cMemoryOwn;
-        swigCPtr = cPtr;
-    }
+  protected SdpSession(long cPtr, boolean cMemoryOwn) {
+    swigCMemOwn = cMemoryOwn;
+    swigCPtr = cPtr;
+  }
 
-    public SdpSession() {
-        this(pjsua2JNI.new_SdpSession(), true);
-    }
+  protected static long getCPtr(SdpSession obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
 
-    protected static long getCPtr(SdpSession obj) {
-        return (obj == null) ? 0 : obj.swigCPtr;
-    }
+  protected void finalize() {
+    delete();
+  }
 
-    protected void finalize() {
-        delete();
+  public synchronized void delete() {
+    if (swigCPtr != 0) {
+      if (swigCMemOwn) {
+        swigCMemOwn = false;
+        pjsua2JNI.delete_SdpSession(swigCPtr);
+      }
+      swigCPtr = 0;
     }
+  }
 
-    public synchronized void delete() {
-        if (swigCPtr != 0) {
-            if (swigCMemOwn) {
-                swigCMemOwn = false;
-                pjsua2JNI.delete_SdpSession(swigCPtr);
-            }
-            swigCPtr = 0;
-        }
-    }
+  public void setWholeSdp(String value) {
+    pjsua2JNI.SdpSession_wholeSdp_set(swigCPtr, this, value);
+  }
 
-    public String getWholeSdp() {
-        return pjsua2JNI.SdpSession_wholeSdp_get(swigCPtr, this);
-    }
+  public String getWholeSdp() {
+    return pjsua2JNI.SdpSession_wholeSdp_get(swigCPtr, this);
+  }
 
-    public void setWholeSdp(String value) {
-        pjsua2JNI.SdpSession_wholeSdp_set(swigCPtr, this, value);
-    }
+  public void setPjSdpSession(SWIGTYPE_p_void value) {
+    pjsua2JNI.SdpSession_pjSdpSession_set(swigCPtr, this, SWIGTYPE_p_void.getCPtr(value));
+  }
 
-    public SWIGTYPE_p_void getPjSdpSession() {
-        long cPtr = pjsua2JNI.SdpSession_pjSdpSession_get(swigCPtr, this);
-        return (cPtr == 0) ? null : new SWIGTYPE_p_void(cPtr, false);
-    }
+  public SWIGTYPE_p_void getPjSdpSession() {
+    long cPtr = pjsua2JNI.SdpSession_pjSdpSession_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_void(cPtr, false);
+  }
 
-    public void setPjSdpSession(SWIGTYPE_p_void value) {
-        pjsua2JNI.SdpSession_pjSdpSession_set(swigCPtr, this, SWIGTYPE_p_void.getCPtr(value));
-    }
+  public SdpSession() {
+    this(pjsua2JNI.new_SdpSession(), true);
+  }
 
 }

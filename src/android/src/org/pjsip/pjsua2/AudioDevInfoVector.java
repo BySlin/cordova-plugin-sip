@@ -9,71 +9,71 @@
 package org.pjsip.pjsua2;
 
 public class AudioDevInfoVector {
-    protected transient boolean swigCMemOwn;
-    private transient long swigCPtr;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
-    protected AudioDevInfoVector(long cPtr, boolean cMemoryOwn) {
-        swigCMemOwn = cMemoryOwn;
-        swigCPtr = cPtr;
-    }
+  protected AudioDevInfoVector(long cPtr, boolean cMemoryOwn) {
+    swigCMemOwn = cMemoryOwn;
+    swigCPtr = cPtr;
+  }
 
-    public AudioDevInfoVector() {
-        this(pjsua2JNI.new_AudioDevInfoVector__SWIG_0(), true);
-    }
+  protected static long getCPtr(AudioDevInfoVector obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
 
-    public AudioDevInfoVector(long n) {
-        this(pjsua2JNI.new_AudioDevInfoVector__SWIG_1(n), true);
-    }
+  protected void finalize() {
+    delete();
+  }
 
-    protected static long getCPtr(AudioDevInfoVector obj) {
-        return (obj == null) ? 0 : obj.swigCPtr;
+  public synchronized void delete() {
+    if (swigCPtr != 0) {
+      if (swigCMemOwn) {
+        swigCMemOwn = false;
+        pjsua2JNI.delete_AudioDevInfoVector(swigCPtr);
+      }
+      swigCPtr = 0;
     }
+  }
 
-    protected void finalize() {
-        delete();
-    }
+  public AudioDevInfoVector() {
+    this(pjsua2JNI.new_AudioDevInfoVector__SWIG_0(), true);
+  }
 
-    public synchronized void delete() {
-        if (swigCPtr != 0) {
-            if (swigCMemOwn) {
-                swigCMemOwn = false;
-                pjsua2JNI.delete_AudioDevInfoVector(swigCPtr);
-            }
-            swigCPtr = 0;
-        }
-    }
+  public AudioDevInfoVector(long n) {
+    this(pjsua2JNI.new_AudioDevInfoVector__SWIG_1(n), true);
+  }
 
-    public long size() {
-        return pjsua2JNI.AudioDevInfoVector_size(swigCPtr, this);
-    }
+  public long size() {
+    return pjsua2JNI.AudioDevInfoVector_size(swigCPtr, this);
+  }
 
-    public long capacity() {
-        return pjsua2JNI.AudioDevInfoVector_capacity(swigCPtr, this);
-    }
+  public long capacity() {
+    return pjsua2JNI.AudioDevInfoVector_capacity(swigCPtr, this);
+  }
 
-    public void reserve(long n) {
-        pjsua2JNI.AudioDevInfoVector_reserve(swigCPtr, this, n);
-    }
+  public void reserve(long n) {
+    pjsua2JNI.AudioDevInfoVector_reserve(swigCPtr, this, n);
+  }
 
-    public boolean isEmpty() {
-        return pjsua2JNI.AudioDevInfoVector_isEmpty(swigCPtr, this);
-    }
+  public boolean isEmpty() {
+    return pjsua2JNI.AudioDevInfoVector_isEmpty(swigCPtr, this);
+  }
 
-    public void clear() {
-        pjsua2JNI.AudioDevInfoVector_clear(swigCPtr, this);
-    }
+  public void clear() {
+    pjsua2JNI.AudioDevInfoVector_clear(swigCPtr, this);
+  }
 
-    public void add(AudioDevInfo x) {
-        pjsua2JNI.AudioDevInfoVector_add(swigCPtr, this, AudioDevInfo.getCPtr(x), x);
-    }
+  public void add(AudioDevInfo x) {
+    pjsua2JNI.AudioDevInfoVector_add(swigCPtr, this, AudioDevInfo.getCPtr(x), x);
+  }
 
-    public AudioDevInfo get(int i) {
-        long cPtr = pjsua2JNI.AudioDevInfoVector_get(swigCPtr, this, i);
-        return (cPtr == 0) ? null : new AudioDevInfo(cPtr, false);
-    }
+  public AudioDevInfo get(int i) {
+    long cPtr = pjsua2JNI.AudioDevInfoVector_get(swigCPtr, this, i);
+    return (cPtr == 0) ? null : new AudioDevInfo(cPtr, false);
+  }
 
-    public void set(int i, AudioDevInfo val) {
-        pjsua2JNI.AudioDevInfoVector_set(swigCPtr, this, i, AudioDevInfo.getCPtr(val), val);
-    }
+  public void set(int i, AudioDevInfo val) {
+    pjsua2JNI.AudioDevInfoVector_set(swigCPtr, this, i, AudioDevInfo.getCPtr(val), val);
+  }
 
 }

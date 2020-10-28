@@ -9,34 +9,34 @@
 package org.pjsip.pjsua2;
 
 public class ToneDesc extends pjmedia_tone_desc {
-    private transient long swigCPtr;
+  private transient long swigCPtr;
 
-    protected ToneDesc(long cPtr, boolean cMemoryOwn) {
-        super(pjsua2JNI.ToneDesc_SWIGUpcast(cPtr), cMemoryOwn);
-        swigCPtr = cPtr;
-    }
+  protected ToneDesc(long cPtr, boolean cMemoryOwn) {
+    super(pjsua2JNI.ToneDesc_SWIGUpcast(cPtr), cMemoryOwn);
+    swigCPtr = cPtr;
+  }
 
-    public ToneDesc() {
-        this(pjsua2JNI.new_ToneDesc(), true);
-    }
+  protected static long getCPtr(ToneDesc obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
 
-    protected static long getCPtr(ToneDesc obj) {
-        return (obj == null) ? 0 : obj.swigCPtr;
-    }
+  protected void finalize() {
+    delete();
+  }
 
-    protected void finalize() {
-        delete();
+  public synchronized void delete() {
+    if (swigCPtr != 0) {
+      if (swigCMemOwn) {
+        swigCMemOwn = false;
+        pjsua2JNI.delete_ToneDesc(swigCPtr);
+      }
+      swigCPtr = 0;
     }
+    super.delete();
+  }
 
-    public synchronized void delete() {
-        if (swigCPtr != 0) {
-            if (swigCMemOwn) {
-                swigCMemOwn = false;
-                pjsua2JNI.delete_ToneDesc(swigCPtr);
-            }
-            swigCPtr = 0;
-        }
-        super.delete();
-    }
+  public ToneDesc() {
+    this(pjsua2JNI.new_ToneDesc(), true);
+  }
 
 }

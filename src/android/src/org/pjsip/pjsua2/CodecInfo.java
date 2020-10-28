@@ -9,58 +9,58 @@
 package org.pjsip.pjsua2;
 
 public class CodecInfo {
-    protected transient boolean swigCMemOwn;
-    private transient long swigCPtr;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
-    protected CodecInfo(long cPtr, boolean cMemoryOwn) {
-        swigCMemOwn = cMemoryOwn;
-        swigCPtr = cPtr;
-    }
+  protected CodecInfo(long cPtr, boolean cMemoryOwn) {
+    swigCMemOwn = cMemoryOwn;
+    swigCPtr = cPtr;
+  }
 
-    public CodecInfo() {
-        this(pjsua2JNI.new_CodecInfo(), true);
-    }
+  protected static long getCPtr(CodecInfo obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
 
-    protected static long getCPtr(CodecInfo obj) {
-        return (obj == null) ? 0 : obj.swigCPtr;
-    }
+  protected void finalize() {
+    delete();
+  }
 
-    protected void finalize() {
-        delete();
+  public synchronized void delete() {
+    if (swigCPtr != 0) {
+      if (swigCMemOwn) {
+        swigCMemOwn = false;
+        pjsua2JNI.delete_CodecInfo(swigCPtr);
+      }
+      swigCPtr = 0;
     }
+  }
 
-    public synchronized void delete() {
-        if (swigCPtr != 0) {
-            if (swigCMemOwn) {
-                swigCMemOwn = false;
-                pjsua2JNI.delete_CodecInfo(swigCPtr);
-            }
-            swigCPtr = 0;
-        }
-    }
+  public void setCodecId(String value) {
+    pjsua2JNI.CodecInfo_codecId_set(swigCPtr, this, value);
+  }
 
-    public String getCodecId() {
-        return pjsua2JNI.CodecInfo_codecId_get(swigCPtr, this);
-    }
+  public String getCodecId() {
+    return pjsua2JNI.CodecInfo_codecId_get(swigCPtr, this);
+  }
 
-    public void setCodecId(String value) {
-        pjsua2JNI.CodecInfo_codecId_set(swigCPtr, this, value);
-    }
+  public void setPriority(short value) {
+    pjsua2JNI.CodecInfo_priority_set(swigCPtr, this, value);
+  }
 
-    public short getPriority() {
-        return pjsua2JNI.CodecInfo_priority_get(swigCPtr, this);
-    }
+  public short getPriority() {
+    return pjsua2JNI.CodecInfo_priority_get(swigCPtr, this);
+  }
 
-    public void setPriority(short value) {
-        pjsua2JNI.CodecInfo_priority_set(swigCPtr, this, value);
-    }
+  public void setDesc(String value) {
+    pjsua2JNI.CodecInfo_desc_set(swigCPtr, this, value);
+  }
 
-    public String getDesc() {
-        return pjsua2JNI.CodecInfo_desc_get(swigCPtr, this);
-    }
+  public String getDesc() {
+    return pjsua2JNI.CodecInfo_desc_get(swigCPtr, this);
+  }
 
-    public void setDesc(String value) {
-        pjsua2JNI.CodecInfo_desc_set(swigCPtr, this, value);
-    }
+  public CodecInfo() {
+    this(pjsua2JNI.new_CodecInfo(), true);
+  }
 
 }

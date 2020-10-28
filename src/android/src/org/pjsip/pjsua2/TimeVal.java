@@ -9,50 +9,50 @@
 package org.pjsip.pjsua2;
 
 public class TimeVal {
-    protected transient boolean swigCMemOwn;
-    private transient long swigCPtr;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
-    protected TimeVal(long cPtr, boolean cMemoryOwn) {
-        swigCMemOwn = cMemoryOwn;
-        swigCPtr = cPtr;
-    }
+  protected TimeVal(long cPtr, boolean cMemoryOwn) {
+    swigCMemOwn = cMemoryOwn;
+    swigCPtr = cPtr;
+  }
 
-    public TimeVal() {
-        this(pjsua2JNI.new_TimeVal(), true);
-    }
+  protected static long getCPtr(TimeVal obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
 
-    protected static long getCPtr(TimeVal obj) {
-        return (obj == null) ? 0 : obj.swigCPtr;
-    }
+  protected void finalize() {
+    delete();
+  }
 
-    protected void finalize() {
-        delete();
+  public synchronized void delete() {
+    if (swigCPtr != 0) {
+      if (swigCMemOwn) {
+        swigCMemOwn = false;
+        pjsua2JNI.delete_TimeVal(swigCPtr);
+      }
+      swigCPtr = 0;
     }
+  }
 
-    public synchronized void delete() {
-        if (swigCPtr != 0) {
-            if (swigCMemOwn) {
-                swigCMemOwn = false;
-                pjsua2JNI.delete_TimeVal(swigCPtr);
-            }
-            swigCPtr = 0;
-        }
-    }
+  public void setSec(int value) {
+    pjsua2JNI.TimeVal_sec_set(swigCPtr, this, value);
+  }
 
-    public int getSec() {
-        return pjsua2JNI.TimeVal_sec_get(swigCPtr, this);
-    }
+  public int getSec() {
+    return pjsua2JNI.TimeVal_sec_get(swigCPtr, this);
+  }
 
-    public void setSec(int value) {
-        pjsua2JNI.TimeVal_sec_set(swigCPtr, this, value);
-    }
+  public void setMsec(int value) {
+    pjsua2JNI.TimeVal_msec_set(swigCPtr, this, value);
+  }
 
-    public int getMsec() {
-        return pjsua2JNI.TimeVal_msec_get(swigCPtr, this);
-    }
+  public int getMsec() {
+    return pjsua2JNI.TimeVal_msec_get(swigCPtr, this);
+  }
 
-    public void setMsec(int value) {
-        pjsua2JNI.TimeVal_msec_set(swigCPtr, this, value);
-    }
+  public TimeVal() {
+    this(pjsua2JNI.new_TimeVal(), true);
+  }
 
 }

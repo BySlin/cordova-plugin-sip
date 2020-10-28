@@ -9,75 +9,75 @@
 package org.pjsip.pjsua2;
 
 public class OnTypingIndicationParam {
-    protected transient boolean swigCMemOwn;
-    private transient long swigCPtr;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
-    protected OnTypingIndicationParam(long cPtr, boolean cMemoryOwn) {
-        swigCMemOwn = cMemoryOwn;
-        swigCPtr = cPtr;
-    }
+  protected OnTypingIndicationParam(long cPtr, boolean cMemoryOwn) {
+    swigCMemOwn = cMemoryOwn;
+    swigCPtr = cPtr;
+  }
 
-    public OnTypingIndicationParam() {
-        this(pjsua2JNI.new_OnTypingIndicationParam(), true);
-    }
+  protected static long getCPtr(OnTypingIndicationParam obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
 
-    protected static long getCPtr(OnTypingIndicationParam obj) {
-        return (obj == null) ? 0 : obj.swigCPtr;
-    }
+  protected void finalize() {
+    delete();
+  }
 
-    protected void finalize() {
-        delete();
+  public synchronized void delete() {
+    if (swigCPtr != 0) {
+      if (swigCMemOwn) {
+        swigCMemOwn = false;
+        pjsua2JNI.delete_OnTypingIndicationParam(swigCPtr);
+      }
+      swigCPtr = 0;
     }
+  }
 
-    public synchronized void delete() {
-        if (swigCPtr != 0) {
-            if (swigCMemOwn) {
-                swigCMemOwn = false;
-                pjsua2JNI.delete_OnTypingIndicationParam(swigCPtr);
-            }
-            swigCPtr = 0;
-        }
-    }
+  public void setFromUri(String value) {
+    pjsua2JNI.OnTypingIndicationParam_fromUri_set(swigCPtr, this, value);
+  }
 
-    public String getFromUri() {
-        return pjsua2JNI.OnTypingIndicationParam_fromUri_get(swigCPtr, this);
-    }
+  public String getFromUri() {
+    return pjsua2JNI.OnTypingIndicationParam_fromUri_get(swigCPtr, this);
+  }
 
-    public void setFromUri(String value) {
-        pjsua2JNI.OnTypingIndicationParam_fromUri_set(swigCPtr, this, value);
-    }
+  public void setToUri(String value) {
+    pjsua2JNI.OnTypingIndicationParam_toUri_set(swigCPtr, this, value);
+  }
 
-    public String getToUri() {
-        return pjsua2JNI.OnTypingIndicationParam_toUri_get(swigCPtr, this);
-    }
+  public String getToUri() {
+    return pjsua2JNI.OnTypingIndicationParam_toUri_get(swigCPtr, this);
+  }
 
-    public void setToUri(String value) {
-        pjsua2JNI.OnTypingIndicationParam_toUri_set(swigCPtr, this, value);
-    }
+  public void setContactUri(String value) {
+    pjsua2JNI.OnTypingIndicationParam_contactUri_set(swigCPtr, this, value);
+  }
 
-    public String getContactUri() {
-        return pjsua2JNI.OnTypingIndicationParam_contactUri_get(swigCPtr, this);
-    }
+  public String getContactUri() {
+    return pjsua2JNI.OnTypingIndicationParam_contactUri_get(swigCPtr, this);
+  }
 
-    public void setContactUri(String value) {
-        pjsua2JNI.OnTypingIndicationParam_contactUri_set(swigCPtr, this, value);
-    }
+  public void setIsTyping(boolean value) {
+    pjsua2JNI.OnTypingIndicationParam_isTyping_set(swigCPtr, this, value);
+  }
 
-    public boolean getIsTyping() {
-        return pjsua2JNI.OnTypingIndicationParam_isTyping_get(swigCPtr, this);
-    }
+  public boolean getIsTyping() {
+    return pjsua2JNI.OnTypingIndicationParam_isTyping_get(swigCPtr, this);
+  }
 
-    public void setIsTyping(boolean value) {
-        pjsua2JNI.OnTypingIndicationParam_isTyping_set(swigCPtr, this, value);
-    }
+  public void setRdata(SipRxData value) {
+    pjsua2JNI.OnTypingIndicationParam_rdata_set(swigCPtr, this, SipRxData.getCPtr(value), value);
+  }
 
-    public SipRxData getRdata() {
-        long cPtr = pjsua2JNI.OnTypingIndicationParam_rdata_get(swigCPtr, this);
-        return (cPtr == 0) ? null : new SipRxData(cPtr, false);
-    }
+  public SipRxData getRdata() {
+    long cPtr = pjsua2JNI.OnTypingIndicationParam_rdata_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new SipRxData(cPtr, false);
+  }
 
-    public void setRdata(SipRxData value) {
-        pjsua2JNI.OnTypingIndicationParam_rdata_set(swigCPtr, this, SipRxData.getCPtr(value), value);
-    }
+  public OnTypingIndicationParam() {
+    this(pjsua2JNI.new_OnTypingIndicationParam(), true);
+  }
 
 }
