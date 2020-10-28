@@ -1,0 +1,8 @@
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'com.google.code.gson:gson:2.8.6'
+    compile 'com.github.voismart:crypto:0.1.0'
+}
