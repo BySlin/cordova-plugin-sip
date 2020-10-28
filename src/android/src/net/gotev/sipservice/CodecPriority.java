@@ -5,10 +5,29 @@ import android.os.Parcelable;
 
 /**
  * Represents a codec priority info.
- *
  * @author gotev (Aleksandar Gotev)
  */
 public class CodecPriority implements Parcelable, Comparable<CodecPriority> {
+
+    public static int PRIORITY_MAX = 254;
+    public static int PRIORITY_MIN = 1;
+    public static int PRIORITY_DISABLED = 0;
+
+    private static final String G729_LABEL = "G.729";
+    private static final String PCMU_LABEL = "PCMU";
+    private static final String PCMA_LABEL = "PCMA";
+    private static final String SPEEX_LABEL = "Speex";
+    private static final String G722_LABEL = "G.722";
+    private static final String G7221_LABEL = "G.722.1";
+    private static final String OPUS_LABEL = "Opus";
+
+    private String mCodecId;
+    private int mPriority;
+
+    CodecPriority(String codecId, short priority) {
+        mCodecId = codecId;
+        mPriority = priority;
+    }
 
     // This is used to regenerate the object.
     // All Parcelables must have a CREATOR that implements these two methods
@@ -24,23 +43,6 @@ public class CodecPriority implements Parcelable, Comparable<CodecPriority> {
                     return new CodecPriority[size];
                 }
             };
-    private static final String G729_LABEL = "G.729";
-    private static final String PCMU_LABEL = "PCMU";
-    private static final String PCMA_LABEL = "PCMA";
-    private static final String SPEEX_LABEL = "Speex";
-    private static final String G722_LABEL = "G.722";
-    private static final String G7221_LABEL = "G.722.1";
-    private static final String OPUS_LABEL = "Opus";
-    public static int PRIORITY_MAX = 254;
-    public static int PRIORITY_MIN = 1;
-    public static int PRIORITY_DISABLED = 0;
-    private String mCodecId;
-    private int mPriority;
-
-    CodecPriority(String codecId, short priority) {
-        mCodecId = codecId;
-        mPriority = priority;
-    }
 
     private CodecPriority(Parcel in) {
         mCodecId = in.readString();
@@ -58,7 +60,7 @@ public class CodecPriority implements Parcelable, Comparable<CodecPriority> {
         return 0;
     }
 
-    String getCodecId() {
+    public String getCodecId() {
         return mCodecId;
     }
 
@@ -80,22 +82,14 @@ public class CodecPriority implements Parcelable, Comparable<CodecPriority> {
         String name = mCodecId.split("/")[0];
 
         switch (name) {
-            case "G729":
-                return G729_LABEL;
-            case "PCMU":
-                return PCMU_LABEL;
-            case "PCMA":
-                return PCMA_LABEL;
-            case "speex":
-                return SPEEX_LABEL;
-            case "G722":
-                return G722_LABEL;
-            case "G7221":
-                return G7221_LABEL;
-            case "opus":
-                return OPUS_LABEL;
-            default:
-                return name;
+            case "G729": return G729_LABEL;
+            case "PCMU": return PCMU_LABEL;
+            case "PCMA": return PCMA_LABEL;
+            case "speex": return SPEEX_LABEL;
+            case "G722": return G722_LABEL;
+            case "G7221": return G7221_LABEL;
+            case "opus": return OPUS_LABEL;
+            default: return name;
         }
     }
 

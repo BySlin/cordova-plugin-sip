@@ -15,10 +15,9 @@ import java.util.ArrayList;
 
 /**
  * Reference implementation to receive events emitted by the sip service.
- *
  * @author gotev (Aleksandar Gotev)
  */
-public class BroadcastEventReceiver extends BroadcastReceiver implements SipServiceConstants {
+public class BroadcastEventReceiver extends BroadcastReceiver implements SipServiceConstants{
 
     private static final String LOG_TAG = "SipServiceBR";
 
@@ -37,7 +36,7 @@ public class BroadcastEventReceiver extends BroadcastReceiver implements SipServ
         if (BroadcastEventEmitter.getAction(BroadcastEventEmitter.BroadcastAction.REGISTRATION).equals(action)) {
             int stateCode = intent.getIntExtra(PARAM_REGISTRATION_CODE, -1);
             onRegistration(intent.getStringExtra(PARAM_ACCOUNT_ID),
-                    pjsip_status_code.swigToEnum(stateCode));
+                           pjsip_status_code.swigToEnum(stateCode));
 
         } else if (BroadcastEventEmitter.getAction(BroadcastEventEmitter.BroadcastAction.INCOMING_CALL).equals(action)) {
             onIncomingCall(intent.getStringExtra(PARAM_ACCOUNT_ID),
@@ -50,13 +49,13 @@ public class BroadcastEventReceiver extends BroadcastReceiver implements SipServ
             int callState = intent.getIntExtra(PARAM_CALL_STATE, -1);
             int callStatus = intent.getIntExtra(PARAM_CALL_STATUS, -1);
             onCallState(intent.getStringExtra(PARAM_ACCOUNT_ID),
-                    intent.getIntExtra(PARAM_CALL_ID, -1),
-                    pjsip_inv_state.swigToEnum(callState),
-                    (callStatus > 0) ? pjsip_status_code.swigToEnum(callStatus) : null,
-                    intent.getLongExtra(PARAM_CONNECT_TIMESTAMP, -1),
-                    intent.getBooleanExtra(PARAM_LOCAL_HOLD, false),
-                    intent.getBooleanExtra(PARAM_LOCAL_MUTE, false),
-                    intent.getBooleanExtra(PARAM_LOCAL_VIDEO_MUTE, false));
+                        intent.getIntExtra(PARAM_CALL_ID, -1),
+                        pjsip_inv_state.swigToEnum(callState),
+                        (callStatus > 0) ? pjsip_status_code.swigToEnum(callStatus) : null,
+                        intent.getLongExtra(PARAM_CONNECT_TIMESTAMP, -1),
+                        intent.getBooleanExtra(PARAM_LOCAL_HOLD, false),
+                        intent.getBooleanExtra(PARAM_LOCAL_MUTE, false),
+                        intent.getBooleanExtra(PARAM_LOCAL_VIDEO_MUTE, false));
 
         } else if (BroadcastEventEmitter.getAction(BroadcastEventEmitter.BroadcastAction.OUTGOING_CALL).equals(action)) {
             onOutgoingCall(intent.getStringExtra(PARAM_ACCOUNT_ID),
@@ -85,10 +84,10 @@ public class BroadcastEventReceiver extends BroadcastReceiver implements SipServ
         } else if (BroadcastEventEmitter.getAction(BroadcastEventEmitter.BroadcastAction.CALL_STATS).equals(action)) {
             int callStatus = intent.getIntExtra(PARAM_CALL_STATUS, -1);
             onCallStats(intent.getIntExtra(PARAM_CALL_STATS_DURATION, 0),
-                    intent.getStringExtra(PARAM_CALL_STATS_AUDIO_CODEC),
-                    (callStatus > 0) ? pjsip_status_code.swigToEnum(callStatus) : null,
-                    (RtpStreamStats) intent.getParcelableExtra(PARAM_CALL_STATS_RX_STREAM),
-                    (RtpStreamStats) intent.getParcelableExtra(PARAM_CALL_STATS_TX_STREAM));
+                intent.getStringExtra(PARAM_CALL_STATS_AUDIO_CODEC),
+                (callStatus > 0) ? pjsip_status_code.swigToEnum(callStatus) : null,
+                (RtpStreamStats) intent.getParcelableExtra(PARAM_CALL_STATS_RX_STREAM),
+                (RtpStreamStats) intent.getParcelableExtra(PARAM_CALL_STATS_TX_STREAM));
         }
     }
 
@@ -218,10 +217,10 @@ public class BroadcastEventReceiver extends BroadcastReceiver implements SipServ
     }
 
     protected void onVideoSize(int width, int height) {
-        Logger.debug(LOG_TAG, "Video resolution " + width + "x" + height);
+        Logger.debug(LOG_TAG, "Video resolution " + width+"x"+height);
     }
 
     protected void onCallStats(int duration, String audioCodec, pjsip_status_code callStatusCode, RtpStreamStats rx, RtpStreamStats tx) {
-        Logger.debug(LOG_TAG, "Call Stats sent " + duration + " " + audioCodec);
+        Logger.debug(LOG_TAG, "Call Stats sent "+duration+" "+audioCodec);
     }
 }

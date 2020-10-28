@@ -11,7 +11,8 @@
 
     <!-- android -->
     <platform name="android">
-        <framework src="com.google.code.gson:gson:2.8.5"/>
+        <framework src="com.google.code.gson:gson:2.8.6"/>
+        <framework src="com.github.voismart:crypto:0.1.0"/>
 
         <config-file parent="/manifest" target="AndroidManifest.xml">
             <uses-permission android:name="android.permission.INTERNET"/>
@@ -59,6 +60,8 @@
         <source-file src="src/android/src/com/byslin/sip/JSONResult.java"
                      target-dir="src/com/byslin/sip"/>
 
+        <source-file src="src/android/src/net/gotev/sipservice/SharedPreferencesHelper.java"
+                     target-dir="src/net/gotev/sipservice"/>
         <source-file src="src/android/src/net/gotev/sipservice/BackgroundService.java"
                      target-dir="src/net/gotev/sipservice"/>
         <source-file src="src/android/src/net/gotev/sipservice/BroadcastEventEmitter.java"

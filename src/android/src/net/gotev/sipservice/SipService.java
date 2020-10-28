@@ -1,14 +1,10 @@
 package net.gotev.sipservice;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.view.Surface;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import org.pjsip.pjsua2.AudDevManager;
 import org.pjsip.pjsua2.CallVidSetStreamParam;
@@ -28,7 +24,6 @@ import org.pjsip.pjsua2.pjsip_transport_type_e;
 import org.pjsip.pjsua2.pjsua_call_vid_strm_op;
 import org.pjsip.pjsua2.pjsua_destroy_flag;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -40,28 +35,20 @@ import static net.gotev.sipservice.SipServiceCommand.AGENT_NAME;
 
 /**
  * Sip Service.
- *
  * @author gotev (Aleksandar Gotev)
  */
 public class SipService extends BackgroundService implements SipServiceConstants {
 
     private static final String TAG = SipService.class.getSimpleName();
 
-    private static final String PREFS_NAME = TAG + "prefs";
-    private static final String PREFS_KEY_ACCOUNTS = "accounts";
-    private static final String PREFS_KEY_CODEC_PRIORITIES = "codec_priorities";
-    private static final String PREFS_KEY_DND = "dnd_pref";
-    private static ConcurrentHashMap<String, SipAccount> mActiveSipAccounts = new ConcurrentHashMap<>();
     private List<SipAccountData> mConfiguredAccounts = new ArrayList<>();
     private SipAccountData mConfiguredGuestAccount;
+    private static ConcurrentHashMap<String, SipAccount> mActiveSipAccounts = new ConcurrentHashMap<>();
     private BroadcastEventEmitter mBroadcastEmitter;
     private Endpoint mEndpoint;
+    private SharedPreferencesHelper mSharedPreferencesHelper;
     private volatile boolean mStarted;
     private int callStatus;
-
-    public static ConcurrentHashMap<String, SipAccount> getActiveSipAccounts() {
-        return mActiveSipAccounts;
-    }
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -99,7 +86,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
 
                 if (action == null) return;
 
-                switch (action) {
+                switch(action) {
                     case ACTION_SET_ACCOUNT:
                         handleSetAccount(intent);
                         break;
@@ -184,8 +171,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
                     case ACTION_MAKE_DIRECT_CALL:
                         handleMakeDirectCall(intent);
                         break;
-                    default:
-                        break;
+                    default: break;
                 }
 
                 if (mConfiguredAccounts.isEmpty() && mConfiguredGuestAccount == null) {
@@ -244,8 +230,8 @@ public class SipService extends BackgroundService implements SipServiceConstants
         }
 
         mBroadcastEmitter.callState(accountID, callID, sipCall.getCurrentState().swigValue(), callStatusCode,
-                sipCall.getConnectTimestamp(), sipCall.isLocalHold(),
-                sipCall.isLocalMute(), sipCall.isLocalVideoMute());
+                                    sipCall.getConnectTimestamp(), sipCall.isLocalHold(),
+                                    sipCall.isLocalMute(), sipCall.isLocalVideoMute());
     }
 
     private void handleSendDTMF(Intent intent) {
@@ -263,7 +249,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
             sipCall.dialDtmf(dtmf);
         } catch (Exception exc) {
             Logger.error(TAG, "Error while dialing dtmf: " + dtmf + ". AccountID: "
-                    + accountID + ", CallID: " + callID);
+                         + accountID + ", CallID: " + callID);
         }
     }
 
@@ -283,7 +269,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
             sipCall.acceptIncomingCall();
         } catch (Exception exc) {
             Logger.error(TAG, "Error while accepting incoming call. AccountID: "
-                    + accountID + ", CallID: " + callID);
+                         + accountID + ", CallID: " + callID);
         }
     }
 
@@ -339,7 +325,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
             sipCall.setMute(mute);
         } catch (Exception exc) {
             Logger.error(TAG, "Error while setting mute. AccountID: "
-                    + accountID + ", CallID: " + callID);
+                         + accountID + ", CallID: " + callID);
         }
     }
 
@@ -499,7 +485,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
         int regExpTimeout = intent.getIntExtra(PARAM_REG_EXP_TIMEOUT, 0);
         String regContactParams = intent.getStringExtra(PARAM_REG_CONTACT_PARAMS);
         boolean refresh = true;
-        if (!mActiveSipAccounts.isEmpty() && mActiveSipAccounts.containsKey(accountID)) {
+        if (!mActiveSipAccounts.isEmpty() && mActiveSipAccounts.containsKey(accountID)){
             try {
                 SipAccount sipAccount = mActiveSipAccounts.get(accountID);
                 if (regExpTimeout != 0 && regExpTimeout != sipAccount.getData().getRegExpirationTimeout()) {
@@ -527,7 +513,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
                 ex.printStackTrace();
             }
         } else {
-            Logger.debug(TAG, "account " + accountID + " not set");
+            Logger.debug(TAG, "account "+accountID+" not set");
         }
     }
 
@@ -673,7 +659,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
             } else {
                 mEndpoint.codecSetPriority("OPUS", (short) (CodecPriority.PRIORITY_MAX - 1));
                 mEndpoint.codecSetPriority("PCMA/8000", (short) (CodecPriority.PRIORITY_MAX - 2));
-                mEndpoint.codecSetPriority("PCMU/8000", (short) (CodecPriority.PRIORITY_MAX - 3));
+                mEndpoint.codecSetPriority("PCMU/8000", (short) (CodecPriority.PRIORITY_MAX -3));
                 mEndpoint.codecSetPriority("G729/8000", (short) CodecPriority.PRIORITY_DISABLED);
                 mEndpoint.codecSetPriority("speex/8000", (short) CodecPriority.PRIORITY_DISABLED);
                 mEndpoint.codecSetPriority("speex/16000", (short) CodecPriority.PRIORITY_DISABLED);
@@ -767,12 +753,12 @@ public class SipService extends BackgroundService implements SipServiceConstants
             CodecInfoVector codecs = mEndpoint.codecEnum();
             if (codecs == null || codecs.size() == 0) return null;
 
-            ArrayList<CodecPriority> codecPrioritiesList = new ArrayList<>((int) codecs.size());
+            ArrayList<CodecPriority> codecPrioritiesList = new ArrayList<>((int)codecs.size());
 
-            for (int i = 0; i < (int) codecs.size(); i++) {
+            for (int i = 0; i < (int)codecs.size(); i++) {
                 CodecInfo codecInfo = codecs.get(i);
                 CodecPriority newCodec = new CodecPriority(codecInfo.getCodecId(),
-                        codecInfo.getPriority());
+                                                           codecInfo.getPriority());
                 if (!codecPrioritiesList.contains(newCodec))
                     codecPrioritiesList.add(newCodec);
                 codecInfo.delete();
@@ -873,7 +859,6 @@ public class SipService extends BackgroundService implements SipServiceConstants
 
     /**
      * Adds a new SIP Account and performs initial registration.
-     *
      * @param account SIP account to add
      */
     private void addAccount(SipAccountData account) throws Exception {
@@ -912,40 +897,19 @@ public class SipService extends BackgroundService implements SipServiceConstants
     }
 
     private void persistConfiguredAccounts() {
-        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        prefs.edit().putString(PREFS_KEY_ACCOUNTS, new Gson().toJson(mConfiguredAccounts)).apply();
+        mSharedPreferencesHelper.persistConfiguredAccounts(mConfiguredAccounts);
     }
 
     private void persistConfiguredCodecPriorities(ArrayList<CodecPriority> codecPriorities) {
-        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        prefs.edit().putString(PREFS_KEY_CODEC_PRIORITIES, new Gson().toJson(codecPriorities)).apply();
-    }
-
-    private ArrayList<CodecPriority> getConfiguredCodecPriorities() {
-        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-
-        String codecPriorities = prefs.getString(PREFS_KEY_CODEC_PRIORITIES, "");
-        if (codecPriorities.isEmpty()) {
-            return null;
-        }
-
-        Type listType = new TypeToken<ArrayList<CodecPriority>>() {
-        }.getType();
-        return new Gson().fromJson(codecPriorities, listType);
+        mSharedPreferencesHelper.persistConfiguredCodecPriorities(codecPriorities);
     }
 
     private void loadConfiguredAccounts() {
-        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        mConfiguredAccounts = mSharedPreferencesHelper.retrieveConfiguredAccounts();
+    }
 
-        String accounts = prefs.getString(PREFS_KEY_ACCOUNTS, "");
-
-        if (accounts.isEmpty()) {
-            mConfiguredAccounts = new ArrayList<>();
-        } else {
-            Type listType = new TypeToken<ArrayList<SipAccountData>>() {
-            }.getType();
-            mConfiguredAccounts = new Gson().fromJson(accounts, listType);
-        }
+    private ArrayList<CodecPriority> getConfiguredCodecPriorities() {
+        return mSharedPreferencesHelper.retrieveConfiguredCodecPriorities();
     }
 
     protected synchronized AudDevManager getAudDevManager() {
@@ -966,13 +930,11 @@ public class SipService extends BackgroundService implements SipServiceConstants
 
     private void handleSetDND(Intent intent) {
         boolean dnd = intent.getBooleanExtra(PARAM_DND, false);
-        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        prefs.edit().putBoolean(PREFS_KEY_DND, dnd).apply();
+        mSharedPreferencesHelper.setDND(dnd);
     }
 
     public boolean isDND() {
-        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        return prefs.getBoolean(PREFS_KEY_DND, false);
+        return mSharedPreferencesHelper.isDND();
     }
 
     private void handleSetIncomingVideoFeed(Intent intent) {
@@ -990,7 +952,6 @@ public class SipService extends BackgroundService implements SipServiceConstants
             sipCall.setIncomingVideoFeed(surface);
         }
     }
-
     private void handleSetSelfVideoOrientation(Intent intent) {
         String accountID = intent.getStringExtra(PARAM_ACCOUNT_ID);
         int callID = intent.getIntExtra(PARAM_CALL_ID, 0);
@@ -1029,12 +990,12 @@ public class SipService extends BackgroundService implements SipServiceConstants
             }
 
             if (pjmediaOrientation != pjmedia_orient.PJMEDIA_ORIENT_UNKNOWN)
-                // set orientation to the correct current device
-                getVidDevManager().setCaptureOrient(
-                        sipCall.isFrontCamera()
-                                ? FRONT_CAMERA_CAPTURE_DEVICE
-                                : BACK_CAMERA_CAPTURE_DEVICE,
-                        pjmediaOrientation, true);
+            // set orientation to the correct current device
+            getVidDevManager().setCaptureOrient(
+                    sipCall.isFrontCamera()
+                            ? FRONT_CAMERA_CAPTURE_DEVICE
+                            : BACK_CAMERA_CAPTURE_DEVICE,
+                    pjmediaOrientation, true);
 
         } catch (Exception iex) {
             Logger.error(TAG, "Error while changing video orientation");
@@ -1120,8 +1081,8 @@ public class SipService extends BackgroundService implements SipServiceConstants
         }
 
         Logger.debug(TAG, "Making call to " + uri.getUserInfo());
-        String accountID = "sip:" + name + "@" + uri.getHost();
-        String sipUri = "sip:" + uri.getUserInfo() + "@" + uri.getHost();
+        String accountID = "sip:"+name+"@"+uri.getHost();
+        String sipUri = "sip:" + uri.getUserInfo()+"@"+uri.getHost();
 
         try {
             startStack();
@@ -1130,9 +1091,9 @@ public class SipService extends BackgroundService implements SipServiceConstants
                     .setUsername(name)
                     .setPort((uri.getPort() > 0) ? uri.getPort() : 5060)
                     .setRealm(uri.getHost());
-            /* display name not yet implemented server side for direct calls */
-            /* .setUsername("guest") */
-            /* .setGuestDisplayName(name)*/
+                    /* display name not yet implemented server side for direct calls */
+                    /* .setUsername("guest") */
+                    /* .setGuestDisplayName(name)*/
             SipAccount pjSipAndroidAccount = new SipAccount(this, sipAccountData);
             pjSipAndroidAccount.createGuest();
             mConfiguredGuestAccount = pjSipAndroidAccount.getData();
@@ -1152,5 +1113,9 @@ public class SipService extends BackgroundService implements SipServiceConstants
             Logger.error(TAG, "Error while making a direct call as Guest", ex);
             mBroadcastEmitter.outgoingCall(accountID, -1, uri.getUserInfo(), false, false);
         }
+    }
+
+    public static ConcurrentHashMap<String, SipAccount> getActiveSipAccounts() {
+        return mActiveSipAccounts;
     }
 }
