@@ -9,47 +9,48 @@
 package org.pjsip.pjsua2;
 
 public final class pjsip_role_e {
-    public final static pjsip_role_e PJSIP_ROLE_UAC = new pjsip_role_e("PJSIP_ROLE_UAC");
-    public final static pjsip_role_e PJSIP_ROLE_UAS = new pjsip_role_e("PJSIP_ROLE_UAS");
-    public final static pjsip_role_e PJSIP_UAC_ROLE = new pjsip_role_e("PJSIP_UAC_ROLE", pjsua2JNI.PJSIP_UAC_ROLE_get());
-    public final static pjsip_role_e PJSIP_UAS_ROLE = new pjsip_role_e("PJSIP_UAS_ROLE", pjsua2JNI.PJSIP_UAS_ROLE_get());
-    private static pjsip_role_e[] swigValues = {PJSIP_ROLE_UAC, PJSIP_ROLE_UAS, PJSIP_UAC_ROLE, PJSIP_UAS_ROLE};
-    private static int swigNext = 0;
-    private final int swigValue;
-    private final String swigName;
+  public final static pjsip_role_e PJSIP_ROLE_UAC = new pjsip_role_e("PJSIP_ROLE_UAC");
+  public final static pjsip_role_e PJSIP_ROLE_UAS = new pjsip_role_e("PJSIP_ROLE_UAS");
+  public final static pjsip_role_e PJSIP_UAC_ROLE = new pjsip_role_e("PJSIP_UAC_ROLE", pjsua2JNI.PJSIP_UAC_ROLE_get());
+  public final static pjsip_role_e PJSIP_UAS_ROLE = new pjsip_role_e("PJSIP_UAS_ROLE", pjsua2JNI.PJSIP_UAS_ROLE_get());
 
-    private pjsip_role_e(String swigName) {
-        this.swigName = swigName;
-        this.swigValue = swigNext++;
-    }
+  public final int swigValue() {
+    return swigValue;
+  }
 
-    private pjsip_role_e(String swigName, int swigValue) {
-        this.swigName = swigName;
-        this.swigValue = swigValue;
-        swigNext = swigValue + 1;
-    }
+  public String toString() {
+    return swigName;
+  }
 
-    private pjsip_role_e(String swigName, pjsip_role_e swigEnum) {
-        this.swigName = swigName;
-        this.swigValue = swigEnum.swigValue;
-        swigNext = this.swigValue + 1;
-    }
+  public static pjsip_role_e swigToEnum(int swigValue) {
+    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+      return swigValues[swigValue];
+    for (int i = 0; i < swigValues.length; i++)
+      if (swigValues[i].swigValue == swigValue)
+        return swigValues[i];
+    throw new IllegalArgumentException("No enum " + pjsip_role_e.class + " with value " + swigValue);
+  }
 
-    public static pjsip_role_e swigToEnum(int swigValue) {
-        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-            return swigValues[swigValue];
-        for (int i = 0; i < swigValues.length; i++)
-            if (swigValues[i].swigValue == swigValue)
-                return swigValues[i];
-        throw new IllegalArgumentException("No enum " + pjsip_role_e.class + " with value " + swigValue);
-    }
+  private pjsip_role_e(String swigName) {
+    this.swigName = swigName;
+    this.swigValue = swigNext++;
+  }
 
-    public final int swigValue() {
-        return swigValue;
-    }
+  private pjsip_role_e(String swigName, int swigValue) {
+    this.swigName = swigName;
+    this.swigValue = swigValue;
+    swigNext = swigValue+1;
+  }
 
-    public String toString() {
-        return swigName;
-    }
+  private pjsip_role_e(String swigName, pjsip_role_e swigEnum) {
+    this.swigName = swigName;
+    this.swigValue = swigEnum.swigValue;
+    swigNext = this.swigValue+1;
+  }
+
+  private static pjsip_role_e[] swigValues = { PJSIP_ROLE_UAC, PJSIP_ROLE_UAS, PJSIP_UAC_ROLE, PJSIP_UAS_ROLE };
+  private static int swigNext = 0;
+  private final int swigValue;
+  private final String swigName;
 }
 

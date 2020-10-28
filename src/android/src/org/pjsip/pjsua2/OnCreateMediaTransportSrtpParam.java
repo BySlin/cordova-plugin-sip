@@ -9,59 +9,59 @@
 package org.pjsip.pjsua2;
 
 public class OnCreateMediaTransportSrtpParam {
-    protected transient boolean swigCMemOwn;
-    private transient long swigCPtr;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
-    protected OnCreateMediaTransportSrtpParam(long cPtr, boolean cMemoryOwn) {
-        swigCMemOwn = cMemoryOwn;
-        swigCPtr = cPtr;
-    }
+  protected OnCreateMediaTransportSrtpParam(long cPtr, boolean cMemoryOwn) {
+    swigCMemOwn = cMemoryOwn;
+    swigCPtr = cPtr;
+  }
 
-    public OnCreateMediaTransportSrtpParam() {
-        this(pjsua2JNI.new_OnCreateMediaTransportSrtpParam(), true);
-    }
+  protected static long getCPtr(OnCreateMediaTransportSrtpParam obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
 
-    protected static long getCPtr(OnCreateMediaTransportSrtpParam obj) {
-        return (obj == null) ? 0 : obj.swigCPtr;
-    }
+  protected void finalize() {
+    delete();
+  }
 
-    protected void finalize() {
-        delete();
+  public synchronized void delete() {
+    if (swigCPtr != 0) {
+      if (swigCMemOwn) {
+        swigCMemOwn = false;
+        pjsua2JNI.delete_OnCreateMediaTransportSrtpParam(swigCPtr);
+      }
+      swigCPtr = 0;
     }
+  }
 
-    public synchronized void delete() {
-        if (swigCPtr != 0) {
-            if (swigCMemOwn) {
-                swigCMemOwn = false;
-                pjsua2JNI.delete_OnCreateMediaTransportSrtpParam(swigCPtr);
-            }
-            swigCPtr = 0;
-        }
-    }
+  public void setMediaIdx(long value) {
+    pjsua2JNI.OnCreateMediaTransportSrtpParam_mediaIdx_set(swigCPtr, this, value);
+  }
 
-    public long getMediaIdx() {
-        return pjsua2JNI.OnCreateMediaTransportSrtpParam_mediaIdx_get(swigCPtr, this);
-    }
+  public long getMediaIdx() {
+    return pjsua2JNI.OnCreateMediaTransportSrtpParam_mediaIdx_get(swigCPtr, this);
+  }
 
-    public void setMediaIdx(long value) {
-        pjsua2JNI.OnCreateMediaTransportSrtpParam_mediaIdx_set(swigCPtr, this, value);
-    }
+  public void setSrtpUse(pjmedia_srtp_use value) {
+    pjsua2JNI.OnCreateMediaTransportSrtpParam_srtpUse_set(swigCPtr, this, value.swigValue());
+  }
 
-    public pjmedia_srtp_use getSrtpUse() {
-        return pjmedia_srtp_use.swigToEnum(pjsua2JNI.OnCreateMediaTransportSrtpParam_srtpUse_get(swigCPtr, this));
-    }
+  public pjmedia_srtp_use getSrtpUse() {
+    return pjmedia_srtp_use.swigToEnum(pjsua2JNI.OnCreateMediaTransportSrtpParam_srtpUse_get(swigCPtr, this));
+  }
 
-    public void setSrtpUse(pjmedia_srtp_use value) {
-        pjsua2JNI.OnCreateMediaTransportSrtpParam_srtpUse_set(swigCPtr, this, value.swigValue());
-    }
+  public void setCryptos(SWIGTYPE_p_vectorT_pj__SrtpCrypto_t value) {
+    pjsua2JNI.OnCreateMediaTransportSrtpParam_cryptos_set(swigCPtr, this, SWIGTYPE_p_vectorT_pj__SrtpCrypto_t.getCPtr(value));
+  }
 
-    public SWIGTYPE_p_vectorT_pj__SrtpCrypto_t getCryptos() {
-        long cPtr = pjsua2JNI.OnCreateMediaTransportSrtpParam_cryptos_get(swigCPtr, this);
-        return (cPtr == 0) ? null : new SWIGTYPE_p_vectorT_pj__SrtpCrypto_t(cPtr, false);
-    }
+  public SWIGTYPE_p_vectorT_pj__SrtpCrypto_t getCryptos() {
+    long cPtr = pjsua2JNI.OnCreateMediaTransportSrtpParam_cryptos_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_vectorT_pj__SrtpCrypto_t(cPtr, false);
+  }
 
-    public void setCryptos(SWIGTYPE_p_vectorT_pj__SrtpCrypto_t value) {
-        pjsua2JNI.OnCreateMediaTransportSrtpParam_cryptos_set(swigCPtr, this, SWIGTYPE_p_vectorT_pj__SrtpCrypto_t.getCPtr(value));
-    }
+  public OnCreateMediaTransportSrtpParam() {
+    this(pjsua2JNI.new_OnCreateMediaTransportSrtpParam(), true);
+  }
 
 }

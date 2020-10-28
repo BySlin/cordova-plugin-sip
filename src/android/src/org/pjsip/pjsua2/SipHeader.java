@@ -9,50 +9,50 @@
 package org.pjsip.pjsua2;
 
 public class SipHeader {
-    protected transient boolean swigCMemOwn;
-    private transient long swigCPtr;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
-    protected SipHeader(long cPtr, boolean cMemoryOwn) {
-        swigCMemOwn = cMemoryOwn;
-        swigCPtr = cPtr;
-    }
+  protected SipHeader(long cPtr, boolean cMemoryOwn) {
+    swigCMemOwn = cMemoryOwn;
+    swigCPtr = cPtr;
+  }
 
-    public SipHeader() {
-        this(pjsua2JNI.new_SipHeader(), true);
-    }
+  protected static long getCPtr(SipHeader obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
 
-    protected static long getCPtr(SipHeader obj) {
-        return (obj == null) ? 0 : obj.swigCPtr;
-    }
+  protected void finalize() {
+    delete();
+  }
 
-    protected void finalize() {
-        delete();
+  public synchronized void delete() {
+    if (swigCPtr != 0) {
+      if (swigCMemOwn) {
+        swigCMemOwn = false;
+        pjsua2JNI.delete_SipHeader(swigCPtr);
+      }
+      swigCPtr = 0;
     }
+  }
 
-    public synchronized void delete() {
-        if (swigCPtr != 0) {
-            if (swigCMemOwn) {
-                swigCMemOwn = false;
-                pjsua2JNI.delete_SipHeader(swigCPtr);
-            }
-            swigCPtr = 0;
-        }
-    }
+  public void setHName(String value) {
+    pjsua2JNI.SipHeader_hName_set(swigCPtr, this, value);
+  }
 
-    public String getHName() {
-        return pjsua2JNI.SipHeader_hName_get(swigCPtr, this);
-    }
+  public String getHName() {
+    return pjsua2JNI.SipHeader_hName_get(swigCPtr, this);
+  }
 
-    public void setHName(String value) {
-        pjsua2JNI.SipHeader_hName_set(swigCPtr, this, value);
-    }
+  public void setHValue(String value) {
+    pjsua2JNI.SipHeader_hValue_set(swigCPtr, this, value);
+  }
 
-    public String getHValue() {
-        return pjsua2JNI.SipHeader_hValue_get(swigCPtr, this);
-    }
+  public String getHValue() {
+    return pjsua2JNI.SipHeader_hValue_get(swigCPtr, this);
+  }
 
-    public void setHValue(String value) {
-        pjsua2JNI.SipHeader_hValue_set(swigCPtr, this, value);
-    }
+  public SipHeader() {
+    this(pjsua2JNI.new_SipHeader(), true);
+  }
 
 }

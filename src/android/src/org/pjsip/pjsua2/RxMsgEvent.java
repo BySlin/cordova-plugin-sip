@@ -9,43 +9,43 @@
 package org.pjsip.pjsua2;
 
 public class RxMsgEvent {
-    protected transient boolean swigCMemOwn;
-    private transient long swigCPtr;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
-    protected RxMsgEvent(long cPtr, boolean cMemoryOwn) {
-        swigCMemOwn = cMemoryOwn;
-        swigCPtr = cPtr;
-    }
+  protected RxMsgEvent(long cPtr, boolean cMemoryOwn) {
+    swigCMemOwn = cMemoryOwn;
+    swigCPtr = cPtr;
+  }
 
-    public RxMsgEvent() {
-        this(pjsua2JNI.new_RxMsgEvent(), true);
-    }
+  protected static long getCPtr(RxMsgEvent obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
 
-    protected static long getCPtr(RxMsgEvent obj) {
-        return (obj == null) ? 0 : obj.swigCPtr;
-    }
+  protected void finalize() {
+    delete();
+  }
 
-    protected void finalize() {
-        delete();
+  public synchronized void delete() {
+    if (swigCPtr != 0) {
+      if (swigCMemOwn) {
+        swigCMemOwn = false;
+        pjsua2JNI.delete_RxMsgEvent(swigCPtr);
+      }
+      swigCPtr = 0;
     }
+  }
 
-    public synchronized void delete() {
-        if (swigCPtr != 0) {
-            if (swigCMemOwn) {
-                swigCMemOwn = false;
-                pjsua2JNI.delete_RxMsgEvent(swigCPtr);
-            }
-            swigCPtr = 0;
-        }
-    }
+  public void setRdata(SipRxData value) {
+    pjsua2JNI.RxMsgEvent_rdata_set(swigCPtr, this, SipRxData.getCPtr(value), value);
+  }
 
-    public SipRxData getRdata() {
-        long cPtr = pjsua2JNI.RxMsgEvent_rdata_get(swigCPtr, this);
-        return (cPtr == 0) ? null : new SipRxData(cPtr, false);
-    }
+  public SipRxData getRdata() {
+    long cPtr = pjsua2JNI.RxMsgEvent_rdata_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new SipRxData(cPtr, false);
+  }
 
-    public void setRdata(SipRxData value) {
-        pjsua2JNI.RxMsgEvent_rdata_set(swigCPtr, this, SipRxData.getCPtr(value), value);
-    }
+  public RxMsgEvent() {
+    this(pjsua2JNI.new_RxMsgEvent(), true);
+  }
 
 }

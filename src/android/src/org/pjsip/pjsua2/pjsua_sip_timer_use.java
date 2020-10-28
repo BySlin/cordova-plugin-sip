@@ -9,47 +9,48 @@
 package org.pjsip.pjsua2;
 
 public final class pjsua_sip_timer_use {
-    public final static pjsua_sip_timer_use PJSUA_SIP_TIMER_INACTIVE = new pjsua_sip_timer_use("PJSUA_SIP_TIMER_INACTIVE");
-    public final static pjsua_sip_timer_use PJSUA_SIP_TIMER_OPTIONAL = new pjsua_sip_timer_use("PJSUA_SIP_TIMER_OPTIONAL");
-    public final static pjsua_sip_timer_use PJSUA_SIP_TIMER_REQUIRED = new pjsua_sip_timer_use("PJSUA_SIP_TIMER_REQUIRED");
-    public final static pjsua_sip_timer_use PJSUA_SIP_TIMER_ALWAYS = new pjsua_sip_timer_use("PJSUA_SIP_TIMER_ALWAYS");
-    private static pjsua_sip_timer_use[] swigValues = {PJSUA_SIP_TIMER_INACTIVE, PJSUA_SIP_TIMER_OPTIONAL, PJSUA_SIP_TIMER_REQUIRED, PJSUA_SIP_TIMER_ALWAYS};
-    private static int swigNext = 0;
-    private final int swigValue;
-    private final String swigName;
+  public final static pjsua_sip_timer_use PJSUA_SIP_TIMER_INACTIVE = new pjsua_sip_timer_use("PJSUA_SIP_TIMER_INACTIVE");
+  public final static pjsua_sip_timer_use PJSUA_SIP_TIMER_OPTIONAL = new pjsua_sip_timer_use("PJSUA_SIP_TIMER_OPTIONAL");
+  public final static pjsua_sip_timer_use PJSUA_SIP_TIMER_REQUIRED = new pjsua_sip_timer_use("PJSUA_SIP_TIMER_REQUIRED");
+  public final static pjsua_sip_timer_use PJSUA_SIP_TIMER_ALWAYS = new pjsua_sip_timer_use("PJSUA_SIP_TIMER_ALWAYS");
 
-    private pjsua_sip_timer_use(String swigName) {
-        this.swigName = swigName;
-        this.swigValue = swigNext++;
-    }
+  public final int swigValue() {
+    return swigValue;
+  }
 
-    private pjsua_sip_timer_use(String swigName, int swigValue) {
-        this.swigName = swigName;
-        this.swigValue = swigValue;
-        swigNext = swigValue + 1;
-    }
+  public String toString() {
+    return swigName;
+  }
 
-    private pjsua_sip_timer_use(String swigName, pjsua_sip_timer_use swigEnum) {
-        this.swigName = swigName;
-        this.swigValue = swigEnum.swigValue;
-        swigNext = this.swigValue + 1;
-    }
+  public static pjsua_sip_timer_use swigToEnum(int swigValue) {
+    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+      return swigValues[swigValue];
+    for (int i = 0; i < swigValues.length; i++)
+      if (swigValues[i].swigValue == swigValue)
+        return swigValues[i];
+    throw new IllegalArgumentException("No enum " + pjsua_sip_timer_use.class + " with value " + swigValue);
+  }
 
-    public static pjsua_sip_timer_use swigToEnum(int swigValue) {
-        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-            return swigValues[swigValue];
-        for (int i = 0; i < swigValues.length; i++)
-            if (swigValues[i].swigValue == swigValue)
-                return swigValues[i];
-        throw new IllegalArgumentException("No enum " + pjsua_sip_timer_use.class + " with value " + swigValue);
-    }
+  private pjsua_sip_timer_use(String swigName) {
+    this.swigName = swigName;
+    this.swigValue = swigNext++;
+  }
 
-    public final int swigValue() {
-        return swigValue;
-    }
+  private pjsua_sip_timer_use(String swigName, int swigValue) {
+    this.swigName = swigName;
+    this.swigValue = swigValue;
+    swigNext = swigValue+1;
+  }
 
-    public String toString() {
-        return swigName;
-    }
+  private pjsua_sip_timer_use(String swigName, pjsua_sip_timer_use swigEnum) {
+    this.swigName = swigName;
+    this.swigValue = swigEnum.swigValue;
+    swigNext = this.swigValue+1;
+  }
+
+  private static pjsua_sip_timer_use[] swigValues = { PJSUA_SIP_TIMER_INACTIVE, PJSUA_SIP_TIMER_OPTIONAL, PJSUA_SIP_TIMER_REQUIRED, PJSUA_SIP_TIMER_ALWAYS };
+  private static int swigNext = 0;
+  private final int swigValue;
+  private final String swigName;
 }
 

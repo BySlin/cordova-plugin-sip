@@ -9,54 +9,54 @@
 package org.pjsip.pjsua2;
 
 public class LogWriter {
-    protected transient boolean swigCMemOwn;
-    private transient long swigCPtr;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
-    protected LogWriter(long cPtr, boolean cMemoryOwn) {
-        swigCMemOwn = cMemoryOwn;
-        swigCPtr = cPtr;
-    }
+  protected LogWriter(long cPtr, boolean cMemoryOwn) {
+    swigCMemOwn = cMemoryOwn;
+    swigCPtr = cPtr;
+  }
 
-    public LogWriter() {
-        this(pjsua2JNI.new_LogWriter(), true);
-        pjsua2JNI.LogWriter_director_connect(this, swigCPtr, swigCMemOwn, true);
-    }
+  protected static long getCPtr(LogWriter obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
 
-    protected static long getCPtr(LogWriter obj) {
-        return (obj == null) ? 0 : obj.swigCPtr;
-    }
+  protected void finalize() {
+    delete();
+  }
 
-    protected void finalize() {
-        delete();
-    }
-
-    public synchronized void delete() {
-        if (swigCPtr != 0) {
-            if (swigCMemOwn) {
-                swigCMemOwn = false;
-                pjsua2JNI.delete_LogWriter(swigCPtr);
-            }
-            swigCPtr = 0;
-        }
-    }
-
-    protected void swigDirectorDisconnect() {
+  public synchronized void delete() {
+    if (swigCPtr != 0) {
+      if (swigCMemOwn) {
         swigCMemOwn = false;
-        delete();
+        pjsua2JNI.delete_LogWriter(swigCPtr);
+      }
+      swigCPtr = 0;
     }
+  }
 
-    public void swigReleaseOwnership() {
-        swigCMemOwn = false;
-        pjsua2JNI.LogWriter_change_ownership(this, swigCPtr, false);
-    }
+  protected void swigDirectorDisconnect() {
+    swigCMemOwn = false;
+    delete();
+  }
 
-    public void swigTakeOwnership() {
-        swigCMemOwn = true;
-        pjsua2JNI.LogWriter_change_ownership(this, swigCPtr, true);
-    }
+  public void swigReleaseOwnership() {
+    swigCMemOwn = false;
+    pjsua2JNI.LogWriter_change_ownership(this, swigCPtr, false);
+  }
 
-    public void write(LogEntry entry) {
-        pjsua2JNI.LogWriter_write(swigCPtr, this, LogEntry.getCPtr(entry), entry);
-    }
+  public void swigTakeOwnership() {
+    swigCMemOwn = true;
+    pjsua2JNI.LogWriter_change_ownership(this, swigCPtr, true);
+  }
+
+  public void write(LogEntry entry) {
+    pjsua2JNI.LogWriter_write(swigCPtr, this, LogEntry.getCPtr(entry), entry);
+  }
+
+  public LogWriter() {
+    this(pjsua2JNI.new_LogWriter(), true);
+    pjsua2JNI.LogWriter_director_connect(this, swigCPtr, swigCMemOwn, true);
+  }
 
 }

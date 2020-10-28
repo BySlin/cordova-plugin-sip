@@ -9,50 +9,50 @@
 package org.pjsip.pjsua2;
 
 public class SslCertName {
-    protected transient boolean swigCMemOwn;
-    private transient long swigCPtr;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
-    protected SslCertName(long cPtr, boolean cMemoryOwn) {
-        swigCMemOwn = cMemoryOwn;
-        swigCPtr = cPtr;
-    }
+  protected SslCertName(long cPtr, boolean cMemoryOwn) {
+    swigCMemOwn = cMemoryOwn;
+    swigCPtr = cPtr;
+  }
 
-    public SslCertName() {
-        this(pjsua2JNI.new_SslCertName(), true);
-    }
+  protected static long getCPtr(SslCertName obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
 
-    protected static long getCPtr(SslCertName obj) {
-        return (obj == null) ? 0 : obj.swigCPtr;
-    }
+  protected void finalize() {
+    delete();
+  }
 
-    protected void finalize() {
-        delete();
+  public synchronized void delete() {
+    if (swigCPtr != 0) {
+      if (swigCMemOwn) {
+        swigCMemOwn = false;
+        pjsua2JNI.delete_SslCertName(swigCPtr);
+      }
+      swigCPtr = 0;
     }
+  }
 
-    public synchronized void delete() {
-        if (swigCPtr != 0) {
-            if (swigCMemOwn) {
-                swigCMemOwn = false;
-                pjsua2JNI.delete_SslCertName(swigCPtr);
-            }
-            swigCPtr = 0;
-        }
-    }
+  public void setType(pj_ssl_cert_name_type value) {
+    pjsua2JNI.SslCertName_type_set(swigCPtr, this, value.swigValue());
+  }
 
-    public pj_ssl_cert_name_type getType() {
-        return pj_ssl_cert_name_type.swigToEnum(pjsua2JNI.SslCertName_type_get(swigCPtr, this));
-    }
+  public pj_ssl_cert_name_type getType() {
+    return pj_ssl_cert_name_type.swigToEnum(pjsua2JNI.SslCertName_type_get(swigCPtr, this));
+  }
 
-    public void setType(pj_ssl_cert_name_type value) {
-        pjsua2JNI.SslCertName_type_set(swigCPtr, this, value.swigValue());
-    }
+  public void setName(String value) {
+    pjsua2JNI.SslCertName_name_set(swigCPtr, this, value);
+  }
 
-    public String getName() {
-        return pjsua2JNI.SslCertName_name_get(swigCPtr, this);
-    }
+  public String getName() {
+    return pjsua2JNI.SslCertName_name_get(swigCPtr, this);
+  }
 
-    public void setName(String value) {
-        pjsua2JNI.SslCertName_name_set(swigCPtr, this, value);
-    }
+  public SslCertName() {
+    this(pjsua2JNI.new_SslCertName(), true);
+  }
 
 }

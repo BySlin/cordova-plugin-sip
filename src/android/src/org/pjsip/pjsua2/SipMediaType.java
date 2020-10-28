@@ -9,50 +9,50 @@
 package org.pjsip.pjsua2;
 
 public class SipMediaType {
-    protected transient boolean swigCMemOwn;
-    private transient long swigCPtr;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
-    protected SipMediaType(long cPtr, boolean cMemoryOwn) {
-        swigCMemOwn = cMemoryOwn;
-        swigCPtr = cPtr;
-    }
+  protected SipMediaType(long cPtr, boolean cMemoryOwn) {
+    swigCMemOwn = cMemoryOwn;
+    swigCPtr = cPtr;
+  }
 
-    public SipMediaType() {
-        this(pjsua2JNI.new_SipMediaType(), true);
-    }
+  protected static long getCPtr(SipMediaType obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
 
-    protected static long getCPtr(SipMediaType obj) {
-        return (obj == null) ? 0 : obj.swigCPtr;
-    }
+  protected void finalize() {
+    delete();
+  }
 
-    protected void finalize() {
-        delete();
+  public synchronized void delete() {
+    if (swigCPtr != 0) {
+      if (swigCMemOwn) {
+        swigCMemOwn = false;
+        pjsua2JNI.delete_SipMediaType(swigCPtr);
+      }
+      swigCPtr = 0;
     }
+  }
 
-    public synchronized void delete() {
-        if (swigCPtr != 0) {
-            if (swigCMemOwn) {
-                swigCMemOwn = false;
-                pjsua2JNI.delete_SipMediaType(swigCPtr);
-            }
-            swigCPtr = 0;
-        }
-    }
+  public void setType(String value) {
+    pjsua2JNI.SipMediaType_type_set(swigCPtr, this, value);
+  }
 
-    public String getType() {
-        return pjsua2JNI.SipMediaType_type_get(swigCPtr, this);
-    }
+  public String getType() {
+    return pjsua2JNI.SipMediaType_type_get(swigCPtr, this);
+  }
 
-    public void setType(String value) {
-        pjsua2JNI.SipMediaType_type_set(swigCPtr, this, value);
-    }
+  public void setSubType(String value) {
+    pjsua2JNI.SipMediaType_subType_set(swigCPtr, this, value);
+  }
 
-    public String getSubType() {
-        return pjsua2JNI.SipMediaType_subType_get(swigCPtr, this);
-    }
+  public String getSubType() {
+    return pjsua2JNI.SipMediaType_subType_get(swigCPtr, this);
+  }
 
-    public void setSubType(String value) {
-        pjsua2JNI.SipMediaType_subType_set(swigCPtr, this, value);
-    }
+  public SipMediaType() {
+    this(pjsua2JNI.new_SipMediaType(), true);
+  }
 
 }
