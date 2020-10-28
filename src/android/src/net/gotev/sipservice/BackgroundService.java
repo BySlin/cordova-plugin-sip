@@ -2,11 +2,15 @@ package net.gotev.sipservice;
 
 import android.app.Service;
 import android.content.Intent;
-import android.os.*;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.IBinder;
+import android.os.PowerManager;
 import android.os.Process;
 
 /**
  * Service with a background worker thread.
+ *
  * @author gotev (Aleksandar Gotev)
  */
 class BackgroundService extends Service {

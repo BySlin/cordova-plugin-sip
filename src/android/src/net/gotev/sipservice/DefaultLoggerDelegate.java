@@ -4,6 +4,7 @@ import android.util.Log;
 
 /**
  * Default logger delegate implementation which logs in LogCat with {@link Log}.
+ *
  * @author gotev (Aleksandar Gotev)
  */
 public class DefaultLoggerDelegate implements Logger.LoggerDelegate {
