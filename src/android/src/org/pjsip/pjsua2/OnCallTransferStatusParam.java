@@ -9,66 +9,66 @@
 package org.pjsip.pjsua2;
 
 public class OnCallTransferStatusParam {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected OnCallTransferStatusParam(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(OnCallTransferStatusParam obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_OnCallTransferStatusParam(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected OnCallTransferStatusParam(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-  }
 
-  public void setStatusCode(pjsip_status_code value) {
-    pjsua2JNI.OnCallTransferStatusParam_statusCode_set(swigCPtr, this, value.swigValue());
-  }
+    public OnCallTransferStatusParam() {
+        this(pjsua2JNI.new_OnCallTransferStatusParam(), true);
+    }
 
-  public pjsip_status_code getStatusCode() {
-    return pjsip_status_code.swigToEnum(pjsua2JNI.OnCallTransferStatusParam_statusCode_get(swigCPtr, this));
-  }
+    protected static long getCPtr(OnCallTransferStatusParam obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void setReason(String value) {
-    pjsua2JNI.OnCallTransferStatusParam_reason_set(swigCPtr, this, value);
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public String getReason() {
-    return pjsua2JNI.OnCallTransferStatusParam_reason_get(swigCPtr, this);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_OnCallTransferStatusParam(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public void setFinalNotify(boolean value) {
-    pjsua2JNI.OnCallTransferStatusParam_finalNotify_set(swigCPtr, this, value);
-  }
+    public pjsip_status_code getStatusCode() {
+        return pjsip_status_code.swigToEnum(pjsua2JNI.OnCallTransferStatusParam_statusCode_get(swigCPtr, this));
+    }
 
-  public boolean getFinalNotify() {
-    return pjsua2JNI.OnCallTransferStatusParam_finalNotify_get(swigCPtr, this);
-  }
+    public void setStatusCode(pjsip_status_code value) {
+        pjsua2JNI.OnCallTransferStatusParam_statusCode_set(swigCPtr, this, value.swigValue());
+    }
 
-  public void setCont(boolean value) {
-    pjsua2JNI.OnCallTransferStatusParam_cont_set(swigCPtr, this, value);
-  }
+    public String getReason() {
+        return pjsua2JNI.OnCallTransferStatusParam_reason_get(swigCPtr, this);
+    }
 
-  public boolean getCont() {
-    return pjsua2JNI.OnCallTransferStatusParam_cont_get(swigCPtr, this);
-  }
+    public void setReason(String value) {
+        pjsua2JNI.OnCallTransferStatusParam_reason_set(swigCPtr, this, value);
+    }
 
-  public OnCallTransferStatusParam() {
-    this(pjsua2JNI.new_OnCallTransferStatusParam(), true);
-  }
+    public boolean getFinalNotify() {
+        return pjsua2JNI.OnCallTransferStatusParam_finalNotify_get(swigCPtr, this);
+    }
+
+    public void setFinalNotify(boolean value) {
+        pjsua2JNI.OnCallTransferStatusParam_finalNotify_set(swigCPtr, this, value);
+    }
+
+    public boolean getCont() {
+        return pjsua2JNI.OnCallTransferStatusParam_cont_get(swigCPtr, this);
+    }
+
+    public void setCont(boolean value) {
+        pjsua2JNI.OnCallTransferStatusParam_cont_set(swigCPtr, this, value);
+    }
 
 }

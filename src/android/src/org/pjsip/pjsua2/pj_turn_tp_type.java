@@ -9,47 +9,46 @@
 package org.pjsip.pjsua2;
 
 public final class pj_turn_tp_type {
-  public final static pj_turn_tp_type PJ_TURN_TP_UDP = new pj_turn_tp_type("PJ_TURN_TP_UDP", pjsua2JNI.PJ_TURN_TP_UDP_get());
-  public final static pj_turn_tp_type PJ_TURN_TP_TCP = new pj_turn_tp_type("PJ_TURN_TP_TCP", pjsua2JNI.PJ_TURN_TP_TCP_get());
-  public final static pj_turn_tp_type PJ_TURN_TP_TLS = new pj_turn_tp_type("PJ_TURN_TP_TLS", pjsua2JNI.PJ_TURN_TP_TLS_get());
+    public final static pj_turn_tp_type PJ_TURN_TP_UDP = new pj_turn_tp_type("PJ_TURN_TP_UDP", pjsua2JNI.PJ_TURN_TP_UDP_get());
+    public final static pj_turn_tp_type PJ_TURN_TP_TCP = new pj_turn_tp_type("PJ_TURN_TP_TCP", pjsua2JNI.PJ_TURN_TP_TCP_get());
+    public final static pj_turn_tp_type PJ_TURN_TP_TLS = new pj_turn_tp_type("PJ_TURN_TP_TLS", pjsua2JNI.PJ_TURN_TP_TLS_get());
+    private static pj_turn_tp_type[] swigValues = {PJ_TURN_TP_UDP, PJ_TURN_TP_TCP, PJ_TURN_TP_TLS};
+    private static int swigNext = 0;
+    private final int swigValue;
+    private final String swigName;
 
-  public final int swigValue() {
-    return swigValue;
-  }
+    private pj_turn_tp_type(String swigName) {
+        this.swigName = swigName;
+        this.swigValue = swigNext++;
+    }
 
-  public String toString() {
-    return swigName;
-  }
+    private pj_turn_tp_type(String swigName, int swigValue) {
+        this.swigName = swigName;
+        this.swigValue = swigValue;
+        swigNext = swigValue + 1;
+    }
 
-  public static pj_turn_tp_type swigToEnum(int swigValue) {
-    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-      return swigValues[swigValue];
-    for (int i = 0; i < swigValues.length; i++)
-      if (swigValues[i].swigValue == swigValue)
-        return swigValues[i];
-    throw new IllegalArgumentException("No enum " + pj_turn_tp_type.class + " with value " + swigValue);
-  }
+    private pj_turn_tp_type(String swigName, pj_turn_tp_type swigEnum) {
+        this.swigName = swigName;
+        this.swigValue = swigEnum.swigValue;
+        swigNext = this.swigValue + 1;
+    }
 
-  private pj_turn_tp_type(String swigName) {
-    this.swigName = swigName;
-    this.swigValue = swigNext++;
-  }
+    public static pj_turn_tp_type swigToEnum(int swigValue) {
+        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+            return swigValues[swigValue];
+        for (int i = 0; i < swigValues.length; i++)
+            if (swigValues[i].swigValue == swigValue)
+                return swigValues[i];
+        throw new IllegalArgumentException("No enum " + pj_turn_tp_type.class + " with value " + swigValue);
+    }
 
-  private pj_turn_tp_type(String swigName, int swigValue) {
-    this.swigName = swigName;
-    this.swigValue = swigValue;
-    swigNext = swigValue+1;
-  }
+    public final int swigValue() {
+        return swigValue;
+    }
 
-  private pj_turn_tp_type(String swigName, pj_turn_tp_type swigEnum) {
-    this.swigName = swigName;
-    this.swigValue = swigEnum.swigValue;
-    swigNext = this.swigValue+1;
-  }
-
-  private static pj_turn_tp_type[] swigValues = { PJ_TURN_TP_UDP, PJ_TURN_TP_TCP, PJ_TURN_TP_TLS };
-  private static int swigNext = 0;
-  private final int swigValue;
-  private final String swigName;
+    public String toString() {
+        return swigName;
+    }
 }
 

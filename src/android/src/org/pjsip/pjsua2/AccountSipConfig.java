@@ -9,108 +9,108 @@
 package org.pjsip.pjsua2;
 
 public class AccountSipConfig extends PersistentObject {
-  private transient long swigCPtr;
+    private transient long swigCPtr;
 
-  protected AccountSipConfig(long cPtr, boolean cMemoryOwn) {
-    super(pjsua2JNI.AccountSipConfig_SWIGUpcast(cPtr), cMemoryOwn);
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(AccountSipConfig obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_AccountSipConfig(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected AccountSipConfig(long cPtr, boolean cMemoryOwn) {
+        super(pjsua2JNI.AccountSipConfig_SWIGUpcast(cPtr), cMemoryOwn);
+        swigCPtr = cPtr;
     }
-    super.delete();
-  }
 
-  public void setAuthCreds(AuthCredInfoVector value) {
-    pjsua2JNI.AccountSipConfig_authCreds_set(swigCPtr, this, AuthCredInfoVector.getCPtr(value), value);
-  }
+    public AccountSipConfig() {
+        this(pjsua2JNI.new_AccountSipConfig(), true);
+    }
 
-  public AuthCredInfoVector getAuthCreds() {
-    long cPtr = pjsua2JNI.AccountSipConfig_authCreds_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new AuthCredInfoVector(cPtr, false);
-  }
+    protected static long getCPtr(AccountSipConfig obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void setProxies(StringVector value) {
-    pjsua2JNI.AccountSipConfig_proxies_set(swigCPtr, this, StringVector.getCPtr(value), value);
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public StringVector getProxies() {
-    long cPtr = pjsua2JNI.AccountSipConfig_proxies_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new StringVector(cPtr, false);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_AccountSipConfig(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+        super.delete();
+    }
 
-  public void setContactForced(String value) {
-    pjsua2JNI.AccountSipConfig_contactForced_set(swigCPtr, this, value);
-  }
+    public AuthCredInfoVector getAuthCreds() {
+        long cPtr = pjsua2JNI.AccountSipConfig_authCreds_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new AuthCredInfoVector(cPtr, false);
+    }
 
-  public String getContactForced() {
-    return pjsua2JNI.AccountSipConfig_contactForced_get(swigCPtr, this);
-  }
+    public void setAuthCreds(AuthCredInfoVector value) {
+        pjsua2JNI.AccountSipConfig_authCreds_set(swigCPtr, this, AuthCredInfoVector.getCPtr(value), value);
+    }
 
-  public void setContactParams(String value) {
-    pjsua2JNI.AccountSipConfig_contactParams_set(swigCPtr, this, value);
-  }
+    public StringVector getProxies() {
+        long cPtr = pjsua2JNI.AccountSipConfig_proxies_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new StringVector(cPtr, false);
+    }
 
-  public String getContactParams() {
-    return pjsua2JNI.AccountSipConfig_contactParams_get(swigCPtr, this);
-  }
+    public void setProxies(StringVector value) {
+        pjsua2JNI.AccountSipConfig_proxies_set(swigCPtr, this, StringVector.getCPtr(value), value);
+    }
 
-  public void setContactUriParams(String value) {
-    pjsua2JNI.AccountSipConfig_contactUriParams_set(swigCPtr, this, value);
-  }
+    public String getContactForced() {
+        return pjsua2JNI.AccountSipConfig_contactForced_get(swigCPtr, this);
+    }
 
-  public String getContactUriParams() {
-    return pjsua2JNI.AccountSipConfig_contactUriParams_get(swigCPtr, this);
-  }
+    public void setContactForced(String value) {
+        pjsua2JNI.AccountSipConfig_contactForced_set(swigCPtr, this, value);
+    }
 
-  public void setAuthInitialEmpty(boolean value) {
-    pjsua2JNI.AccountSipConfig_authInitialEmpty_set(swigCPtr, this, value);
-  }
+    public String getContactParams() {
+        return pjsua2JNI.AccountSipConfig_contactParams_get(swigCPtr, this);
+    }
 
-  public boolean getAuthInitialEmpty() {
-    return pjsua2JNI.AccountSipConfig_authInitialEmpty_get(swigCPtr, this);
-  }
+    public void setContactParams(String value) {
+        pjsua2JNI.AccountSipConfig_contactParams_set(swigCPtr, this, value);
+    }
 
-  public void setAuthInitialAlgorithm(String value) {
-    pjsua2JNI.AccountSipConfig_authInitialAlgorithm_set(swigCPtr, this, value);
-  }
+    public String getContactUriParams() {
+        return pjsua2JNI.AccountSipConfig_contactUriParams_get(swigCPtr, this);
+    }
 
-  public String getAuthInitialAlgorithm() {
-    return pjsua2JNI.AccountSipConfig_authInitialAlgorithm_get(swigCPtr, this);
-  }
+    public void setContactUriParams(String value) {
+        pjsua2JNI.AccountSipConfig_contactUriParams_set(swigCPtr, this, value);
+    }
 
-  public void setTransportId(int value) {
-    pjsua2JNI.AccountSipConfig_transportId_set(swigCPtr, this, value);
-  }
+    public boolean getAuthInitialEmpty() {
+        return pjsua2JNI.AccountSipConfig_authInitialEmpty_get(swigCPtr, this);
+    }
 
-  public int getTransportId() {
-    return pjsua2JNI.AccountSipConfig_transportId_get(swigCPtr, this);
-  }
+    public void setAuthInitialEmpty(boolean value) {
+        pjsua2JNI.AccountSipConfig_authInitialEmpty_set(swigCPtr, this, value);
+    }
 
-  public void readObject(ContainerNode node) throws java.lang.Exception {
-    pjsua2JNI.AccountSipConfig_readObject(swigCPtr, this, ContainerNode.getCPtr(node), node);
-  }
+    public String getAuthInitialAlgorithm() {
+        return pjsua2JNI.AccountSipConfig_authInitialAlgorithm_get(swigCPtr, this);
+    }
 
-  public void writeObject(ContainerNode node) throws java.lang.Exception {
-    pjsua2JNI.AccountSipConfig_writeObject(swigCPtr, this, ContainerNode.getCPtr(node), node);
-  }
+    public void setAuthInitialAlgorithm(String value) {
+        pjsua2JNI.AccountSipConfig_authInitialAlgorithm_set(swigCPtr, this, value);
+    }
 
-  public AccountSipConfig() {
-    this(pjsua2JNI.new_AccountSipConfig(), true);
-  }
+    public int getTransportId() {
+        return pjsua2JNI.AccountSipConfig_transportId_get(swigCPtr, this);
+    }
+
+    public void setTransportId(int value) {
+        pjsua2JNI.AccountSipConfig_transportId_set(swigCPtr, this, value);
+    }
+
+    public void readObject(ContainerNode node) throws java.lang.Exception {
+        pjsua2JNI.AccountSipConfig_readObject(swigCPtr, this, ContainerNode.getCPtr(node), node);
+    }
+
+    public void writeObject(ContainerNode node) throws java.lang.Exception {
+        pjsua2JNI.AccountSipConfig_writeObject(swigCPtr, this, ContainerNode.getCPtr(node), node);
+    }
 
 }

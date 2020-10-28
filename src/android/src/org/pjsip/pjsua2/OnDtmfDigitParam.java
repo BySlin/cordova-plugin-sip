@@ -9,42 +9,42 @@
 package org.pjsip.pjsua2;
 
 public class OnDtmfDigitParam {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected OnDtmfDigitParam(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(OnDtmfDigitParam obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_OnDtmfDigitParam(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected OnDtmfDigitParam(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-  }
 
-  public void setDigit(String value) {
-    pjsua2JNI.OnDtmfDigitParam_digit_set(swigCPtr, this, value);
-  }
+    public OnDtmfDigitParam() {
+        this(pjsua2JNI.new_OnDtmfDigitParam(), true);
+    }
 
-  public String getDigit() {
-    return pjsua2JNI.OnDtmfDigitParam_digit_get(swigCPtr, this);
-  }
+    protected static long getCPtr(OnDtmfDigitParam obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public OnDtmfDigitParam() {
-    this(pjsua2JNI.new_OnDtmfDigitParam(), true);
-  }
+    protected void finalize() {
+        delete();
+    }
+
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_OnDtmfDigitParam(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
+
+    public String getDigit() {
+        return pjsua2JNI.OnDtmfDigitParam_digit_get(swigCPtr, this);
+    }
+
+    public void setDigit(String value) {
+        pjsua2JNI.OnDtmfDigitParam_digit_set(swigCPtr, this, value);
+    }
 
 }

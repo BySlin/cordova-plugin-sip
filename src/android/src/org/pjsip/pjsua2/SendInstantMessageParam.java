@@ -9,68 +9,68 @@
 package org.pjsip.pjsua2;
 
 public class SendInstantMessageParam {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected SendInstantMessageParam(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(SendInstantMessageParam obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_SendInstantMessageParam(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected SendInstantMessageParam(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-  }
 
-  public void setContentType(String value) {
-    pjsua2JNI.SendInstantMessageParam_contentType_set(swigCPtr, this, value);
-  }
+    public SendInstantMessageParam() {
+        this(pjsua2JNI.new_SendInstantMessageParam(), true);
+    }
 
-  public String getContentType() {
-    return pjsua2JNI.SendInstantMessageParam_contentType_get(swigCPtr, this);
-  }
+    protected static long getCPtr(SendInstantMessageParam obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void setContent(String value) {
-    pjsua2JNI.SendInstantMessageParam_content_set(swigCPtr, this, value);
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public String getContent() {
-    return pjsua2JNI.SendInstantMessageParam_content_get(swigCPtr, this);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_SendInstantMessageParam(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public void setTxOption(SipTxOption value) {
-    pjsua2JNI.SendInstantMessageParam_txOption_set(swigCPtr, this, SipTxOption.getCPtr(value), value);
-  }
+    public String getContentType() {
+        return pjsua2JNI.SendInstantMessageParam_contentType_get(swigCPtr, this);
+    }
 
-  public SipTxOption getTxOption() {
-    long cPtr = pjsua2JNI.SendInstantMessageParam_txOption_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SipTxOption(cPtr, false);
-  }
+    public void setContentType(String value) {
+        pjsua2JNI.SendInstantMessageParam_contentType_set(swigCPtr, this, value);
+    }
 
-  public void setUserData(SWIGTYPE_p_void value) {
-    pjsua2JNI.SendInstantMessageParam_userData_set(swigCPtr, this, SWIGTYPE_p_void.getCPtr(value));
-  }
+    public String getContent() {
+        return pjsua2JNI.SendInstantMessageParam_content_get(swigCPtr, this);
+    }
 
-  public SWIGTYPE_p_void getUserData() {
-    long cPtr = pjsua2JNI.SendInstantMessageParam_userData_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_void(cPtr, false);
-  }
+    public void setContent(String value) {
+        pjsua2JNI.SendInstantMessageParam_content_set(swigCPtr, this, value);
+    }
 
-  public SendInstantMessageParam() {
-    this(pjsua2JNI.new_SendInstantMessageParam(), true);
-  }
+    public SipTxOption getTxOption() {
+        long cPtr = pjsua2JNI.SendInstantMessageParam_txOption_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new SipTxOption(cPtr, false);
+    }
+
+    public void setTxOption(SipTxOption value) {
+        pjsua2JNI.SendInstantMessageParam_txOption_set(swigCPtr, this, SipTxOption.getCPtr(value), value);
+    }
+
+    public SWIGTYPE_p_void getUserData() {
+        long cPtr = pjsua2JNI.SendInstantMessageParam_userData_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new SWIGTYPE_p_void(cPtr, false);
+    }
+
+    public void setUserData(SWIGTYPE_p_void value) {
+        pjsua2JNI.SendInstantMessageParam_userData_set(swigCPtr, this, SWIGTYPE_p_void.getCPtr(value));
+    }
 
 }

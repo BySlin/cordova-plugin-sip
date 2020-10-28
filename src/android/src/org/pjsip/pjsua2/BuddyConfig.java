@@ -9,58 +9,58 @@
 package org.pjsip.pjsua2;
 
 public class BuddyConfig extends PersistentObject {
-  private transient long swigCPtr;
+    private transient long swigCPtr;
 
-  protected BuddyConfig(long cPtr, boolean cMemoryOwn) {
-    super(pjsua2JNI.BuddyConfig_SWIGUpcast(cPtr), cMemoryOwn);
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(BuddyConfig obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_BuddyConfig(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected BuddyConfig(long cPtr, boolean cMemoryOwn) {
+        super(pjsua2JNI.BuddyConfig_SWIGUpcast(cPtr), cMemoryOwn);
+        swigCPtr = cPtr;
     }
-    super.delete();
-  }
 
-  public void setUri(String value) {
-    pjsua2JNI.BuddyConfig_uri_set(swigCPtr, this, value);
-  }
+    public BuddyConfig() {
+        this(pjsua2JNI.new_BuddyConfig(), true);
+    }
 
-  public String getUri() {
-    return pjsua2JNI.BuddyConfig_uri_get(swigCPtr, this);
-  }
+    protected static long getCPtr(BuddyConfig obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void setSubscribe(boolean value) {
-    pjsua2JNI.BuddyConfig_subscribe_set(swigCPtr, this, value);
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public boolean getSubscribe() {
-    return pjsua2JNI.BuddyConfig_subscribe_get(swigCPtr, this);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_BuddyConfig(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+        super.delete();
+    }
 
-  public void readObject(ContainerNode node) throws java.lang.Exception {
-    pjsua2JNI.BuddyConfig_readObject(swigCPtr, this, ContainerNode.getCPtr(node), node);
-  }
+    public String getUri() {
+        return pjsua2JNI.BuddyConfig_uri_get(swigCPtr, this);
+    }
 
-  public void writeObject(ContainerNode node) throws java.lang.Exception {
-    pjsua2JNI.BuddyConfig_writeObject(swigCPtr, this, ContainerNode.getCPtr(node), node);
-  }
+    public void setUri(String value) {
+        pjsua2JNI.BuddyConfig_uri_set(swigCPtr, this, value);
+    }
 
-  public BuddyConfig() {
-    this(pjsua2JNI.new_BuddyConfig(), true);
-  }
+    public boolean getSubscribe() {
+        return pjsua2JNI.BuddyConfig_subscribe_get(swigCPtr, this);
+    }
+
+    public void setSubscribe(boolean value) {
+        pjsua2JNI.BuddyConfig_subscribe_set(swigCPtr, this, value);
+    }
+
+    public void readObject(ContainerNode node) throws java.lang.Exception {
+        pjsua2JNI.BuddyConfig_readObject(swigCPtr, this, ContainerNode.getCPtr(node), node);
+    }
+
+    public void writeObject(ContainerNode node) throws java.lang.Exception {
+        pjsua2JNI.BuddyConfig_writeObject(swigCPtr, this, ContainerNode.getCPtr(node), node);
+    }
 
 }

@@ -9,121 +9,121 @@
 package org.pjsip.pjsua2;
 
 public class TlsInfo {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected TlsInfo(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(TlsInfo obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_TlsInfo(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected TlsInfo(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-  }
 
-  public void setEstablished(boolean value) {
-    pjsua2JNI.TlsInfo_established_set(swigCPtr, this, value);
-  }
+    public TlsInfo() {
+        this(pjsua2JNI.new_TlsInfo(), true);
+    }
 
-  public boolean getEstablished() {
-    return pjsua2JNI.TlsInfo_established_get(swigCPtr, this);
-  }
+    protected static long getCPtr(TlsInfo obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void setProtocol(long value) {
-    pjsua2JNI.TlsInfo_protocol_set(swigCPtr, this, value);
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public long getProtocol() {
-    return pjsua2JNI.TlsInfo_protocol_get(swigCPtr, this);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_TlsInfo(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public void setCipher(pj_ssl_cipher value) {
-    pjsua2JNI.TlsInfo_cipher_set(swigCPtr, this, value.swigValue());
-  }
+    public boolean getEstablished() {
+        return pjsua2JNI.TlsInfo_established_get(swigCPtr, this);
+    }
 
-  public pj_ssl_cipher getCipher() {
-    return pj_ssl_cipher.swigToEnum(pjsua2JNI.TlsInfo_cipher_get(swigCPtr, this));
-  }
+    public void setEstablished(boolean value) {
+        pjsua2JNI.TlsInfo_established_set(swigCPtr, this, value);
+    }
 
-  public void setCipherName(String value) {
-    pjsua2JNI.TlsInfo_cipherName_set(swigCPtr, this, value);
-  }
+    public long getProtocol() {
+        return pjsua2JNI.TlsInfo_protocol_get(swigCPtr, this);
+    }
 
-  public String getCipherName() {
-    return pjsua2JNI.TlsInfo_cipherName_get(swigCPtr, this);
-  }
+    public void setProtocol(long value) {
+        pjsua2JNI.TlsInfo_protocol_set(swigCPtr, this, value);
+    }
 
-  public void setLocalAddr(String value) {
-    pjsua2JNI.TlsInfo_localAddr_set(swigCPtr, this, value);
-  }
+    public pj_ssl_cipher getCipher() {
+        return pj_ssl_cipher.swigToEnum(pjsua2JNI.TlsInfo_cipher_get(swigCPtr, this));
+    }
 
-  public String getLocalAddr() {
-    return pjsua2JNI.TlsInfo_localAddr_get(swigCPtr, this);
-  }
+    public void setCipher(pj_ssl_cipher value) {
+        pjsua2JNI.TlsInfo_cipher_set(swigCPtr, this, value.swigValue());
+    }
 
-  public void setRemoteAddr(String value) {
-    pjsua2JNI.TlsInfo_remoteAddr_set(swigCPtr, this, value);
-  }
+    public String getCipherName() {
+        return pjsua2JNI.TlsInfo_cipherName_get(swigCPtr, this);
+    }
 
-  public String getRemoteAddr() {
-    return pjsua2JNI.TlsInfo_remoteAddr_get(swigCPtr, this);
-  }
+    public void setCipherName(String value) {
+        pjsua2JNI.TlsInfo_cipherName_set(swigCPtr, this, value);
+    }
 
-  public void setLocalCertInfo(SslCertInfo value) {
-    pjsua2JNI.TlsInfo_localCertInfo_set(swigCPtr, this, SslCertInfo.getCPtr(value), value);
-  }
+    public String getLocalAddr() {
+        return pjsua2JNI.TlsInfo_localAddr_get(swigCPtr, this);
+    }
 
-  public SslCertInfo getLocalCertInfo() {
-    long cPtr = pjsua2JNI.TlsInfo_localCertInfo_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SslCertInfo(cPtr, false);
-  }
+    public void setLocalAddr(String value) {
+        pjsua2JNI.TlsInfo_localAddr_set(swigCPtr, this, value);
+    }
 
-  public void setRemoteCertInfo(SslCertInfo value) {
-    pjsua2JNI.TlsInfo_remoteCertInfo_set(swigCPtr, this, SslCertInfo.getCPtr(value), value);
-  }
+    public String getRemoteAddr() {
+        return pjsua2JNI.TlsInfo_remoteAddr_get(swigCPtr, this);
+    }
 
-  public SslCertInfo getRemoteCertInfo() {
-    long cPtr = pjsua2JNI.TlsInfo_remoteCertInfo_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SslCertInfo(cPtr, false);
-  }
+    public void setRemoteAddr(String value) {
+        pjsua2JNI.TlsInfo_remoteAddr_set(swigCPtr, this, value);
+    }
 
-  public void setVerifyStatus(long value) {
-    pjsua2JNI.TlsInfo_verifyStatus_set(swigCPtr, this, value);
-  }
+    public SslCertInfo getLocalCertInfo() {
+        long cPtr = pjsua2JNI.TlsInfo_localCertInfo_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new SslCertInfo(cPtr, false);
+    }
 
-  public long getVerifyStatus() {
-    return pjsua2JNI.TlsInfo_verifyStatus_get(swigCPtr, this);
-  }
+    public void setLocalCertInfo(SslCertInfo value) {
+        pjsua2JNI.TlsInfo_localCertInfo_set(swigCPtr, this, SslCertInfo.getCPtr(value), value);
+    }
 
-  public void setVerifyMsgs(StringVector value) {
-    pjsua2JNI.TlsInfo_verifyMsgs_set(swigCPtr, this, StringVector.getCPtr(value), value);
-  }
+    public SslCertInfo getRemoteCertInfo() {
+        long cPtr = pjsua2JNI.TlsInfo_remoteCertInfo_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new SslCertInfo(cPtr, false);
+    }
 
-  public StringVector getVerifyMsgs() {
-    long cPtr = pjsua2JNI.TlsInfo_verifyMsgs_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new StringVector(cPtr, false);
-  }
+    public void setRemoteCertInfo(SslCertInfo value) {
+        pjsua2JNI.TlsInfo_remoteCertInfo_set(swigCPtr, this, SslCertInfo.getCPtr(value), value);
+    }
 
-  public TlsInfo() {
-    this(pjsua2JNI.new_TlsInfo(), true);
-  }
+    public long getVerifyStatus() {
+        return pjsua2JNI.TlsInfo_verifyStatus_get(swigCPtr, this);
+    }
 
-  public boolean isEmpty() {
-    return pjsua2JNI.TlsInfo_isEmpty(swigCPtr, this);
-  }
+    public void setVerifyStatus(long value) {
+        pjsua2JNI.TlsInfo_verifyStatus_set(swigCPtr, this, value);
+    }
+
+    public StringVector getVerifyMsgs() {
+        long cPtr = pjsua2JNI.TlsInfo_verifyMsgs_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new StringVector(cPtr, false);
+    }
+
+    public void setVerifyMsgs(StringVector value) {
+        pjsua2JNI.TlsInfo_verifyMsgs_set(swigCPtr, this, StringVector.getCPtr(value), value);
+    }
+
+    public boolean isEmpty() {
+        return pjsua2JNI.TlsInfo_isEmpty(swigCPtr, this);
+    }
 
 }

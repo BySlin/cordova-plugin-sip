@@ -9,50 +9,50 @@
 package org.pjsip.pjsua2;
 
 public class MediaSize {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected MediaSize(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(MediaSize obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_MediaSize(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected MediaSize(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-  }
 
-  public void setW(long value) {
-    pjsua2JNI.MediaSize_w_set(swigCPtr, this, value);
-  }
+    public MediaSize() {
+        this(pjsua2JNI.new_MediaSize(), true);
+    }
 
-  public long getW() {
-    return pjsua2JNI.MediaSize_w_get(swigCPtr, this);
-  }
+    protected static long getCPtr(MediaSize obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void setH(long value) {
-    pjsua2JNI.MediaSize_h_set(swigCPtr, this, value);
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public long getH() {
-    return pjsua2JNI.MediaSize_h_get(swigCPtr, this);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_MediaSize(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public MediaSize() {
-    this(pjsua2JNI.new_MediaSize(), true);
-  }
+    public long getW() {
+        return pjsua2JNI.MediaSize_w_get(swigCPtr, this);
+    }
+
+    public void setW(long value) {
+        pjsua2JNI.MediaSize_w_set(swigCPtr, this, value);
+    }
+
+    public long getH() {
+        return pjsua2JNI.MediaSize_h_get(swigCPtr, this);
+    }
+
+    public void setH(long value) {
+        pjsua2JNI.MediaSize_h_set(swigCPtr, this, value);
+    }
 
 }

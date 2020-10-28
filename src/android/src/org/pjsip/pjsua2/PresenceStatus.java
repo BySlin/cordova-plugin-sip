@@ -9,74 +9,74 @@
 package org.pjsip.pjsua2;
 
 public class PresenceStatus {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected PresenceStatus(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(PresenceStatus obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_PresenceStatus(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected PresenceStatus(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-  }
 
-  public void setStatus(pjsua_buddy_status value) {
-    pjsua2JNI.PresenceStatus_status_set(swigCPtr, this, value.swigValue());
-  }
+    public PresenceStatus() {
+        this(pjsua2JNI.new_PresenceStatus(), true);
+    }
 
-  public pjsua_buddy_status getStatus() {
-    return pjsua_buddy_status.swigToEnum(pjsua2JNI.PresenceStatus_status_get(swigCPtr, this));
-  }
+    protected static long getCPtr(PresenceStatus obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void setStatusText(String value) {
-    pjsua2JNI.PresenceStatus_statusText_set(swigCPtr, this, value);
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public String getStatusText() {
-    return pjsua2JNI.PresenceStatus_statusText_get(swigCPtr, this);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_PresenceStatus(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public void setActivity(pjrpid_activity value) {
-    pjsua2JNI.PresenceStatus_activity_set(swigCPtr, this, value.swigValue());
-  }
+    public pjsua_buddy_status getStatus() {
+        return pjsua_buddy_status.swigToEnum(pjsua2JNI.PresenceStatus_status_get(swigCPtr, this));
+    }
 
-  public pjrpid_activity getActivity() {
-    return pjrpid_activity.swigToEnum(pjsua2JNI.PresenceStatus_activity_get(swigCPtr, this));
-  }
+    public void setStatus(pjsua_buddy_status value) {
+        pjsua2JNI.PresenceStatus_status_set(swigCPtr, this, value.swigValue());
+    }
 
-  public void setNote(String value) {
-    pjsua2JNI.PresenceStatus_note_set(swigCPtr, this, value);
-  }
+    public String getStatusText() {
+        return pjsua2JNI.PresenceStatus_statusText_get(swigCPtr, this);
+    }
 
-  public String getNote() {
-    return pjsua2JNI.PresenceStatus_note_get(swigCPtr, this);
-  }
+    public void setStatusText(String value) {
+        pjsua2JNI.PresenceStatus_statusText_set(swigCPtr, this, value);
+    }
 
-  public void setRpidId(String value) {
-    pjsua2JNI.PresenceStatus_rpidId_set(swigCPtr, this, value);
-  }
+    public pjrpid_activity getActivity() {
+        return pjrpid_activity.swigToEnum(pjsua2JNI.PresenceStatus_activity_get(swigCPtr, this));
+    }
 
-  public String getRpidId() {
-    return pjsua2JNI.PresenceStatus_rpidId_get(swigCPtr, this);
-  }
+    public void setActivity(pjrpid_activity value) {
+        pjsua2JNI.PresenceStatus_activity_set(swigCPtr, this, value.swigValue());
+    }
 
-  public PresenceStatus() {
-    this(pjsua2JNI.new_PresenceStatus(), true);
-  }
+    public String getNote() {
+        return pjsua2JNI.PresenceStatus_note_get(swigCPtr, this);
+    }
+
+    public void setNote(String value) {
+        pjsua2JNI.PresenceStatus_note_set(swigCPtr, this, value);
+    }
+
+    public String getRpidId() {
+        return pjsua2JNI.PresenceStatus_rpidId_get(swigCPtr, this);
+    }
+
+    public void setRpidId(String value) {
+        pjsua2JNI.PresenceStatus_rpidId_set(swigCPtr, this, value);
+    }
 
 }

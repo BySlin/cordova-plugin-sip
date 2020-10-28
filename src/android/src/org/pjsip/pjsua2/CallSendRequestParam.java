@@ -9,51 +9,51 @@
 package org.pjsip.pjsua2;
 
 public class CallSendRequestParam {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected CallSendRequestParam(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(CallSendRequestParam obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_CallSendRequestParam(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected CallSendRequestParam(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-  }
 
-  public void setMethod(String value) {
-    pjsua2JNI.CallSendRequestParam_method_set(swigCPtr, this, value);
-  }
+    public CallSendRequestParam() {
+        this(pjsua2JNI.new_CallSendRequestParam(), true);
+    }
 
-  public String getMethod() {
-    return pjsua2JNI.CallSendRequestParam_method_get(swigCPtr, this);
-  }
+    protected static long getCPtr(CallSendRequestParam obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void setTxOption(SipTxOption value) {
-    pjsua2JNI.CallSendRequestParam_txOption_set(swigCPtr, this, SipTxOption.getCPtr(value), value);
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public SipTxOption getTxOption() {
-    long cPtr = pjsua2JNI.CallSendRequestParam_txOption_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SipTxOption(cPtr, false);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_CallSendRequestParam(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public CallSendRequestParam() {
-    this(pjsua2JNI.new_CallSendRequestParam(), true);
-  }
+    public String getMethod() {
+        return pjsua2JNI.CallSendRequestParam_method_get(swigCPtr, this);
+    }
+
+    public void setMethod(String value) {
+        pjsua2JNI.CallSendRequestParam_method_set(swigCPtr, this, value);
+    }
+
+    public SipTxOption getTxOption() {
+        long cPtr = pjsua2JNI.CallSendRequestParam_txOption_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new SipTxOption(cPtr, false);
+    }
+
+    public void setTxOption(SipTxOption value) {
+        pjsua2JNI.CallSendRequestParam_txOption_set(swigCPtr, this, SipTxOption.getCPtr(value), value);
+    }
 
 }

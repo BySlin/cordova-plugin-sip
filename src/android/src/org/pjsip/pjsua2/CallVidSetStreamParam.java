@@ -9,58 +9,58 @@
 package org.pjsip.pjsua2;
 
 public class CallVidSetStreamParam {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected CallVidSetStreamParam(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(CallVidSetStreamParam obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_CallVidSetStreamParam(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected CallVidSetStreamParam(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-  }
 
-  public void setMedIdx(int value) {
-    pjsua2JNI.CallVidSetStreamParam_medIdx_set(swigCPtr, this, value);
-  }
+    public CallVidSetStreamParam() {
+        this(pjsua2JNI.new_CallVidSetStreamParam(), true);
+    }
 
-  public int getMedIdx() {
-    return pjsua2JNI.CallVidSetStreamParam_medIdx_get(swigCPtr, this);
-  }
+    protected static long getCPtr(CallVidSetStreamParam obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void setDir(pjmedia_dir value) {
-    pjsua2JNI.CallVidSetStreamParam_dir_set(swigCPtr, this, value.swigValue());
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public pjmedia_dir getDir() {
-    return pjmedia_dir.swigToEnum(pjsua2JNI.CallVidSetStreamParam_dir_get(swigCPtr, this));
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_CallVidSetStreamParam(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public void setCapDev(int value) {
-    pjsua2JNI.CallVidSetStreamParam_capDev_set(swigCPtr, this, value);
-  }
+    public int getMedIdx() {
+        return pjsua2JNI.CallVidSetStreamParam_medIdx_get(swigCPtr, this);
+    }
 
-  public int getCapDev() {
-    return pjsua2JNI.CallVidSetStreamParam_capDev_get(swigCPtr, this);
-  }
+    public void setMedIdx(int value) {
+        pjsua2JNI.CallVidSetStreamParam_medIdx_set(swigCPtr, this, value);
+    }
 
-  public CallVidSetStreamParam() {
-    this(pjsua2JNI.new_CallVidSetStreamParam(), true);
-  }
+    public pjmedia_dir getDir() {
+        return pjmedia_dir.swigToEnum(pjsua2JNI.CallVidSetStreamParam_dir_get(swigCPtr, this));
+    }
+
+    public void setDir(pjmedia_dir value) {
+        pjsua2JNI.CallVidSetStreamParam_dir_set(swigCPtr, this, value.swigValue());
+    }
+
+    public int getCapDev() {
+        return pjsua2JNI.CallVidSetStreamParam_capDev_get(swigCPtr, this);
+    }
+
+    public void setCapDev(int value) {
+        pjsua2JNI.CallVidSetStreamParam_capDev_set(swigCPtr, this, value);
+    }
 
 }

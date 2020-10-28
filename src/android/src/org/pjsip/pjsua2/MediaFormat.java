@@ -9,50 +9,50 @@
 package org.pjsip.pjsua2;
 
 public class MediaFormat {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected MediaFormat(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(MediaFormat obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_MediaFormat(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected MediaFormat(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-  }
 
-  public void setId(long value) {
-    pjsua2JNI.MediaFormat_id_set(swigCPtr, this, value);
-  }
+    public MediaFormat() {
+        this(pjsua2JNI.new_MediaFormat(), true);
+    }
 
-  public long getId() {
-    return pjsua2JNI.MediaFormat_id_get(swigCPtr, this);
-  }
+    protected static long getCPtr(MediaFormat obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void setType(pjmedia_type value) {
-    pjsua2JNI.MediaFormat_type_set(swigCPtr, this, value.swigValue());
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public pjmedia_type getType() {
-    return pjmedia_type.swigToEnum(pjsua2JNI.MediaFormat_type_get(swigCPtr, this));
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_MediaFormat(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public MediaFormat() {
-    this(pjsua2JNI.new_MediaFormat(), true);
-  }
+    public long getId() {
+        return pjsua2JNI.MediaFormat_id_get(swigCPtr, this);
+    }
+
+    public void setId(long value) {
+        pjsua2JNI.MediaFormat_id_set(swigCPtr, this, value);
+    }
+
+    public pjmedia_type getType() {
+        return pjmedia_type.swigToEnum(pjsua2JNI.MediaFormat_type_get(swigCPtr, this));
+    }
+
+    public void setType(pjmedia_type value) {
+        pjsua2JNI.MediaFormat_type_set(swigCPtr, this, value.swigValue());
+    }
 
 }

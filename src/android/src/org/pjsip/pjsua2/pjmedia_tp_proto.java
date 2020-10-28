@@ -9,48 +9,47 @@
 package org.pjsip.pjsua2;
 
 public final class pjmedia_tp_proto {
-  public final static pjmedia_tp_proto PJMEDIA_TP_PROTO_NONE = new pjmedia_tp_proto("PJMEDIA_TP_PROTO_NONE", pjsua2JNI.PJMEDIA_TP_PROTO_NONE_get());
-  public final static pjmedia_tp_proto PJMEDIA_TP_PROTO_RTP_AVP = new pjmedia_tp_proto("PJMEDIA_TP_PROTO_RTP_AVP");
-  public final static pjmedia_tp_proto PJMEDIA_TP_PROTO_RTP_SAVP = new pjmedia_tp_proto("PJMEDIA_TP_PROTO_RTP_SAVP");
-  public final static pjmedia_tp_proto PJMEDIA_TP_PROTO_UNKNOWN = new pjmedia_tp_proto("PJMEDIA_TP_PROTO_UNKNOWN");
+    public final static pjmedia_tp_proto PJMEDIA_TP_PROTO_NONE = new pjmedia_tp_proto("PJMEDIA_TP_PROTO_NONE", pjsua2JNI.PJMEDIA_TP_PROTO_NONE_get());
+    public final static pjmedia_tp_proto PJMEDIA_TP_PROTO_RTP_AVP = new pjmedia_tp_proto("PJMEDIA_TP_PROTO_RTP_AVP");
+    public final static pjmedia_tp_proto PJMEDIA_TP_PROTO_RTP_SAVP = new pjmedia_tp_proto("PJMEDIA_TP_PROTO_RTP_SAVP");
+    public final static pjmedia_tp_proto PJMEDIA_TP_PROTO_UNKNOWN = new pjmedia_tp_proto("PJMEDIA_TP_PROTO_UNKNOWN");
+    private static pjmedia_tp_proto[] swigValues = {PJMEDIA_TP_PROTO_NONE, PJMEDIA_TP_PROTO_RTP_AVP, PJMEDIA_TP_PROTO_RTP_SAVP, PJMEDIA_TP_PROTO_UNKNOWN};
+    private static int swigNext = 0;
+    private final int swigValue;
+    private final String swigName;
 
-  public final int swigValue() {
-    return swigValue;
-  }
+    private pjmedia_tp_proto(String swigName) {
+        this.swigName = swigName;
+        this.swigValue = swigNext++;
+    }
 
-  public String toString() {
-    return swigName;
-  }
+    private pjmedia_tp_proto(String swigName, int swigValue) {
+        this.swigName = swigName;
+        this.swigValue = swigValue;
+        swigNext = swigValue + 1;
+    }
 
-  public static pjmedia_tp_proto swigToEnum(int swigValue) {
-    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-      return swigValues[swigValue];
-    for (int i = 0; i < swigValues.length; i++)
-      if (swigValues[i].swigValue == swigValue)
-        return swigValues[i];
-    throw new IllegalArgumentException("No enum " + pjmedia_tp_proto.class + " with value " + swigValue);
-  }
+    private pjmedia_tp_proto(String swigName, pjmedia_tp_proto swigEnum) {
+        this.swigName = swigName;
+        this.swigValue = swigEnum.swigValue;
+        swigNext = this.swigValue + 1;
+    }
 
-  private pjmedia_tp_proto(String swigName) {
-    this.swigName = swigName;
-    this.swigValue = swigNext++;
-  }
+    public static pjmedia_tp_proto swigToEnum(int swigValue) {
+        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+            return swigValues[swigValue];
+        for (int i = 0; i < swigValues.length; i++)
+            if (swigValues[i].swigValue == swigValue)
+                return swigValues[i];
+        throw new IllegalArgumentException("No enum " + pjmedia_tp_proto.class + " with value " + swigValue);
+    }
 
-  private pjmedia_tp_proto(String swigName, int swigValue) {
-    this.swigName = swigName;
-    this.swigValue = swigValue;
-    swigNext = swigValue+1;
-  }
+    public final int swigValue() {
+        return swigValue;
+    }
 
-  private pjmedia_tp_proto(String swigName, pjmedia_tp_proto swigEnum) {
-    this.swigName = swigName;
-    this.swigValue = swigEnum.swigValue;
-    swigNext = this.swigValue+1;
-  }
-
-  private static pjmedia_tp_proto[] swigValues = { PJMEDIA_TP_PROTO_NONE, PJMEDIA_TP_PROTO_RTP_AVP, PJMEDIA_TP_PROTO_RTP_SAVP, PJMEDIA_TP_PROTO_UNKNOWN };
-  private static int swigNext = 0;
-  private final int swigValue;
-  private final String swigName;
+    public String toString() {
+        return swigName;
+    }
 }
 

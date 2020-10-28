@@ -9,113 +9,113 @@
 package org.pjsip.pjsua2;
 
 public class RtcpStat {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected RtcpStat(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(RtcpStat obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_RtcpStat(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected RtcpStat(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-  }
 
-  public void setStart(TimeVal value) {
-    pjsua2JNI.RtcpStat_start_set(swigCPtr, this, TimeVal.getCPtr(value), value);
-  }
+    public RtcpStat() {
+        this(pjsua2JNI.new_RtcpStat(), true);
+    }
 
-  public TimeVal getStart() {
-    long cPtr = pjsua2JNI.RtcpStat_start_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new TimeVal(cPtr, false);
-  }
+    protected static long getCPtr(RtcpStat obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void setTxStat(RtcpStreamStat value) {
-    pjsua2JNI.RtcpStat_txStat_set(swigCPtr, this, RtcpStreamStat.getCPtr(value), value);
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public RtcpStreamStat getTxStat() {
-    long cPtr = pjsua2JNI.RtcpStat_txStat_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new RtcpStreamStat(cPtr, false);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_RtcpStat(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public void setRxStat(RtcpStreamStat value) {
-    pjsua2JNI.RtcpStat_rxStat_set(swigCPtr, this, RtcpStreamStat.getCPtr(value), value);
-  }
+    public TimeVal getStart() {
+        long cPtr = pjsua2JNI.RtcpStat_start_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new TimeVal(cPtr, false);
+    }
 
-  public RtcpStreamStat getRxStat() {
-    long cPtr = pjsua2JNI.RtcpStat_rxStat_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new RtcpStreamStat(cPtr, false);
-  }
+    public void setStart(TimeVal value) {
+        pjsua2JNI.RtcpStat_start_set(swigCPtr, this, TimeVal.getCPtr(value), value);
+    }
 
-  public void setRttUsec(MathStat value) {
-    pjsua2JNI.RtcpStat_rttUsec_set(swigCPtr, this, MathStat.getCPtr(value), value);
-  }
+    public RtcpStreamStat getTxStat() {
+        long cPtr = pjsua2JNI.RtcpStat_txStat_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new RtcpStreamStat(cPtr, false);
+    }
 
-  public MathStat getRttUsec() {
-    long cPtr = pjsua2JNI.RtcpStat_rttUsec_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new MathStat(cPtr, false);
-  }
+    public void setTxStat(RtcpStreamStat value) {
+        pjsua2JNI.RtcpStat_txStat_set(swigCPtr, this, RtcpStreamStat.getCPtr(value), value);
+    }
 
-  public void setRtpTxLastTs(long value) {
-    pjsua2JNI.RtcpStat_rtpTxLastTs_set(swigCPtr, this, value);
-  }
+    public RtcpStreamStat getRxStat() {
+        long cPtr = pjsua2JNI.RtcpStat_rxStat_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new RtcpStreamStat(cPtr, false);
+    }
 
-  public long getRtpTxLastTs() {
-    return pjsua2JNI.RtcpStat_rtpTxLastTs_get(swigCPtr, this);
-  }
+    public void setRxStat(RtcpStreamStat value) {
+        pjsua2JNI.RtcpStat_rxStat_set(swigCPtr, this, RtcpStreamStat.getCPtr(value), value);
+    }
 
-  public void setRtpTxLastSeq(int value) {
-    pjsua2JNI.RtcpStat_rtpTxLastSeq_set(swigCPtr, this, value);
-  }
+    public MathStat getRttUsec() {
+        long cPtr = pjsua2JNI.RtcpStat_rttUsec_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new MathStat(cPtr, false);
+    }
 
-  public int getRtpTxLastSeq() {
-    return pjsua2JNI.RtcpStat_rtpTxLastSeq_get(swigCPtr, this);
-  }
+    public void setRttUsec(MathStat value) {
+        pjsua2JNI.RtcpStat_rttUsec_set(swigCPtr, this, MathStat.getCPtr(value), value);
+    }
 
-  public void setRxIpdvUsec(MathStat value) {
-    pjsua2JNI.RtcpStat_rxIpdvUsec_set(swigCPtr, this, MathStat.getCPtr(value), value);
-  }
+    public long getRtpTxLastTs() {
+        return pjsua2JNI.RtcpStat_rtpTxLastTs_get(swigCPtr, this);
+    }
 
-  public MathStat getRxIpdvUsec() {
-    long cPtr = pjsua2JNI.RtcpStat_rxIpdvUsec_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new MathStat(cPtr, false);
-  }
+    public void setRtpTxLastTs(long value) {
+        pjsua2JNI.RtcpStat_rtpTxLastTs_set(swigCPtr, this, value);
+    }
 
-  public void setRxRawJitterUsec(MathStat value) {
-    pjsua2JNI.RtcpStat_rxRawJitterUsec_set(swigCPtr, this, MathStat.getCPtr(value), value);
-  }
+    public int getRtpTxLastSeq() {
+        return pjsua2JNI.RtcpStat_rtpTxLastSeq_get(swigCPtr, this);
+    }
 
-  public MathStat getRxRawJitterUsec() {
-    long cPtr = pjsua2JNI.RtcpStat_rxRawJitterUsec_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new MathStat(cPtr, false);
-  }
+    public void setRtpTxLastSeq(int value) {
+        pjsua2JNI.RtcpStat_rtpTxLastSeq_set(swigCPtr, this, value);
+    }
 
-  public void setPeerSdes(RtcpSdes value) {
-    pjsua2JNI.RtcpStat_peerSdes_set(swigCPtr, this, RtcpSdes.getCPtr(value), value);
-  }
+    public MathStat getRxIpdvUsec() {
+        long cPtr = pjsua2JNI.RtcpStat_rxIpdvUsec_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new MathStat(cPtr, false);
+    }
 
-  public RtcpSdes getPeerSdes() {
-    long cPtr = pjsua2JNI.RtcpStat_peerSdes_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new RtcpSdes(cPtr, false);
-  }
+    public void setRxIpdvUsec(MathStat value) {
+        pjsua2JNI.RtcpStat_rxIpdvUsec_set(swigCPtr, this, MathStat.getCPtr(value), value);
+    }
 
-  public RtcpStat() {
-    this(pjsua2JNI.new_RtcpStat(), true);
-  }
+    public MathStat getRxRawJitterUsec() {
+        long cPtr = pjsua2JNI.RtcpStat_rxRawJitterUsec_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new MathStat(cPtr, false);
+    }
+
+    public void setRxRawJitterUsec(MathStat value) {
+        pjsua2JNI.RtcpStat_rxRawJitterUsec_set(swigCPtr, this, MathStat.getCPtr(value), value);
+    }
+
+    public RtcpSdes getPeerSdes() {
+        long cPtr = pjsua2JNI.RtcpStat_peerSdes_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new RtcpSdes(cPtr, false);
+    }
+
+    public void setPeerSdes(RtcpSdes value) {
+        pjsua2JNI.RtcpStat_peerSdes_set(swigCPtr, this, RtcpSdes.getCPtr(value), value);
+    }
 
 }

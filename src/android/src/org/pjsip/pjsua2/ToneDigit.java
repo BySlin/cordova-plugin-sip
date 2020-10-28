@@ -9,34 +9,34 @@
 package org.pjsip.pjsua2;
 
 public class ToneDigit extends pjmedia_tone_digit {
-  private transient long swigCPtr;
+    private transient long swigCPtr;
 
-  protected ToneDigit(long cPtr, boolean cMemoryOwn) {
-    super(pjsua2JNI.ToneDigit_SWIGUpcast(cPtr), cMemoryOwn);
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(ToneDigit obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_ToneDigit(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected ToneDigit(long cPtr, boolean cMemoryOwn) {
+        super(pjsua2JNI.ToneDigit_SWIGUpcast(cPtr), cMemoryOwn);
+        swigCPtr = cPtr;
     }
-    super.delete();
-  }
 
-  public ToneDigit() {
-    this(pjsua2JNI.new_ToneDigit(), true);
-  }
+    public ToneDigit() {
+        this(pjsua2JNI.new_ToneDigit(), true);
+    }
+
+    protected static long getCPtr(ToneDigit obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
+
+    protected void finalize() {
+        delete();
+    }
+
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_ToneDigit(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+        super.delete();
+    }
 
 }

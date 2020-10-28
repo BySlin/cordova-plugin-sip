@@ -9,42 +9,42 @@
 package org.pjsip.pjsua2;
 
 public class OnRegStartedParam {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected OnRegStartedParam(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(OnRegStartedParam obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_OnRegStartedParam(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected OnRegStartedParam(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-  }
 
-  public void setRenew(boolean value) {
-    pjsua2JNI.OnRegStartedParam_renew_set(swigCPtr, this, value);
-  }
+    public OnRegStartedParam() {
+        this(pjsua2JNI.new_OnRegStartedParam(), true);
+    }
 
-  public boolean getRenew() {
-    return pjsua2JNI.OnRegStartedParam_renew_get(swigCPtr, this);
-  }
+    protected static long getCPtr(OnRegStartedParam obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public OnRegStartedParam() {
-    this(pjsua2JNI.new_OnRegStartedParam(), true);
-  }
+    protected void finalize() {
+        delete();
+    }
+
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_OnRegStartedParam(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
+
+    public boolean getRenew() {
+        return pjsua2JNI.OnRegStartedParam_renew_get(swigCPtr, this);
+    }
+
+    public void setRenew(boolean value) {
+        pjsua2JNI.OnRegStartedParam_renew_set(swigCPtr, this, value);
+    }
 
 }

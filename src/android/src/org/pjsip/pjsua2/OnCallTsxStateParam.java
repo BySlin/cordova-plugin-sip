@@ -9,43 +9,43 @@
 package org.pjsip.pjsua2;
 
 public class OnCallTsxStateParam {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected OnCallTsxStateParam(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(OnCallTsxStateParam obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_OnCallTsxStateParam(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected OnCallTsxStateParam(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-  }
 
-  public void setE(SipEvent value) {
-    pjsua2JNI.OnCallTsxStateParam_e_set(swigCPtr, this, SipEvent.getCPtr(value), value);
-  }
+    public OnCallTsxStateParam() {
+        this(pjsua2JNI.new_OnCallTsxStateParam(), true);
+    }
 
-  public SipEvent getE() {
-    long cPtr = pjsua2JNI.OnCallTsxStateParam_e_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SipEvent(cPtr, false);
-  }
+    protected static long getCPtr(OnCallTsxStateParam obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public OnCallTsxStateParam() {
-    this(pjsua2JNI.new_OnCallTsxStateParam(), true);
-  }
+    protected void finalize() {
+        delete();
+    }
+
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_OnCallTsxStateParam(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
+
+    public SipEvent getE() {
+        long cPtr = pjsua2JNI.OnCallTsxStateParam_e_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new SipEvent(cPtr, false);
+    }
+
+    public void setE(SipEvent value) {
+        pjsua2JNI.OnCallTsxStateParam_e_set(swigCPtr, this, SipEvent.getCPtr(value), value);
+    }
 
 }

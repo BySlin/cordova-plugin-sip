@@ -9,70 +9,70 @@
 package org.pjsip.pjsua2;
 
 public class ToneDigitMapVector {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected ToneDigitMapVector(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(ToneDigitMapVector obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_ToneDigitMapVector(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected ToneDigitMapVector(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-  }
 
-  public ToneDigitMapVector() {
-    this(pjsua2JNI.new_ToneDigitMapVector__SWIG_0(), true);
-  }
+    public ToneDigitMapVector() {
+        this(pjsua2JNI.new_ToneDigitMapVector__SWIG_0(), true);
+    }
 
-  public ToneDigitMapVector(long n) {
-    this(pjsua2JNI.new_ToneDigitMapVector__SWIG_1(n), true);
-  }
+    public ToneDigitMapVector(long n) {
+        this(pjsua2JNI.new_ToneDigitMapVector__SWIG_1(n), true);
+    }
 
-  public long size() {
-    return pjsua2JNI.ToneDigitMapVector_size(swigCPtr, this);
-  }
+    protected static long getCPtr(ToneDigitMapVector obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public long capacity() {
-    return pjsua2JNI.ToneDigitMapVector_capacity(swigCPtr, this);
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public void reserve(long n) {
-    pjsua2JNI.ToneDigitMapVector_reserve(swigCPtr, this, n);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_ToneDigitMapVector(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public boolean isEmpty() {
-    return pjsua2JNI.ToneDigitMapVector_isEmpty(swigCPtr, this);
-  }
+    public long size() {
+        return pjsua2JNI.ToneDigitMapVector_size(swigCPtr, this);
+    }
 
-  public void clear() {
-    pjsua2JNI.ToneDigitMapVector_clear(swigCPtr, this);
-  }
+    public long capacity() {
+        return pjsua2JNI.ToneDigitMapVector_capacity(swigCPtr, this);
+    }
 
-  public void add(ToneDigitMapDigit x) {
-    pjsua2JNI.ToneDigitMapVector_add(swigCPtr, this, ToneDigitMapDigit.getCPtr(x), x);
-  }
+    public void reserve(long n) {
+        pjsua2JNI.ToneDigitMapVector_reserve(swigCPtr, this, n);
+    }
 
-  public ToneDigitMapDigit get(int i) {
-    return new ToneDigitMapDigit(pjsua2JNI.ToneDigitMapVector_get(swigCPtr, this, i), false);
-  }
+    public boolean isEmpty() {
+        return pjsua2JNI.ToneDigitMapVector_isEmpty(swigCPtr, this);
+    }
 
-  public void set(int i, ToneDigitMapDigit val) {
-    pjsua2JNI.ToneDigitMapVector_set(swigCPtr, this, i, ToneDigitMapDigit.getCPtr(val), val);
-  }
+    public void clear() {
+        pjsua2JNI.ToneDigitMapVector_clear(swigCPtr, this);
+    }
+
+    public void add(ToneDigitMapDigit x) {
+        pjsua2JNI.ToneDigitMapVector_add(swigCPtr, this, ToneDigitMapDigit.getCPtr(x), x);
+    }
+
+    public ToneDigitMapDigit get(int i) {
+        return new ToneDigitMapDigit(pjsua2JNI.ToneDigitMapVector_get(swigCPtr, this, i), false);
+    }
+
+    public void set(int i, ToneDigitMapDigit val) {
+        pjsua2JNI.ToneDigitMapVector_set(swigCPtr, this, i, ToneDigitMapDigit.getCPtr(val), val);
+    }
 
 }

@@ -9,50 +9,50 @@
 package org.pjsip.pjsua2;
 
 public class MediaFmtChangedEvent {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected MediaFmtChangedEvent(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(MediaFmtChangedEvent obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_MediaFmtChangedEvent(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected MediaFmtChangedEvent(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-  }
 
-  public void setNewWidth(long value) {
-    pjsua2JNI.MediaFmtChangedEvent_newWidth_set(swigCPtr, this, value);
-  }
+    public MediaFmtChangedEvent() {
+        this(pjsua2JNI.new_MediaFmtChangedEvent(), true);
+    }
 
-  public long getNewWidth() {
-    return pjsua2JNI.MediaFmtChangedEvent_newWidth_get(swigCPtr, this);
-  }
+    protected static long getCPtr(MediaFmtChangedEvent obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void setNewHeight(long value) {
-    pjsua2JNI.MediaFmtChangedEvent_newHeight_set(swigCPtr, this, value);
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public long getNewHeight() {
-    return pjsua2JNI.MediaFmtChangedEvent_newHeight_get(swigCPtr, this);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_MediaFmtChangedEvent(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public MediaFmtChangedEvent() {
-    this(pjsua2JNI.new_MediaFmtChangedEvent(), true);
-  }
+    public long getNewWidth() {
+        return pjsua2JNI.MediaFmtChangedEvent_newWidth_get(swigCPtr, this);
+    }
+
+    public void setNewWidth(long value) {
+        pjsua2JNI.MediaFmtChangedEvent_newWidth_set(swigCPtr, this, value);
+    }
+
+    public long getNewHeight() {
+        return pjsua2JNI.MediaFmtChangedEvent_newHeight_get(swigCPtr, this);
+    }
+
+    public void setNewHeight(long value) {
+        pjsua2JNI.MediaFmtChangedEvent_newHeight_set(swigCPtr, this, value);
+    }
 
 }

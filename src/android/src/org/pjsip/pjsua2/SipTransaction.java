@@ -9,92 +9,92 @@
 package org.pjsip.pjsua2;
 
 public class SipTransaction {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected SipTransaction(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(SipTransaction obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_SipTransaction(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected SipTransaction(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-  }
 
-  public void setRole(pjsip_role_e value) {
-    pjsua2JNI.SipTransaction_role_set(swigCPtr, this, value.swigValue());
-  }
+    public SipTransaction() {
+        this(pjsua2JNI.new_SipTransaction(), true);
+    }
 
-  public pjsip_role_e getRole() {
-    return pjsip_role_e.swigToEnum(pjsua2JNI.SipTransaction_role_get(swigCPtr, this));
-  }
+    protected static long getCPtr(SipTransaction obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void setMethod(String value) {
-    pjsua2JNI.SipTransaction_method_set(swigCPtr, this, value);
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public String getMethod() {
-    return pjsua2JNI.SipTransaction_method_get(swigCPtr, this);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_SipTransaction(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public void setStatusCode(int value) {
-    pjsua2JNI.SipTransaction_statusCode_set(swigCPtr, this, value);
-  }
+    public pjsip_role_e getRole() {
+        return pjsip_role_e.swigToEnum(pjsua2JNI.SipTransaction_role_get(swigCPtr, this));
+    }
 
-  public int getStatusCode() {
-    return pjsua2JNI.SipTransaction_statusCode_get(swigCPtr, this);
-  }
+    public void setRole(pjsip_role_e value) {
+        pjsua2JNI.SipTransaction_role_set(swigCPtr, this, value.swigValue());
+    }
 
-  public void setStatusText(String value) {
-    pjsua2JNI.SipTransaction_statusText_set(swigCPtr, this, value);
-  }
+    public String getMethod() {
+        return pjsua2JNI.SipTransaction_method_get(swigCPtr, this);
+    }
 
-  public String getStatusText() {
-    return pjsua2JNI.SipTransaction_statusText_get(swigCPtr, this);
-  }
+    public void setMethod(String value) {
+        pjsua2JNI.SipTransaction_method_set(swigCPtr, this, value);
+    }
 
-  public void setState(pjsip_tsx_state_e value) {
-    pjsua2JNI.SipTransaction_state_set(swigCPtr, this, value.swigValue());
-  }
+    public int getStatusCode() {
+        return pjsua2JNI.SipTransaction_statusCode_get(swigCPtr, this);
+    }
 
-  public pjsip_tsx_state_e getState() {
-    return pjsip_tsx_state_e.swigToEnum(pjsua2JNI.SipTransaction_state_get(swigCPtr, this));
-  }
+    public void setStatusCode(int value) {
+        pjsua2JNI.SipTransaction_statusCode_set(swigCPtr, this, value);
+    }
 
-  public void setLastTx(SipTxData value) {
-    pjsua2JNI.SipTransaction_lastTx_set(swigCPtr, this, SipTxData.getCPtr(value), value);
-  }
+    public String getStatusText() {
+        return pjsua2JNI.SipTransaction_statusText_get(swigCPtr, this);
+    }
 
-  public SipTxData getLastTx() {
-    long cPtr = pjsua2JNI.SipTransaction_lastTx_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SipTxData(cPtr, false);
-  }
+    public void setStatusText(String value) {
+        pjsua2JNI.SipTransaction_statusText_set(swigCPtr, this, value);
+    }
 
-  public void setPjTransaction(SWIGTYPE_p_void value) {
-    pjsua2JNI.SipTransaction_pjTransaction_set(swigCPtr, this, SWIGTYPE_p_void.getCPtr(value));
-  }
+    public pjsip_tsx_state_e getState() {
+        return pjsip_tsx_state_e.swigToEnum(pjsua2JNI.SipTransaction_state_get(swigCPtr, this));
+    }
 
-  public SWIGTYPE_p_void getPjTransaction() {
-    long cPtr = pjsua2JNI.SipTransaction_pjTransaction_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_void(cPtr, false);
-  }
+    public void setState(pjsip_tsx_state_e value) {
+        pjsua2JNI.SipTransaction_state_set(swigCPtr, this, value.swigValue());
+    }
 
-  public SipTransaction() {
-    this(pjsua2JNI.new_SipTransaction(), true);
-  }
+    public SipTxData getLastTx() {
+        long cPtr = pjsua2JNI.SipTransaction_lastTx_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new SipTxData(cPtr, false);
+    }
+
+    public void setLastTx(SipTxData value) {
+        pjsua2JNI.SipTransaction_lastTx_set(swigCPtr, this, SipTxData.getCPtr(value), value);
+    }
+
+    public SWIGTYPE_p_void getPjTransaction() {
+        long cPtr = pjsua2JNI.SipTransaction_pjTransaction_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new SWIGTYPE_p_void(cPtr, false);
+    }
+
+    public void setPjTransaction(SWIGTYPE_p_void value) {
+        pjsua2JNI.SipTransaction_pjTransaction_set(swigCPtr, this, SWIGTYPE_p_void.getCPtr(value));
+    }
 
 }

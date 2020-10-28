@@ -9,102 +9,102 @@
 package org.pjsip.pjsua2;
 
 public class VidCodecParam {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected VidCodecParam(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(VidCodecParam obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_VidCodecParam(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected VidCodecParam(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-  }
 
-  public void setDir(pjmedia_dir value) {
-    pjsua2JNI.VidCodecParam_dir_set(swigCPtr, this, value.swigValue());
-  }
+    public VidCodecParam() {
+        this(pjsua2JNI.new_VidCodecParam(), true);
+    }
 
-  public pjmedia_dir getDir() {
-    return pjmedia_dir.swigToEnum(pjsua2JNI.VidCodecParam_dir_get(swigCPtr, this));
-  }
+    protected static long getCPtr(VidCodecParam obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void setPacking(pjmedia_vid_packing value) {
-    pjsua2JNI.VidCodecParam_packing_set(swigCPtr, this, value.swigValue());
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public pjmedia_vid_packing getPacking() {
-    return pjmedia_vid_packing.swigToEnum(pjsua2JNI.VidCodecParam_packing_get(swigCPtr, this));
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_VidCodecParam(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public void setEncFmt(MediaFormatVideo value) {
-    pjsua2JNI.VidCodecParam_encFmt_set(swigCPtr, this, MediaFormatVideo.getCPtr(value), value);
-  }
+    public pjmedia_dir getDir() {
+        return pjmedia_dir.swigToEnum(pjsua2JNI.VidCodecParam_dir_get(swigCPtr, this));
+    }
 
-  public MediaFormatVideo getEncFmt() {
-    long cPtr = pjsua2JNI.VidCodecParam_encFmt_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new MediaFormatVideo(cPtr, false);
-  }
+    public void setDir(pjmedia_dir value) {
+        pjsua2JNI.VidCodecParam_dir_set(swigCPtr, this, value.swigValue());
+    }
 
-  public void setEncFmtp(CodecFmtpVector value) {
-    pjsua2JNI.VidCodecParam_encFmtp_set(swigCPtr, this, CodecFmtpVector.getCPtr(value), value);
-  }
+    public pjmedia_vid_packing getPacking() {
+        return pjmedia_vid_packing.swigToEnum(pjsua2JNI.VidCodecParam_packing_get(swigCPtr, this));
+    }
 
-  public CodecFmtpVector getEncFmtp() {
-    long cPtr = pjsua2JNI.VidCodecParam_encFmtp_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new CodecFmtpVector(cPtr, false);
-  }
+    public void setPacking(pjmedia_vid_packing value) {
+        pjsua2JNI.VidCodecParam_packing_set(swigCPtr, this, value.swigValue());
+    }
 
-  public void setEncMtu(long value) {
-    pjsua2JNI.VidCodecParam_encMtu_set(swigCPtr, this, value);
-  }
+    public MediaFormatVideo getEncFmt() {
+        long cPtr = pjsua2JNI.VidCodecParam_encFmt_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new MediaFormatVideo(cPtr, false);
+    }
 
-  public long getEncMtu() {
-    return pjsua2JNI.VidCodecParam_encMtu_get(swigCPtr, this);
-  }
+    public void setEncFmt(MediaFormatVideo value) {
+        pjsua2JNI.VidCodecParam_encFmt_set(swigCPtr, this, MediaFormatVideo.getCPtr(value), value);
+    }
 
-  public void setDecFmt(MediaFormatVideo value) {
-    pjsua2JNI.VidCodecParam_decFmt_set(swigCPtr, this, MediaFormatVideo.getCPtr(value), value);
-  }
+    public CodecFmtpVector getEncFmtp() {
+        long cPtr = pjsua2JNI.VidCodecParam_encFmtp_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new CodecFmtpVector(cPtr, false);
+    }
 
-  public MediaFormatVideo getDecFmt() {
-    long cPtr = pjsua2JNI.VidCodecParam_decFmt_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new MediaFormatVideo(cPtr, false);
-  }
+    public void setEncFmtp(CodecFmtpVector value) {
+        pjsua2JNI.VidCodecParam_encFmtp_set(swigCPtr, this, CodecFmtpVector.getCPtr(value), value);
+    }
 
-  public void setDecFmtp(CodecFmtpVector value) {
-    pjsua2JNI.VidCodecParam_decFmtp_set(swigCPtr, this, CodecFmtpVector.getCPtr(value), value);
-  }
+    public long getEncMtu() {
+        return pjsua2JNI.VidCodecParam_encMtu_get(swigCPtr, this);
+    }
 
-  public CodecFmtpVector getDecFmtp() {
-    long cPtr = pjsua2JNI.VidCodecParam_decFmtp_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new CodecFmtpVector(cPtr, false);
-  }
+    public void setEncMtu(long value) {
+        pjsua2JNI.VidCodecParam_encMtu_set(swigCPtr, this, value);
+    }
 
-  public void setIgnoreFmtp(boolean value) {
-    pjsua2JNI.VidCodecParam_ignoreFmtp_set(swigCPtr, this, value);
-  }
+    public MediaFormatVideo getDecFmt() {
+        long cPtr = pjsua2JNI.VidCodecParam_decFmt_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new MediaFormatVideo(cPtr, false);
+    }
 
-  public boolean getIgnoreFmtp() {
-    return pjsua2JNI.VidCodecParam_ignoreFmtp_get(swigCPtr, this);
-  }
+    public void setDecFmt(MediaFormatVideo value) {
+        pjsua2JNI.VidCodecParam_decFmt_set(swigCPtr, this, MediaFormatVideo.getCPtr(value), value);
+    }
 
-  public VidCodecParam() {
-    this(pjsua2JNI.new_VidCodecParam(), true);
-  }
+    public CodecFmtpVector getDecFmtp() {
+        long cPtr = pjsua2JNI.VidCodecParam_decFmtp_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new CodecFmtpVector(cPtr, false);
+    }
+
+    public void setDecFmtp(CodecFmtpVector value) {
+        pjsua2JNI.VidCodecParam_decFmtp_set(swigCPtr, this, CodecFmtpVector.getCPtr(value), value);
+    }
+
+    public boolean getIgnoreFmtp() {
+        return pjsua2JNI.VidCodecParam_ignoreFmtp_get(swigCPtr, this);
+    }
+
+    public void setIgnoreFmtp(boolean value) {
+        pjsua2JNI.VidCodecParam_ignoreFmtp_set(swigCPtr, this, value);
+    }
 
 }

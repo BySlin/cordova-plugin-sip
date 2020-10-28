@@ -9,226 +9,226 @@
 package org.pjsip.pjsua2;
 
 public class MediaConfig extends PersistentObject {
-  private transient long swigCPtr;
+    private transient long swigCPtr;
 
-  protected MediaConfig(long cPtr, boolean cMemoryOwn) {
-    super(pjsua2JNI.MediaConfig_SWIGUpcast(cPtr), cMemoryOwn);
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(MediaConfig obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_MediaConfig(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected MediaConfig(long cPtr, boolean cMemoryOwn) {
+        super(pjsua2JNI.MediaConfig_SWIGUpcast(cPtr), cMemoryOwn);
+        swigCPtr = cPtr;
     }
-    super.delete();
-  }
 
-  public void setClockRate(long value) {
-    pjsua2JNI.MediaConfig_clockRate_set(swigCPtr, this, value);
-  }
+    public MediaConfig() {
+        this(pjsua2JNI.new_MediaConfig(), true);
+    }
 
-  public long getClockRate() {
-    return pjsua2JNI.MediaConfig_clockRate_get(swigCPtr, this);
-  }
+    protected static long getCPtr(MediaConfig obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void setSndClockRate(long value) {
-    pjsua2JNI.MediaConfig_sndClockRate_set(swigCPtr, this, value);
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public long getSndClockRate() {
-    return pjsua2JNI.MediaConfig_sndClockRate_get(swigCPtr, this);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_MediaConfig(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+        super.delete();
+    }
 
-  public void setChannelCount(long value) {
-    pjsua2JNI.MediaConfig_channelCount_set(swigCPtr, this, value);
-  }
+    public long getClockRate() {
+        return pjsua2JNI.MediaConfig_clockRate_get(swigCPtr, this);
+    }
 
-  public long getChannelCount() {
-    return pjsua2JNI.MediaConfig_channelCount_get(swigCPtr, this);
-  }
+    public void setClockRate(long value) {
+        pjsua2JNI.MediaConfig_clockRate_set(swigCPtr, this, value);
+    }
 
-  public void setAudioFramePtime(long value) {
-    pjsua2JNI.MediaConfig_audioFramePtime_set(swigCPtr, this, value);
-  }
+    public long getSndClockRate() {
+        return pjsua2JNI.MediaConfig_sndClockRate_get(swigCPtr, this);
+    }
 
-  public long getAudioFramePtime() {
-    return pjsua2JNI.MediaConfig_audioFramePtime_get(swigCPtr, this);
-  }
+    public void setSndClockRate(long value) {
+        pjsua2JNI.MediaConfig_sndClockRate_set(swigCPtr, this, value);
+    }
 
-  public void setMaxMediaPorts(long value) {
-    pjsua2JNI.MediaConfig_maxMediaPorts_set(swigCPtr, this, value);
-  }
+    public long getChannelCount() {
+        return pjsua2JNI.MediaConfig_channelCount_get(swigCPtr, this);
+    }
 
-  public long getMaxMediaPorts() {
-    return pjsua2JNI.MediaConfig_maxMediaPorts_get(swigCPtr, this);
-  }
+    public void setChannelCount(long value) {
+        pjsua2JNI.MediaConfig_channelCount_set(swigCPtr, this, value);
+    }
 
-  public void setHasIoqueue(boolean value) {
-    pjsua2JNI.MediaConfig_hasIoqueue_set(swigCPtr, this, value);
-  }
+    public long getAudioFramePtime() {
+        return pjsua2JNI.MediaConfig_audioFramePtime_get(swigCPtr, this);
+    }
 
-  public boolean getHasIoqueue() {
-    return pjsua2JNI.MediaConfig_hasIoqueue_get(swigCPtr, this);
-  }
+    public void setAudioFramePtime(long value) {
+        pjsua2JNI.MediaConfig_audioFramePtime_set(swigCPtr, this, value);
+    }
 
-  public void setThreadCnt(long value) {
-    pjsua2JNI.MediaConfig_threadCnt_set(swigCPtr, this, value);
-  }
+    public long getMaxMediaPorts() {
+        return pjsua2JNI.MediaConfig_maxMediaPorts_get(swigCPtr, this);
+    }
 
-  public long getThreadCnt() {
-    return pjsua2JNI.MediaConfig_threadCnt_get(swigCPtr, this);
-  }
+    public void setMaxMediaPorts(long value) {
+        pjsua2JNI.MediaConfig_maxMediaPorts_set(swigCPtr, this, value);
+    }
 
-  public void setQuality(long value) {
-    pjsua2JNI.MediaConfig_quality_set(swigCPtr, this, value);
-  }
+    public boolean getHasIoqueue() {
+        return pjsua2JNI.MediaConfig_hasIoqueue_get(swigCPtr, this);
+    }
 
-  public long getQuality() {
-    return pjsua2JNI.MediaConfig_quality_get(swigCPtr, this);
-  }
+    public void setHasIoqueue(boolean value) {
+        pjsua2JNI.MediaConfig_hasIoqueue_set(swigCPtr, this, value);
+    }
 
-  public void setPtime(long value) {
-    pjsua2JNI.MediaConfig_ptime_set(swigCPtr, this, value);
-  }
+    public long getThreadCnt() {
+        return pjsua2JNI.MediaConfig_threadCnt_get(swigCPtr, this);
+    }
 
-  public long getPtime() {
-    return pjsua2JNI.MediaConfig_ptime_get(swigCPtr, this);
-  }
+    public void setThreadCnt(long value) {
+        pjsua2JNI.MediaConfig_threadCnt_set(swigCPtr, this, value);
+    }
 
-  public void setNoVad(boolean value) {
-    pjsua2JNI.MediaConfig_noVad_set(swigCPtr, this, value);
-  }
+    public long getQuality() {
+        return pjsua2JNI.MediaConfig_quality_get(swigCPtr, this);
+    }
 
-  public boolean getNoVad() {
-    return pjsua2JNI.MediaConfig_noVad_get(swigCPtr, this);
-  }
+    public void setQuality(long value) {
+        pjsua2JNI.MediaConfig_quality_set(swigCPtr, this, value);
+    }
 
-  public void setIlbcMode(long value) {
-    pjsua2JNI.MediaConfig_ilbcMode_set(swigCPtr, this, value);
-  }
+    public long getPtime() {
+        return pjsua2JNI.MediaConfig_ptime_get(swigCPtr, this);
+    }
 
-  public long getIlbcMode() {
-    return pjsua2JNI.MediaConfig_ilbcMode_get(swigCPtr, this);
-  }
+    public void setPtime(long value) {
+        pjsua2JNI.MediaConfig_ptime_set(swigCPtr, this, value);
+    }
 
-  public void setTxDropPct(long value) {
-    pjsua2JNI.MediaConfig_txDropPct_set(swigCPtr, this, value);
-  }
+    public boolean getNoVad() {
+        return pjsua2JNI.MediaConfig_noVad_get(swigCPtr, this);
+    }
 
-  public long getTxDropPct() {
-    return pjsua2JNI.MediaConfig_txDropPct_get(swigCPtr, this);
-  }
+    public void setNoVad(boolean value) {
+        pjsua2JNI.MediaConfig_noVad_set(swigCPtr, this, value);
+    }
 
-  public void setRxDropPct(long value) {
-    pjsua2JNI.MediaConfig_rxDropPct_set(swigCPtr, this, value);
-  }
+    public long getIlbcMode() {
+        return pjsua2JNI.MediaConfig_ilbcMode_get(swigCPtr, this);
+    }
 
-  public long getRxDropPct() {
-    return pjsua2JNI.MediaConfig_rxDropPct_get(swigCPtr, this);
-  }
+    public void setIlbcMode(long value) {
+        pjsua2JNI.MediaConfig_ilbcMode_set(swigCPtr, this, value);
+    }
 
-  public void setEcOptions(long value) {
-    pjsua2JNI.MediaConfig_ecOptions_set(swigCPtr, this, value);
-  }
+    public long getTxDropPct() {
+        return pjsua2JNI.MediaConfig_txDropPct_get(swigCPtr, this);
+    }
 
-  public long getEcOptions() {
-    return pjsua2JNI.MediaConfig_ecOptions_get(swigCPtr, this);
-  }
+    public void setTxDropPct(long value) {
+        pjsua2JNI.MediaConfig_txDropPct_set(swigCPtr, this, value);
+    }
 
-  public void setEcTailLen(long value) {
-    pjsua2JNI.MediaConfig_ecTailLen_set(swigCPtr, this, value);
-  }
+    public long getRxDropPct() {
+        return pjsua2JNI.MediaConfig_rxDropPct_get(swigCPtr, this);
+    }
 
-  public long getEcTailLen() {
-    return pjsua2JNI.MediaConfig_ecTailLen_get(swigCPtr, this);
-  }
+    public void setRxDropPct(long value) {
+        pjsua2JNI.MediaConfig_rxDropPct_set(swigCPtr, this, value);
+    }
 
-  public void setSndRecLatency(long value) {
-    pjsua2JNI.MediaConfig_sndRecLatency_set(swigCPtr, this, value);
-  }
+    public long getEcOptions() {
+        return pjsua2JNI.MediaConfig_ecOptions_get(swigCPtr, this);
+    }
 
-  public long getSndRecLatency() {
-    return pjsua2JNI.MediaConfig_sndRecLatency_get(swigCPtr, this);
-  }
+    public void setEcOptions(long value) {
+        pjsua2JNI.MediaConfig_ecOptions_set(swigCPtr, this, value);
+    }
 
-  public void setSndPlayLatency(long value) {
-    pjsua2JNI.MediaConfig_sndPlayLatency_set(swigCPtr, this, value);
-  }
+    public long getEcTailLen() {
+        return pjsua2JNI.MediaConfig_ecTailLen_get(swigCPtr, this);
+    }
 
-  public long getSndPlayLatency() {
-    return pjsua2JNI.MediaConfig_sndPlayLatency_get(swigCPtr, this);
-  }
+    public void setEcTailLen(long value) {
+        pjsua2JNI.MediaConfig_ecTailLen_set(swigCPtr, this, value);
+    }
 
-  public void setJbInit(int value) {
-    pjsua2JNI.MediaConfig_jbInit_set(swigCPtr, this, value);
-  }
+    public long getSndRecLatency() {
+        return pjsua2JNI.MediaConfig_sndRecLatency_get(swigCPtr, this);
+    }
 
-  public int getJbInit() {
-    return pjsua2JNI.MediaConfig_jbInit_get(swigCPtr, this);
-  }
+    public void setSndRecLatency(long value) {
+        pjsua2JNI.MediaConfig_sndRecLatency_set(swigCPtr, this, value);
+    }
 
-  public void setJbMinPre(int value) {
-    pjsua2JNI.MediaConfig_jbMinPre_set(swigCPtr, this, value);
-  }
+    public long getSndPlayLatency() {
+        return pjsua2JNI.MediaConfig_sndPlayLatency_get(swigCPtr, this);
+    }
 
-  public int getJbMinPre() {
-    return pjsua2JNI.MediaConfig_jbMinPre_get(swigCPtr, this);
-  }
+    public void setSndPlayLatency(long value) {
+        pjsua2JNI.MediaConfig_sndPlayLatency_set(swigCPtr, this, value);
+    }
 
-  public void setJbMaxPre(int value) {
-    pjsua2JNI.MediaConfig_jbMaxPre_set(swigCPtr, this, value);
-  }
+    public int getJbInit() {
+        return pjsua2JNI.MediaConfig_jbInit_get(swigCPtr, this);
+    }
 
-  public int getJbMaxPre() {
-    return pjsua2JNI.MediaConfig_jbMaxPre_get(swigCPtr, this);
-  }
+    public void setJbInit(int value) {
+        pjsua2JNI.MediaConfig_jbInit_set(swigCPtr, this, value);
+    }
 
-  public void setJbMax(int value) {
-    pjsua2JNI.MediaConfig_jbMax_set(swigCPtr, this, value);
-  }
+    public int getJbMinPre() {
+        return pjsua2JNI.MediaConfig_jbMinPre_get(swigCPtr, this);
+    }
 
-  public int getJbMax() {
-    return pjsua2JNI.MediaConfig_jbMax_get(swigCPtr, this);
-  }
+    public void setJbMinPre(int value) {
+        pjsua2JNI.MediaConfig_jbMinPre_set(swigCPtr, this, value);
+    }
 
-  public void setSndAutoCloseTime(int value) {
-    pjsua2JNI.MediaConfig_sndAutoCloseTime_set(swigCPtr, this, value);
-  }
+    public int getJbMaxPre() {
+        return pjsua2JNI.MediaConfig_jbMaxPre_get(swigCPtr, this);
+    }
 
-  public int getSndAutoCloseTime() {
-    return pjsua2JNI.MediaConfig_sndAutoCloseTime_get(swigCPtr, this);
-  }
+    public void setJbMaxPre(int value) {
+        pjsua2JNI.MediaConfig_jbMaxPre_set(swigCPtr, this, value);
+    }
 
-  public void setVidPreviewEnableNative(boolean value) {
-    pjsua2JNI.MediaConfig_vidPreviewEnableNative_set(swigCPtr, this, value);
-  }
+    public int getJbMax() {
+        return pjsua2JNI.MediaConfig_jbMax_get(swigCPtr, this);
+    }
 
-  public boolean getVidPreviewEnableNative() {
-    return pjsua2JNI.MediaConfig_vidPreviewEnableNative_get(swigCPtr, this);
-  }
+    public void setJbMax(int value) {
+        pjsua2JNI.MediaConfig_jbMax_set(swigCPtr, this, value);
+    }
 
-  public MediaConfig() {
-    this(pjsua2JNI.new_MediaConfig(), true);
-  }
+    public int getSndAutoCloseTime() {
+        return pjsua2JNI.MediaConfig_sndAutoCloseTime_get(swigCPtr, this);
+    }
 
-  public void readObject(ContainerNode node) throws java.lang.Exception {
-    pjsua2JNI.MediaConfig_readObject(swigCPtr, this, ContainerNode.getCPtr(node), node);
-  }
+    public void setSndAutoCloseTime(int value) {
+        pjsua2JNI.MediaConfig_sndAutoCloseTime_set(swigCPtr, this, value);
+    }
 
-  public void writeObject(ContainerNode node) throws java.lang.Exception {
-    pjsua2JNI.MediaConfig_writeObject(swigCPtr, this, ContainerNode.getCPtr(node), node);
-  }
+    public boolean getVidPreviewEnableNative() {
+        return pjsua2JNI.MediaConfig_vidPreviewEnableNative_get(swigCPtr, this);
+    }
+
+    public void setVidPreviewEnableNative(boolean value) {
+        pjsua2JNI.MediaConfig_vidPreviewEnableNative_set(swigCPtr, this, value);
+    }
+
+    public void readObject(ContainerNode node) throws java.lang.Exception {
+        pjsua2JNI.MediaConfig_readObject(swigCPtr, this, ContainerNode.getCPtr(node), node);
+    }
+
+    public void writeObject(ContainerNode node) throws java.lang.Exception {
+        pjsua2JNI.MediaConfig_writeObject(swigCPtr, this, ContainerNode.getCPtr(node), node);
+    }
 
 }

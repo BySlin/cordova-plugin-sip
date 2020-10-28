@@ -9,50 +9,50 @@
 package org.pjsip.pjsua2;
 
 public class LossType {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected LossType(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(LossType obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_LossType(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected LossType(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-  }
 
-  public void setBurst(long value) {
-    pjsua2JNI.LossType_burst_set(swigCPtr, this, value);
-  }
+    public LossType() {
+        this(pjsua2JNI.new_LossType(), true);
+    }
 
-  public long getBurst() {
-    return pjsua2JNI.LossType_burst_get(swigCPtr, this);
-  }
+    protected static long getCPtr(LossType obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void setRandom(long value) {
-    pjsua2JNI.LossType_random_set(swigCPtr, this, value);
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public long getRandom() {
-    return pjsua2JNI.LossType_random_get(swigCPtr, this);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_LossType(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public LossType() {
-    this(pjsua2JNI.new_LossType(), true);
-  }
+    public long getBurst() {
+        return pjsua2JNI.LossType_burst_get(swigCPtr, this);
+    }
+
+    public void setBurst(long value) {
+        pjsua2JNI.LossType_burst_set(swigCPtr, this, value);
+    }
+
+    public long getRandom() {
+        return pjsua2JNI.LossType_random_get(swigCPtr, this);
+    }
+
+    public void setRandom(long value) {
+        pjsua2JNI.LossType_random_set(swigCPtr, this, value);
+    }
 
 }

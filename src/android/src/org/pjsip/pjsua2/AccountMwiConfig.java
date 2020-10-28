@@ -9,58 +9,58 @@
 package org.pjsip.pjsua2;
 
 public class AccountMwiConfig extends PersistentObject {
-  private transient long swigCPtr;
+    private transient long swigCPtr;
 
-  protected AccountMwiConfig(long cPtr, boolean cMemoryOwn) {
-    super(pjsua2JNI.AccountMwiConfig_SWIGUpcast(cPtr), cMemoryOwn);
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(AccountMwiConfig obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_AccountMwiConfig(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected AccountMwiConfig(long cPtr, boolean cMemoryOwn) {
+        super(pjsua2JNI.AccountMwiConfig_SWIGUpcast(cPtr), cMemoryOwn);
+        swigCPtr = cPtr;
     }
-    super.delete();
-  }
 
-  public void setEnabled(boolean value) {
-    pjsua2JNI.AccountMwiConfig_enabled_set(swigCPtr, this, value);
-  }
+    public AccountMwiConfig() {
+        this(pjsua2JNI.new_AccountMwiConfig(), true);
+    }
 
-  public boolean getEnabled() {
-    return pjsua2JNI.AccountMwiConfig_enabled_get(swigCPtr, this);
-  }
+    protected static long getCPtr(AccountMwiConfig obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void setExpirationSec(long value) {
-    pjsua2JNI.AccountMwiConfig_expirationSec_set(swigCPtr, this, value);
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public long getExpirationSec() {
-    return pjsua2JNI.AccountMwiConfig_expirationSec_get(swigCPtr, this);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_AccountMwiConfig(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+        super.delete();
+    }
 
-  public void readObject(ContainerNode node) throws java.lang.Exception {
-    pjsua2JNI.AccountMwiConfig_readObject(swigCPtr, this, ContainerNode.getCPtr(node), node);
-  }
+    public boolean getEnabled() {
+        return pjsua2JNI.AccountMwiConfig_enabled_get(swigCPtr, this);
+    }
 
-  public void writeObject(ContainerNode node) throws java.lang.Exception {
-    pjsua2JNI.AccountMwiConfig_writeObject(swigCPtr, this, ContainerNode.getCPtr(node), node);
-  }
+    public void setEnabled(boolean value) {
+        pjsua2JNI.AccountMwiConfig_enabled_set(swigCPtr, this, value);
+    }
 
-  public AccountMwiConfig() {
-    this(pjsua2JNI.new_AccountMwiConfig(), true);
-  }
+    public long getExpirationSec() {
+        return pjsua2JNI.AccountMwiConfig_expirationSec_get(swigCPtr, this);
+    }
+
+    public void setExpirationSec(long value) {
+        pjsua2JNI.AccountMwiConfig_expirationSec_set(swigCPtr, this, value);
+    }
+
+    public void readObject(ContainerNode node) throws java.lang.Exception {
+        pjsua2JNI.AccountMwiConfig_readObject(swigCPtr, this, ContainerNode.getCPtr(node), node);
+    }
+
+    public void writeObject(ContainerNode node) throws java.lang.Exception {
+        pjsua2JNI.AccountMwiConfig_writeObject(swigCPtr, this, ContainerNode.getCPtr(node), node);
+    }
 
 }

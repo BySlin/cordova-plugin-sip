@@ -9,68 +9,68 @@
 package org.pjsip.pjsua2;
 
 public class OnCallReplaceRequestParam {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected OnCallReplaceRequestParam(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(OnCallReplaceRequestParam obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_OnCallReplaceRequestParam(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected OnCallReplaceRequestParam(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-  }
 
-  public void setRdata(SipRxData value) {
-    pjsua2JNI.OnCallReplaceRequestParam_rdata_set(swigCPtr, this, SipRxData.getCPtr(value), value);
-  }
+    public OnCallReplaceRequestParam() {
+        this(pjsua2JNI.new_OnCallReplaceRequestParam(), true);
+    }
 
-  public SipRxData getRdata() {
-    long cPtr = pjsua2JNI.OnCallReplaceRequestParam_rdata_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SipRxData(cPtr, false);
-  }
+    protected static long getCPtr(OnCallReplaceRequestParam obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void setStatusCode(pjsip_status_code value) {
-    pjsua2JNI.OnCallReplaceRequestParam_statusCode_set(swigCPtr, this, value.swigValue());
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public pjsip_status_code getStatusCode() {
-    return pjsip_status_code.swigToEnum(pjsua2JNI.OnCallReplaceRequestParam_statusCode_get(swigCPtr, this));
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_OnCallReplaceRequestParam(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public void setReason(String value) {
-    pjsua2JNI.OnCallReplaceRequestParam_reason_set(swigCPtr, this, value);
-  }
+    public SipRxData getRdata() {
+        long cPtr = pjsua2JNI.OnCallReplaceRequestParam_rdata_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new SipRxData(cPtr, false);
+    }
 
-  public String getReason() {
-    return pjsua2JNI.OnCallReplaceRequestParam_reason_get(swigCPtr, this);
-  }
+    public void setRdata(SipRxData value) {
+        pjsua2JNI.OnCallReplaceRequestParam_rdata_set(swigCPtr, this, SipRxData.getCPtr(value), value);
+    }
 
-  public void setOpt(CallSetting value) {
-    pjsua2JNI.OnCallReplaceRequestParam_opt_set(swigCPtr, this, CallSetting.getCPtr(value), value);
-  }
+    public pjsip_status_code getStatusCode() {
+        return pjsip_status_code.swigToEnum(pjsua2JNI.OnCallReplaceRequestParam_statusCode_get(swigCPtr, this));
+    }
 
-  public CallSetting getOpt() {
-    long cPtr = pjsua2JNI.OnCallReplaceRequestParam_opt_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new CallSetting(cPtr, false);
-  }
+    public void setStatusCode(pjsip_status_code value) {
+        pjsua2JNI.OnCallReplaceRequestParam_statusCode_set(swigCPtr, this, value.swigValue());
+    }
 
-  public OnCallReplaceRequestParam() {
-    this(pjsua2JNI.new_OnCallReplaceRequestParam(), true);
-  }
+    public String getReason() {
+        return pjsua2JNI.OnCallReplaceRequestParam_reason_get(swigCPtr, this);
+    }
+
+    public void setReason(String value) {
+        pjsua2JNI.OnCallReplaceRequestParam_reason_set(swigCPtr, this, value);
+    }
+
+    public CallSetting getOpt() {
+        long cPtr = pjsua2JNI.OnCallReplaceRequestParam_opt_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new CallSetting(cPtr, false);
+    }
+
+    public void setOpt(CallSetting value) {
+        pjsua2JNI.OnCallReplaceRequestParam_opt_set(swigCPtr, this, CallSetting.getCPtr(value), value);
+    }
 
 }

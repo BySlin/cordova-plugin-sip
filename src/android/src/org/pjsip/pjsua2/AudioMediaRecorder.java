@@ -9,55 +9,55 @@
 package org.pjsip.pjsua2;
 
 public class AudioMediaRecorder extends AudioMedia {
-  private transient long swigCPtr;
+    private transient long swigCPtr;
 
-  protected AudioMediaRecorder(long cPtr, boolean cMemoryOwn) {
-    super(pjsua2JNI.AudioMediaRecorder_SWIGUpcast(cPtr), cMemoryOwn);
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(AudioMediaRecorder obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_AudioMediaRecorder(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected AudioMediaRecorder(long cPtr, boolean cMemoryOwn) {
+        super(pjsua2JNI.AudioMediaRecorder_SWIGUpcast(cPtr), cMemoryOwn);
+        swigCPtr = cPtr;
     }
-    super.delete();
-  }
 
-  public AudioMediaRecorder() {
-    this(pjsua2JNI.new_AudioMediaRecorder(), true);
-  }
+    public AudioMediaRecorder() {
+        this(pjsua2JNI.new_AudioMediaRecorder(), true);
+    }
 
-  public void createRecorder(String file_name, long enc_type, SWIGTYPE_p_pj_ssize_t max_size, long options) throws java.lang.Exception {
-    pjsua2JNI.AudioMediaRecorder_createRecorder__SWIG_0(swigCPtr, this, file_name, enc_type, SWIGTYPE_p_pj_ssize_t.getCPtr(max_size), options);
-  }
+    protected static long getCPtr(AudioMediaRecorder obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void createRecorder(String file_name, long enc_type, SWIGTYPE_p_pj_ssize_t max_size) throws java.lang.Exception {
-    pjsua2JNI.AudioMediaRecorder_createRecorder__SWIG_1(swigCPtr, this, file_name, enc_type, SWIGTYPE_p_pj_ssize_t.getCPtr(max_size));
-  }
+    public static AudioMediaRecorder typecastFromAudioMedia(AudioMedia media) {
+        long cPtr = pjsua2JNI.AudioMediaRecorder_typecastFromAudioMedia(AudioMedia.getCPtr(media), media);
+        return (cPtr == 0) ? null : new AudioMediaRecorder(cPtr, false);
+    }
 
-  public void createRecorder(String file_name, long enc_type) throws java.lang.Exception {
-    pjsua2JNI.AudioMediaRecorder_createRecorder__SWIG_2(swigCPtr, this, file_name, enc_type);
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public void createRecorder(String file_name) throws java.lang.Exception {
-    pjsua2JNI.AudioMediaRecorder_createRecorder__SWIG_3(swigCPtr, this, file_name);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_AudioMediaRecorder(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+        super.delete();
+    }
 
-  public static AudioMediaRecorder typecastFromAudioMedia(AudioMedia media) {
-    long cPtr = pjsua2JNI.AudioMediaRecorder_typecastFromAudioMedia(AudioMedia.getCPtr(media), media);
-    return (cPtr == 0) ? null : new AudioMediaRecorder(cPtr, false);
-  }
+    public void createRecorder(String file_name, long enc_type, SWIGTYPE_p_pj_ssize_t max_size, long options) throws java.lang.Exception {
+        pjsua2JNI.AudioMediaRecorder_createRecorder__SWIG_0(swigCPtr, this, file_name, enc_type, SWIGTYPE_p_pj_ssize_t.getCPtr(max_size), options);
+    }
+
+    public void createRecorder(String file_name, long enc_type, SWIGTYPE_p_pj_ssize_t max_size) throws java.lang.Exception {
+        pjsua2JNI.AudioMediaRecorder_createRecorder__SWIG_1(swigCPtr, this, file_name, enc_type, SWIGTYPE_p_pj_ssize_t.getCPtr(max_size));
+    }
+
+    public void createRecorder(String file_name, long enc_type) throws java.lang.Exception {
+        pjsua2JNI.AudioMediaRecorder_createRecorder__SWIG_2(swigCPtr, this, file_name, enc_type);
+    }
+
+    public void createRecorder(String file_name) throws java.lang.Exception {
+        pjsua2JNI.AudioMediaRecorder_createRecorder__SWIG_3(swigCPtr, this, file_name);
+    }
 
 }

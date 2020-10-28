@@ -9,58 +9,58 @@
 package org.pjsip.pjsua2;
 
 public class ToneDigitMapDigit {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected ToneDigitMapDigit(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(ToneDigitMapDigit obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_ToneDigitMapDigit(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected ToneDigitMapDigit(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-  }
 
-  public void setDigit(String value) {
-    pjsua2JNI.ToneDigitMapDigit_digit_set(swigCPtr, this, value);
-  }
+    public ToneDigitMapDigit() {
+        this(pjsua2JNI.new_ToneDigitMapDigit(), true);
+    }
 
-  public String getDigit() {
-    return pjsua2JNI.ToneDigitMapDigit_digit_get(swigCPtr, this);
-  }
+    protected static long getCPtr(ToneDigitMapDigit obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void setFreq1(int value) {
-    pjsua2JNI.ToneDigitMapDigit_freq1_set(swigCPtr, this, value);
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public int getFreq1() {
-    return pjsua2JNI.ToneDigitMapDigit_freq1_get(swigCPtr, this);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_ToneDigitMapDigit(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public void setFreq2(int value) {
-    pjsua2JNI.ToneDigitMapDigit_freq2_set(swigCPtr, this, value);
-  }
+    public String getDigit() {
+        return pjsua2JNI.ToneDigitMapDigit_digit_get(swigCPtr, this);
+    }
 
-  public int getFreq2() {
-    return pjsua2JNI.ToneDigitMapDigit_freq2_get(swigCPtr, this);
-  }
+    public void setDigit(String value) {
+        pjsua2JNI.ToneDigitMapDigit_digit_set(swigCPtr, this, value);
+    }
 
-  public ToneDigitMapDigit() {
-    this(pjsua2JNI.new_ToneDigitMapDigit(), true);
-  }
+    public int getFreq1() {
+        return pjsua2JNI.ToneDigitMapDigit_freq1_get(swigCPtr, this);
+    }
+
+    public void setFreq1(int value) {
+        pjsua2JNI.ToneDigitMapDigit_freq1_set(swigCPtr, this, value);
+    }
+
+    public int getFreq2() {
+        return pjsua2JNI.ToneDigitMapDigit_freq2_get(swigCPtr, this);
+    }
+
+    public void setFreq2(int value) {
+        pjsua2JNI.ToneDigitMapDigit_freq2_set(swigCPtr, this, value);
+    }
 
 }

@@ -9,47 +9,46 @@
 package org.pjsip.pjsua2;
 
 public final class pjrpid_activity {
-  public final static pjrpid_activity PJRPID_ACTIVITY_UNKNOWN = new pjrpid_activity("PJRPID_ACTIVITY_UNKNOWN");
-  public final static pjrpid_activity PJRPID_ACTIVITY_AWAY = new pjrpid_activity("PJRPID_ACTIVITY_AWAY");
-  public final static pjrpid_activity PJRPID_ACTIVITY_BUSY = new pjrpid_activity("PJRPID_ACTIVITY_BUSY");
+    public final static pjrpid_activity PJRPID_ACTIVITY_UNKNOWN = new pjrpid_activity("PJRPID_ACTIVITY_UNKNOWN");
+    public final static pjrpid_activity PJRPID_ACTIVITY_AWAY = new pjrpid_activity("PJRPID_ACTIVITY_AWAY");
+    public final static pjrpid_activity PJRPID_ACTIVITY_BUSY = new pjrpid_activity("PJRPID_ACTIVITY_BUSY");
+    private static pjrpid_activity[] swigValues = {PJRPID_ACTIVITY_UNKNOWN, PJRPID_ACTIVITY_AWAY, PJRPID_ACTIVITY_BUSY};
+    private static int swigNext = 0;
+    private final int swigValue;
+    private final String swigName;
 
-  public final int swigValue() {
-    return swigValue;
-  }
+    private pjrpid_activity(String swigName) {
+        this.swigName = swigName;
+        this.swigValue = swigNext++;
+    }
 
-  public String toString() {
-    return swigName;
-  }
+    private pjrpid_activity(String swigName, int swigValue) {
+        this.swigName = swigName;
+        this.swigValue = swigValue;
+        swigNext = swigValue + 1;
+    }
 
-  public static pjrpid_activity swigToEnum(int swigValue) {
-    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-      return swigValues[swigValue];
-    for (int i = 0; i < swigValues.length; i++)
-      if (swigValues[i].swigValue == swigValue)
-        return swigValues[i];
-    throw new IllegalArgumentException("No enum " + pjrpid_activity.class + " with value " + swigValue);
-  }
+    private pjrpid_activity(String swigName, pjrpid_activity swigEnum) {
+        this.swigName = swigName;
+        this.swigValue = swigEnum.swigValue;
+        swigNext = this.swigValue + 1;
+    }
 
-  private pjrpid_activity(String swigName) {
-    this.swigName = swigName;
-    this.swigValue = swigNext++;
-  }
+    public static pjrpid_activity swigToEnum(int swigValue) {
+        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+            return swigValues[swigValue];
+        for (int i = 0; i < swigValues.length; i++)
+            if (swigValues[i].swigValue == swigValue)
+                return swigValues[i];
+        throw new IllegalArgumentException("No enum " + pjrpid_activity.class + " with value " + swigValue);
+    }
 
-  private pjrpid_activity(String swigName, int swigValue) {
-    this.swigName = swigName;
-    this.swigValue = swigValue;
-    swigNext = swigValue+1;
-  }
+    public final int swigValue() {
+        return swigValue;
+    }
 
-  private pjrpid_activity(String swigName, pjrpid_activity swigEnum) {
-    this.swigName = swigName;
-    this.swigValue = swigEnum.swigValue;
-    swigNext = this.swigValue+1;
-  }
-
-  private static pjrpid_activity[] swigValues = { PJRPID_ACTIVITY_UNKNOWN, PJRPID_ACTIVITY_AWAY, PJRPID_ACTIVITY_BUSY };
-  private static int swigNext = 0;
-  private final int swigValue;
-  private final String swigName;
+    public String toString() {
+        return swigName;
+    }
 }
 

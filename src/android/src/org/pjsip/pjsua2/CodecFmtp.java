@@ -9,50 +9,50 @@
 package org.pjsip.pjsua2;
 
 public class CodecFmtp {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected CodecFmtp(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(CodecFmtp obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_CodecFmtp(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected CodecFmtp(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-  }
 
-  public void setName(String value) {
-    pjsua2JNI.CodecFmtp_name_set(swigCPtr, this, value);
-  }
+    public CodecFmtp() {
+        this(pjsua2JNI.new_CodecFmtp(), true);
+    }
 
-  public String getName() {
-    return pjsua2JNI.CodecFmtp_name_get(swigCPtr, this);
-  }
+    protected static long getCPtr(CodecFmtp obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void setVal(String value) {
-    pjsua2JNI.CodecFmtp_val_set(swigCPtr, this, value);
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public String getVal() {
-    return pjsua2JNI.CodecFmtp_val_get(swigCPtr, this);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_CodecFmtp(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public CodecFmtp() {
-    this(pjsua2JNI.new_CodecFmtp(), true);
-  }
+    public String getName() {
+        return pjsua2JNI.CodecFmtp_name_get(swigCPtr, this);
+    }
+
+    public void setName(String value) {
+        pjsua2JNI.CodecFmtp_name_set(swigCPtr, this, value);
+    }
+
+    public String getVal() {
+        return pjsua2JNI.CodecFmtp_val_get(swigCPtr, this);
+    }
+
+    public void setVal(String value) {
+        pjsua2JNI.CodecFmtp_val_set(swigCPtr, this, value);
+    }
 
 }

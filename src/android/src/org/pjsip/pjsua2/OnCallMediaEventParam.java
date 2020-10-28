@@ -9,51 +9,51 @@
 package org.pjsip.pjsua2;
 
 public class OnCallMediaEventParam {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected OnCallMediaEventParam(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(OnCallMediaEventParam obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_OnCallMediaEventParam(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected OnCallMediaEventParam(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-  }
 
-  public void setMedIdx(long value) {
-    pjsua2JNI.OnCallMediaEventParam_medIdx_set(swigCPtr, this, value);
-  }
+    public OnCallMediaEventParam() {
+        this(pjsua2JNI.new_OnCallMediaEventParam(), true);
+    }
 
-  public long getMedIdx() {
-    return pjsua2JNI.OnCallMediaEventParam_medIdx_get(swigCPtr, this);
-  }
+    protected static long getCPtr(OnCallMediaEventParam obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void setEv(MediaEvent value) {
-    pjsua2JNI.OnCallMediaEventParam_ev_set(swigCPtr, this, MediaEvent.getCPtr(value), value);
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public MediaEvent getEv() {
-    long cPtr = pjsua2JNI.OnCallMediaEventParam_ev_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new MediaEvent(cPtr, false);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_OnCallMediaEventParam(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public OnCallMediaEventParam() {
-    this(pjsua2JNI.new_OnCallMediaEventParam(), true);
-  }
+    public long getMedIdx() {
+        return pjsua2JNI.OnCallMediaEventParam_medIdx_get(swigCPtr, this);
+    }
+
+    public void setMedIdx(long value) {
+        pjsua2JNI.OnCallMediaEventParam_medIdx_set(swigCPtr, this, value);
+    }
+
+    public MediaEvent getEv() {
+        long cPtr = pjsua2JNI.OnCallMediaEventParam_ev_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new MediaEvent(cPtr, false);
+    }
+
+    public void setEv(MediaEvent value) {
+        pjsua2JNI.OnCallMediaEventParam_ev_set(swigCPtr, this, MediaEvent.getCPtr(value), value);
+    }
 
 }

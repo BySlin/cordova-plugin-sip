@@ -9,54 +9,54 @@
 package org.pjsip.pjsua2;
 
 public class FindBuddyMatch {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected FindBuddyMatch(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(FindBuddyMatch obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_FindBuddyMatch(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected FindBuddyMatch(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-  }
 
-  protected void swigDirectorDisconnect() {
-    swigCMemOwn = false;
-    delete();
-  }
+    public FindBuddyMatch() {
+        this(pjsua2JNI.new_FindBuddyMatch(), true);
+        pjsua2JNI.FindBuddyMatch_director_connect(this, swigCPtr, swigCMemOwn, true);
+    }
 
-  public void swigReleaseOwnership() {
-    swigCMemOwn = false;
-    pjsua2JNI.FindBuddyMatch_change_ownership(this, swigCPtr, false);
-  }
+    protected static long getCPtr(FindBuddyMatch obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void swigTakeOwnership() {
-    swigCMemOwn = true;
-    pjsua2JNI.FindBuddyMatch_change_ownership(this, swigCPtr, true);
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public boolean match(String token, Buddy buddy) {
-    return (getClass() == FindBuddyMatch.class) ? pjsua2JNI.FindBuddyMatch_match(swigCPtr, this, token, Buddy.getCPtr(buddy), buddy) : pjsua2JNI.FindBuddyMatch_matchSwigExplicitFindBuddyMatch(swigCPtr, this, token, Buddy.getCPtr(buddy), buddy);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_FindBuddyMatch(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public FindBuddyMatch() {
-    this(pjsua2JNI.new_FindBuddyMatch(), true);
-    pjsua2JNI.FindBuddyMatch_director_connect(this, swigCPtr, swigCMemOwn, true);
-  }
+    protected void swigDirectorDisconnect() {
+        swigCMemOwn = false;
+        delete();
+    }
+
+    public void swigReleaseOwnership() {
+        swigCMemOwn = false;
+        pjsua2JNI.FindBuddyMatch_change_ownership(this, swigCPtr, false);
+    }
+
+    public void swigTakeOwnership() {
+        swigCMemOwn = true;
+        pjsua2JNI.FindBuddyMatch_change_ownership(this, swigCPtr, true);
+    }
+
+    public boolean match(String token, Buddy buddy) {
+        return (getClass() == FindBuddyMatch.class) ? pjsua2JNI.FindBuddyMatch_match(swigCPtr, this, token, Buddy.getCPtr(buddy), buddy) : pjsua2JNI.FindBuddyMatch_matchSwigExplicitFindBuddyMatch(swigCPtr, this, token, Buddy.getCPtr(buddy), buddy);
+    }
 
 }

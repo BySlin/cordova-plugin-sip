@@ -9,99 +9,99 @@
 package org.pjsip.pjsua2;
 
 public class AudioDevInfo {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected AudioDevInfo(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(AudioDevInfo obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_AudioDevInfo(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected AudioDevInfo(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-  }
 
-  public void setName(String value) {
-    pjsua2JNI.AudioDevInfo_name_set(swigCPtr, this, value);
-  }
+    public AudioDevInfo() {
+        this(pjsua2JNI.new_AudioDevInfo(), true);
+    }
 
-  public String getName() {
-    return pjsua2JNI.AudioDevInfo_name_get(swigCPtr, this);
-  }
+    protected static long getCPtr(AudioDevInfo obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void setInputCount(long value) {
-    pjsua2JNI.AudioDevInfo_inputCount_set(swigCPtr, this, value);
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public long getInputCount() {
-    return pjsua2JNI.AudioDevInfo_inputCount_get(swigCPtr, this);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_AudioDevInfo(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public void setOutputCount(long value) {
-    pjsua2JNI.AudioDevInfo_outputCount_set(swigCPtr, this, value);
-  }
+    public String getName() {
+        return pjsua2JNI.AudioDevInfo_name_get(swigCPtr, this);
+    }
 
-  public long getOutputCount() {
-    return pjsua2JNI.AudioDevInfo_outputCount_get(swigCPtr, this);
-  }
+    public void setName(String value) {
+        pjsua2JNI.AudioDevInfo_name_set(swigCPtr, this, value);
+    }
 
-  public void setDefaultSamplesPerSec(long value) {
-    pjsua2JNI.AudioDevInfo_defaultSamplesPerSec_set(swigCPtr, this, value);
-  }
+    public long getInputCount() {
+        return pjsua2JNI.AudioDevInfo_inputCount_get(swigCPtr, this);
+    }
 
-  public long getDefaultSamplesPerSec() {
-    return pjsua2JNI.AudioDevInfo_defaultSamplesPerSec_get(swigCPtr, this);
-  }
+    public void setInputCount(long value) {
+        pjsua2JNI.AudioDevInfo_inputCount_set(swigCPtr, this, value);
+    }
 
-  public void setDriver(String value) {
-    pjsua2JNI.AudioDevInfo_driver_set(swigCPtr, this, value);
-  }
+    public long getOutputCount() {
+        return pjsua2JNI.AudioDevInfo_outputCount_get(swigCPtr, this);
+    }
 
-  public String getDriver() {
-    return pjsua2JNI.AudioDevInfo_driver_get(swigCPtr, this);
-  }
+    public void setOutputCount(long value) {
+        pjsua2JNI.AudioDevInfo_outputCount_set(swigCPtr, this, value);
+    }
 
-  public void setCaps(long value) {
-    pjsua2JNI.AudioDevInfo_caps_set(swigCPtr, this, value);
-  }
+    public long getDefaultSamplesPerSec() {
+        return pjsua2JNI.AudioDevInfo_defaultSamplesPerSec_get(swigCPtr, this);
+    }
 
-  public long getCaps() {
-    return pjsua2JNI.AudioDevInfo_caps_get(swigCPtr, this);
-  }
+    public void setDefaultSamplesPerSec(long value) {
+        pjsua2JNI.AudioDevInfo_defaultSamplesPerSec_set(swigCPtr, this, value);
+    }
 
-  public void setRoutes(long value) {
-    pjsua2JNI.AudioDevInfo_routes_set(swigCPtr, this, value);
-  }
+    public String getDriver() {
+        return pjsua2JNI.AudioDevInfo_driver_get(swigCPtr, this);
+    }
 
-  public long getRoutes() {
-    return pjsua2JNI.AudioDevInfo_routes_get(swigCPtr, this);
-  }
+    public void setDriver(String value) {
+        pjsua2JNI.AudioDevInfo_driver_set(swigCPtr, this, value);
+    }
 
-  public void setExtFmt(MediaFormatVector value) {
-    pjsua2JNI.AudioDevInfo_extFmt_set(swigCPtr, this, MediaFormatVector.getCPtr(value), value);
-  }
+    public long getCaps() {
+        return pjsua2JNI.AudioDevInfo_caps_get(swigCPtr, this);
+    }
 
-  public MediaFormatVector getExtFmt() {
-    long cPtr = pjsua2JNI.AudioDevInfo_extFmt_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new MediaFormatVector(cPtr, false);
-  }
+    public void setCaps(long value) {
+        pjsua2JNI.AudioDevInfo_caps_set(swigCPtr, this, value);
+    }
 
-  public AudioDevInfo() {
-    this(pjsua2JNI.new_AudioDevInfo(), true);
-  }
+    public long getRoutes() {
+        return pjsua2JNI.AudioDevInfo_routes_get(swigCPtr, this);
+    }
+
+    public void setRoutes(long value) {
+        pjsua2JNI.AudioDevInfo_routes_set(swigCPtr, this, value);
+    }
+
+    public MediaFormatVector getExtFmt() {
+        long cPtr = pjsua2JNI.AudioDevInfo_extFmt_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new MediaFormatVector(cPtr, false);
+    }
+
+    public void setExtFmt(MediaFormatVector value) {
+        pjsua2JNI.AudioDevInfo_extFmt_set(swigCPtr, this, MediaFormatVector.getCPtr(value), value);
+    }
 
 }

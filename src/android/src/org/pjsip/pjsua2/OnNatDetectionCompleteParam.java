@@ -9,66 +9,66 @@
 package org.pjsip.pjsua2;
 
 public class OnNatDetectionCompleteParam {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected OnNatDetectionCompleteParam(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(OnNatDetectionCompleteParam obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_OnNatDetectionCompleteParam(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected OnNatDetectionCompleteParam(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-  }
 
-  public void setStatus(int value) {
-    pjsua2JNI.OnNatDetectionCompleteParam_status_set(swigCPtr, this, value);
-  }
+    public OnNatDetectionCompleteParam() {
+        this(pjsua2JNI.new_OnNatDetectionCompleteParam(), true);
+    }
 
-  public int getStatus() {
-    return pjsua2JNI.OnNatDetectionCompleteParam_status_get(swigCPtr, this);
-  }
+    protected static long getCPtr(OnNatDetectionCompleteParam obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void setReason(String value) {
-    pjsua2JNI.OnNatDetectionCompleteParam_reason_set(swigCPtr, this, value);
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public String getReason() {
-    return pjsua2JNI.OnNatDetectionCompleteParam_reason_get(swigCPtr, this);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_OnNatDetectionCompleteParam(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public void setNatType(pj_stun_nat_type value) {
-    pjsua2JNI.OnNatDetectionCompleteParam_natType_set(swigCPtr, this, value.swigValue());
-  }
+    public int getStatus() {
+        return pjsua2JNI.OnNatDetectionCompleteParam_status_get(swigCPtr, this);
+    }
 
-  public pj_stun_nat_type getNatType() {
-    return pj_stun_nat_type.swigToEnum(pjsua2JNI.OnNatDetectionCompleteParam_natType_get(swigCPtr, this));
-  }
+    public void setStatus(int value) {
+        pjsua2JNI.OnNatDetectionCompleteParam_status_set(swigCPtr, this, value);
+    }
 
-  public void setNatTypeName(String value) {
-    pjsua2JNI.OnNatDetectionCompleteParam_natTypeName_set(swigCPtr, this, value);
-  }
+    public String getReason() {
+        return pjsua2JNI.OnNatDetectionCompleteParam_reason_get(swigCPtr, this);
+    }
 
-  public String getNatTypeName() {
-    return pjsua2JNI.OnNatDetectionCompleteParam_natTypeName_get(swigCPtr, this);
-  }
+    public void setReason(String value) {
+        pjsua2JNI.OnNatDetectionCompleteParam_reason_set(swigCPtr, this, value);
+    }
 
-  public OnNatDetectionCompleteParam() {
-    this(pjsua2JNI.new_OnNatDetectionCompleteParam(), true);
-  }
+    public pj_stun_nat_type getNatType() {
+        return pj_stun_nat_type.swigToEnum(pjsua2JNI.OnNatDetectionCompleteParam_natType_get(swigCPtr, this));
+    }
+
+    public void setNatType(pj_stun_nat_type value) {
+        pjsua2JNI.OnNatDetectionCompleteParam_natType_set(swigCPtr, this, value.swigValue());
+    }
+
+    public String getNatTypeName() {
+        return pjsua2JNI.OnNatDetectionCompleteParam_natTypeName_get(swigCPtr, this);
+    }
+
+    public void setNatTypeName(String value) {
+        pjsua2JNI.OnNatDetectionCompleteParam_natTypeName_set(swigCPtr, this, value);
+    }
 
 }

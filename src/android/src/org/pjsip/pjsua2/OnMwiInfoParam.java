@@ -9,51 +9,51 @@
 package org.pjsip.pjsua2;
 
 public class OnMwiInfoParam {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected OnMwiInfoParam(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(OnMwiInfoParam obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_OnMwiInfoParam(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected OnMwiInfoParam(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-  }
 
-  public void setState(pjsip_evsub_state value) {
-    pjsua2JNI.OnMwiInfoParam_state_set(swigCPtr, this, value.swigValue());
-  }
+    public OnMwiInfoParam() {
+        this(pjsua2JNI.new_OnMwiInfoParam(), true);
+    }
 
-  public pjsip_evsub_state getState() {
-    return pjsip_evsub_state.swigToEnum(pjsua2JNI.OnMwiInfoParam_state_get(swigCPtr, this));
-  }
+    protected static long getCPtr(OnMwiInfoParam obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void setRdata(SipRxData value) {
-    pjsua2JNI.OnMwiInfoParam_rdata_set(swigCPtr, this, SipRxData.getCPtr(value), value);
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public SipRxData getRdata() {
-    long cPtr = pjsua2JNI.OnMwiInfoParam_rdata_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SipRxData(cPtr, false);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_OnMwiInfoParam(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public OnMwiInfoParam() {
-    this(pjsua2JNI.new_OnMwiInfoParam(), true);
-  }
+    public pjsip_evsub_state getState() {
+        return pjsip_evsub_state.swigToEnum(pjsua2JNI.OnMwiInfoParam_state_get(swigCPtr, this));
+    }
+
+    public void setState(pjsip_evsub_state value) {
+        pjsua2JNI.OnMwiInfoParam_state_set(swigCPtr, this, value.swigValue());
+    }
+
+    public SipRxData getRdata() {
+        long cPtr = pjsua2JNI.OnMwiInfoParam_rdata_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new SipRxData(cPtr, false);
+    }
+
+    public void setRdata(SipRxData value) {
+        pjsua2JNI.OnMwiInfoParam_rdata_set(swigCPtr, this, SipRxData.getCPtr(value), value);
+    }
 
 }

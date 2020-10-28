@@ -9,66 +9,66 @@
 package org.pjsip.pjsua2;
 
 public class LogEntry {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected LogEntry(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(LogEntry obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_LogEntry(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected LogEntry(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-  }
 
-  public void setLevel(int value) {
-    pjsua2JNI.LogEntry_level_set(swigCPtr, this, value);
-  }
+    public LogEntry() {
+        this(pjsua2JNI.new_LogEntry(), true);
+    }
 
-  public int getLevel() {
-    return pjsua2JNI.LogEntry_level_get(swigCPtr, this);
-  }
+    protected static long getCPtr(LogEntry obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void setMsg(String value) {
-    pjsua2JNI.LogEntry_msg_set(swigCPtr, this, value);
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public String getMsg() {
-    return pjsua2JNI.LogEntry_msg_get(swigCPtr, this);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_LogEntry(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public void setThreadId(int value) {
-    pjsua2JNI.LogEntry_threadId_set(swigCPtr, this, value);
-  }
+    public int getLevel() {
+        return pjsua2JNI.LogEntry_level_get(swigCPtr, this);
+    }
 
-  public int getThreadId() {
-    return pjsua2JNI.LogEntry_threadId_get(swigCPtr, this);
-  }
+    public void setLevel(int value) {
+        pjsua2JNI.LogEntry_level_set(swigCPtr, this, value);
+    }
 
-  public void setThreadName(String value) {
-    pjsua2JNI.LogEntry_threadName_set(swigCPtr, this, value);
-  }
+    public String getMsg() {
+        return pjsua2JNI.LogEntry_msg_get(swigCPtr, this);
+    }
 
-  public String getThreadName() {
-    return pjsua2JNI.LogEntry_threadName_get(swigCPtr, this);
-  }
+    public void setMsg(String value) {
+        pjsua2JNI.LogEntry_msg_set(swigCPtr, this, value);
+    }
 
-  public LogEntry() {
-    this(pjsua2JNI.new_LogEntry(), true);
-  }
+    public int getThreadId() {
+        return pjsua2JNI.LogEntry_threadId_get(swigCPtr, this);
+    }
+
+    public void setThreadId(int value) {
+        pjsua2JNI.LogEntry_threadId_set(swigCPtr, this, value);
+    }
+
+    public String getThreadName() {
+        return pjsua2JNI.LogEntry_threadName_get(swigCPtr, this);
+    }
+
+    public void setThreadName(String value) {
+        pjsua2JNI.LogEntry_threadName_set(swigCPtr, this, value);
+    }
 
 }

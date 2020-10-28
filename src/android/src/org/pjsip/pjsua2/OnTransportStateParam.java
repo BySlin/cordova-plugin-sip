@@ -9,76 +9,76 @@
 package org.pjsip.pjsua2;
 
 public class OnTransportStateParam {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected OnTransportStateParam(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(OnTransportStateParam obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_OnTransportStateParam(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected OnTransportStateParam(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-  }
 
-  public void setHnd(SWIGTYPE_p_void value) {
-    pjsua2JNI.OnTransportStateParam_hnd_set(swigCPtr, this, SWIGTYPE_p_void.getCPtr(value));
-  }
+    public OnTransportStateParam() {
+        this(pjsua2JNI.new_OnTransportStateParam(), true);
+    }
 
-  public SWIGTYPE_p_void getHnd() {
-    long cPtr = pjsua2JNI.OnTransportStateParam_hnd_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_void(cPtr, false);
-  }
+    protected static long getCPtr(OnTransportStateParam obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void setType(String value) {
-    pjsua2JNI.OnTransportStateParam_type_set(swigCPtr, this, value);
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public String getType() {
-    return pjsua2JNI.OnTransportStateParam_type_get(swigCPtr, this);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_OnTransportStateParam(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public void setState(pjsip_transport_state value) {
-    pjsua2JNI.OnTransportStateParam_state_set(swigCPtr, this, value.swigValue());
-  }
+    public SWIGTYPE_p_void getHnd() {
+        long cPtr = pjsua2JNI.OnTransportStateParam_hnd_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new SWIGTYPE_p_void(cPtr, false);
+    }
 
-  public pjsip_transport_state getState() {
-    return pjsip_transport_state.swigToEnum(pjsua2JNI.OnTransportStateParam_state_get(swigCPtr, this));
-  }
+    public void setHnd(SWIGTYPE_p_void value) {
+        pjsua2JNI.OnTransportStateParam_hnd_set(swigCPtr, this, SWIGTYPE_p_void.getCPtr(value));
+    }
 
-  public void setLastError(int value) {
-    pjsua2JNI.OnTransportStateParam_lastError_set(swigCPtr, this, value);
-  }
+    public String getType() {
+        return pjsua2JNI.OnTransportStateParam_type_get(swigCPtr, this);
+    }
 
-  public int getLastError() {
-    return pjsua2JNI.OnTransportStateParam_lastError_get(swigCPtr, this);
-  }
+    public void setType(String value) {
+        pjsua2JNI.OnTransportStateParam_type_set(swigCPtr, this, value);
+    }
 
-  public void setTlsInfo(TlsInfo value) {
-    pjsua2JNI.OnTransportStateParam_tlsInfo_set(swigCPtr, this, TlsInfo.getCPtr(value), value);
-  }
+    public pjsip_transport_state getState() {
+        return pjsip_transport_state.swigToEnum(pjsua2JNI.OnTransportStateParam_state_get(swigCPtr, this));
+    }
 
-  public TlsInfo getTlsInfo() {
-    long cPtr = pjsua2JNI.OnTransportStateParam_tlsInfo_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new TlsInfo(cPtr, false);
-  }
+    public void setState(pjsip_transport_state value) {
+        pjsua2JNI.OnTransportStateParam_state_set(swigCPtr, this, value.swigValue());
+    }
 
-  public OnTransportStateParam() {
-    this(pjsua2JNI.new_OnTransportStateParam(), true);
-  }
+    public int getLastError() {
+        return pjsua2JNI.OnTransportStateParam_lastError_get(swigCPtr, this);
+    }
+
+    public void setLastError(int value) {
+        pjsua2JNI.OnTransportStateParam_lastError_set(swigCPtr, this, value);
+    }
+
+    public TlsInfo getTlsInfo() {
+        long cPtr = pjsua2JNI.OnTransportStateParam_tlsInfo_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new TlsInfo(cPtr, false);
+    }
+
+    public void setTlsInfo(TlsInfo value) {
+        pjsua2JNI.OnTransportStateParam_tlsInfo_set(swigCPtr, this, TlsInfo.getCPtr(value), value);
+    }
 
 }

@@ -9,50 +9,50 @@
 package org.pjsip.pjsua2;
 
 public class VideoPreview {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected VideoPreview(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(VideoPreview obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_VideoPreview(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected VideoPreview(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-  }
 
-  public VideoPreview(int dev_id) {
-    this(pjsua2JNI.new_VideoPreview(dev_id), true);
-  }
+    public VideoPreview(int dev_id) {
+        this(pjsua2JNI.new_VideoPreview(dev_id), true);
+    }
 
-  public boolean hasNative() {
-    return pjsua2JNI.VideoPreview_hasNative(swigCPtr, this);
-  }
+    protected static long getCPtr(VideoPreview obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void start(VideoPreviewOpParam param) throws java.lang.Exception {
-    pjsua2JNI.VideoPreview_start(swigCPtr, this, VideoPreviewOpParam.getCPtr(param), param);
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public void stop() throws java.lang.Exception {
-    pjsua2JNI.VideoPreview_stop(swigCPtr, this);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_VideoPreview(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public VideoWindow getVideoWindow() {
-    return new VideoWindow(pjsua2JNI.VideoPreview_getVideoWindow(swigCPtr, this), true);
-  }
+    public boolean hasNative() {
+        return pjsua2JNI.VideoPreview_hasNative(swigCPtr, this);
+    }
+
+    public void start(VideoPreviewOpParam param) throws java.lang.Exception {
+        pjsua2JNI.VideoPreview_start(swigCPtr, this, VideoPreviewOpParam.getCPtr(param), param);
+    }
+
+    public void stop() throws java.lang.Exception {
+        pjsua2JNI.VideoPreview_stop(swigCPtr, this);
+    }
+
+    public VideoWindow getVideoWindow() {
+        return new VideoWindow(pjsua2JNI.VideoPreview_getVideoWindow(swigCPtr, this), true);
+    }
 
 }

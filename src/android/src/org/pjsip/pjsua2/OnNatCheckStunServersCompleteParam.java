@@ -9,67 +9,67 @@
 package org.pjsip.pjsua2;
 
 public class OnNatCheckStunServersCompleteParam {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected OnNatCheckStunServersCompleteParam(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(OnNatCheckStunServersCompleteParam obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_OnNatCheckStunServersCompleteParam(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected OnNatCheckStunServersCompleteParam(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-  }
 
-  public void setUserData(SWIGTYPE_p_void value) {
-    pjsua2JNI.OnNatCheckStunServersCompleteParam_userData_set(swigCPtr, this, SWIGTYPE_p_void.getCPtr(value));
-  }
+    public OnNatCheckStunServersCompleteParam() {
+        this(pjsua2JNI.new_OnNatCheckStunServersCompleteParam(), true);
+    }
 
-  public SWIGTYPE_p_void getUserData() {
-    long cPtr = pjsua2JNI.OnNatCheckStunServersCompleteParam_userData_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_void(cPtr, false);
-  }
+    protected static long getCPtr(OnNatCheckStunServersCompleteParam obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void setStatus(int value) {
-    pjsua2JNI.OnNatCheckStunServersCompleteParam_status_set(swigCPtr, this, value);
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public int getStatus() {
-    return pjsua2JNI.OnNatCheckStunServersCompleteParam_status_get(swigCPtr, this);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_OnNatCheckStunServersCompleteParam(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public void setName(String value) {
-    pjsua2JNI.OnNatCheckStunServersCompleteParam_name_set(swigCPtr, this, value);
-  }
+    public SWIGTYPE_p_void getUserData() {
+        long cPtr = pjsua2JNI.OnNatCheckStunServersCompleteParam_userData_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new SWIGTYPE_p_void(cPtr, false);
+    }
 
-  public String getName() {
-    return pjsua2JNI.OnNatCheckStunServersCompleteParam_name_get(swigCPtr, this);
-  }
+    public void setUserData(SWIGTYPE_p_void value) {
+        pjsua2JNI.OnNatCheckStunServersCompleteParam_userData_set(swigCPtr, this, SWIGTYPE_p_void.getCPtr(value));
+    }
 
-  public void setAddr(String value) {
-    pjsua2JNI.OnNatCheckStunServersCompleteParam_addr_set(swigCPtr, this, value);
-  }
+    public int getStatus() {
+        return pjsua2JNI.OnNatCheckStunServersCompleteParam_status_get(swigCPtr, this);
+    }
 
-  public String getAddr() {
-    return pjsua2JNI.OnNatCheckStunServersCompleteParam_addr_get(swigCPtr, this);
-  }
+    public void setStatus(int value) {
+        pjsua2JNI.OnNatCheckStunServersCompleteParam_status_set(swigCPtr, this, value);
+    }
 
-  public OnNatCheckStunServersCompleteParam() {
-    this(pjsua2JNI.new_OnNatCheckStunServersCompleteParam(), true);
-  }
+    public String getName() {
+        return pjsua2JNI.OnNatCheckStunServersCompleteParam_name_get(swigCPtr, this);
+    }
+
+    public void setName(String value) {
+        pjsua2JNI.OnNatCheckStunServersCompleteParam_name_set(swigCPtr, this, value);
+    }
+
+    public String getAddr() {
+        return pjsua2JNI.OnNatCheckStunServersCompleteParam_addr_get(swigCPtr, this);
+    }
+
+    public void setAddr(String value) {
+        pjsua2JNI.OnNatCheckStunServersCompleteParam_addr_set(swigCPtr, this, value);
+    }
 
 }

@@ -9,18 +9,18 @@
 package org.pjsip.pjsua2;
 
 public class SWIGTYPE_p_vectorT_pj__SrtpCrypto_t {
-  private transient long swigCPtr;
+    private transient long swigCPtr;
 
-  protected SWIGTYPE_p_vectorT_pj__SrtpCrypto_t(long cPtr, @SuppressWarnings("unused") boolean futureUse) {
-    swigCPtr = cPtr;
-  }
+    protected SWIGTYPE_p_vectorT_pj__SrtpCrypto_t(long cPtr, @SuppressWarnings("unused") boolean futureUse) {
+        swigCPtr = cPtr;
+    }
 
-  protected SWIGTYPE_p_vectorT_pj__SrtpCrypto_t() {
-    swigCPtr = 0;
-  }
+    protected SWIGTYPE_p_vectorT_pj__SrtpCrypto_t() {
+        swigCPtr = 0;
+    }
 
-  protected static long getCPtr(SWIGTYPE_p_vectorT_pj__SrtpCrypto_t obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
+    protected static long getCPtr(SWIGTYPE_p_vectorT_pj__SrtpCrypto_t obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 }
 

@@ -9,52 +9,52 @@
 package org.pjsip.pjsua2;
 
 public class MediaEventData {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected MediaEventData(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(MediaEventData obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_MediaEventData(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected MediaEventData(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-  }
 
-  public void setFmtChanged(MediaFmtChangedEvent value) {
-    pjsua2JNI.MediaEventData_fmtChanged_set(swigCPtr, this, MediaFmtChangedEvent.getCPtr(value), value);
-  }
+    public MediaEventData() {
+        this(pjsua2JNI.new_MediaEventData(), true);
+    }
 
-  public MediaFmtChangedEvent getFmtChanged() {
-    long cPtr = pjsua2JNI.MediaEventData_fmtChanged_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new MediaFmtChangedEvent(cPtr, false);
-  }
+    protected static long getCPtr(MediaEventData obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void setPtr(SWIGTYPE_p_void value) {
-    pjsua2JNI.MediaEventData_ptr_set(swigCPtr, this, SWIGTYPE_p_void.getCPtr(value));
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public SWIGTYPE_p_void getPtr() {
-    long cPtr = pjsua2JNI.MediaEventData_ptr_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_void(cPtr, false);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_MediaEventData(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public MediaEventData() {
-    this(pjsua2JNI.new_MediaEventData(), true);
-  }
+    public MediaFmtChangedEvent getFmtChanged() {
+        long cPtr = pjsua2JNI.MediaEventData_fmtChanged_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new MediaFmtChangedEvent(cPtr, false);
+    }
+
+    public void setFmtChanged(MediaFmtChangedEvent value) {
+        pjsua2JNI.MediaEventData_fmtChanged_set(swigCPtr, this, MediaFmtChangedEvent.getCPtr(value), value);
+    }
+
+    public SWIGTYPE_p_void getPtr() {
+        long cPtr = pjsua2JNI.MediaEventData_ptr_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new SWIGTYPE_p_void(cPtr, false);
+    }
+
+    public void setPtr(SWIGTYPE_p_void value) {
+        pjsua2JNI.MediaEventData_ptr_set(swigCPtr, this, SWIGTYPE_p_void.getCPtr(value));
+    }
 
 }

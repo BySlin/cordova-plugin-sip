@@ -9,70 +9,70 @@
 package org.pjsip.pjsua2;
 
 public class CallMediaInfoVector {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected CallMediaInfoVector(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(CallMediaInfoVector obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_CallMediaInfoVector(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected CallMediaInfoVector(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-  }
 
-  public CallMediaInfoVector() {
-    this(pjsua2JNI.new_CallMediaInfoVector__SWIG_0(), true);
-  }
+    public CallMediaInfoVector() {
+        this(pjsua2JNI.new_CallMediaInfoVector__SWIG_0(), true);
+    }
 
-  public CallMediaInfoVector(long n) {
-    this(pjsua2JNI.new_CallMediaInfoVector__SWIG_1(n), true);
-  }
+    public CallMediaInfoVector(long n) {
+        this(pjsua2JNI.new_CallMediaInfoVector__SWIG_1(n), true);
+    }
 
-  public long size() {
-    return pjsua2JNI.CallMediaInfoVector_size(swigCPtr, this);
-  }
+    protected static long getCPtr(CallMediaInfoVector obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public long capacity() {
-    return pjsua2JNI.CallMediaInfoVector_capacity(swigCPtr, this);
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public void reserve(long n) {
-    pjsua2JNI.CallMediaInfoVector_reserve(swigCPtr, this, n);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_CallMediaInfoVector(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public boolean isEmpty() {
-    return pjsua2JNI.CallMediaInfoVector_isEmpty(swigCPtr, this);
-  }
+    public long size() {
+        return pjsua2JNI.CallMediaInfoVector_size(swigCPtr, this);
+    }
 
-  public void clear() {
-    pjsua2JNI.CallMediaInfoVector_clear(swigCPtr, this);
-  }
+    public long capacity() {
+        return pjsua2JNI.CallMediaInfoVector_capacity(swigCPtr, this);
+    }
 
-  public void add(CallMediaInfo x) {
-    pjsua2JNI.CallMediaInfoVector_add(swigCPtr, this, CallMediaInfo.getCPtr(x), x);
-  }
+    public void reserve(long n) {
+        pjsua2JNI.CallMediaInfoVector_reserve(swigCPtr, this, n);
+    }
 
-  public CallMediaInfo get(int i) {
-    return new CallMediaInfo(pjsua2JNI.CallMediaInfoVector_get(swigCPtr, this, i), false);
-  }
+    public boolean isEmpty() {
+        return pjsua2JNI.CallMediaInfoVector_isEmpty(swigCPtr, this);
+    }
 
-  public void set(int i, CallMediaInfo val) {
-    pjsua2JNI.CallMediaInfoVector_set(swigCPtr, this, i, CallMediaInfo.getCPtr(val), val);
-  }
+    public void clear() {
+        pjsua2JNI.CallMediaInfoVector_clear(swigCPtr, this);
+    }
+
+    public void add(CallMediaInfo x) {
+        pjsua2JNI.CallMediaInfoVector_add(swigCPtr, this, CallMediaInfo.getCPtr(x), x);
+    }
+
+    public CallMediaInfo get(int i) {
+        return new CallMediaInfo(pjsua2JNI.CallMediaInfoVector_get(swigCPtr, this, i), false);
+    }
+
+    public void set(int i, CallMediaInfo val) {
+        pjsua2JNI.CallMediaInfoVector_set(swigCPtr, this, i, CallMediaInfo.getCPtr(val), val);
+    }
 
 }

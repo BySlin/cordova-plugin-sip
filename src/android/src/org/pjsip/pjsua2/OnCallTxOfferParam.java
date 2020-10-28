@@ -9,43 +9,43 @@
 package org.pjsip.pjsua2;
 
 public class OnCallTxOfferParam {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected OnCallTxOfferParam(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(OnCallTxOfferParam obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_OnCallTxOfferParam(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected OnCallTxOfferParam(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-  }
 
-  public void setOpt(CallSetting value) {
-    pjsua2JNI.OnCallTxOfferParam_opt_set(swigCPtr, this, CallSetting.getCPtr(value), value);
-  }
+    public OnCallTxOfferParam() {
+        this(pjsua2JNI.new_OnCallTxOfferParam(), true);
+    }
 
-  public CallSetting getOpt() {
-    long cPtr = pjsua2JNI.OnCallTxOfferParam_opt_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new CallSetting(cPtr, false);
-  }
+    protected static long getCPtr(OnCallTxOfferParam obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public OnCallTxOfferParam() {
-    this(pjsua2JNI.new_OnCallTxOfferParam(), true);
-  }
+    protected void finalize() {
+        delete();
+    }
+
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_OnCallTxOfferParam(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
+
+    public CallSetting getOpt() {
+        long cPtr = pjsua2JNI.OnCallTxOfferParam_opt_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new CallSetting(cPtr, false);
+    }
+
+    public void setOpt(CallSetting value) {
+        pjsua2JNI.OnCallTxOfferParam_opt_set(swigCPtr, this, CallSetting.getCPtr(value), value);
+    }
 
 }

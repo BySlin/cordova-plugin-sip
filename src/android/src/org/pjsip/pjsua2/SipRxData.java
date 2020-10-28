@@ -9,67 +9,67 @@
 package org.pjsip.pjsua2;
 
 public class SipRxData {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected SipRxData(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(SipRxData obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        pjsua2JNI.delete_SipRxData(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected SipRxData(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-  }
 
-  public void setInfo(String value) {
-    pjsua2JNI.SipRxData_info_set(swigCPtr, this, value);
-  }
+    public SipRxData() {
+        this(pjsua2JNI.new_SipRxData(), true);
+    }
 
-  public String getInfo() {
-    return pjsua2JNI.SipRxData_info_get(swigCPtr, this);
-  }
+    protected static long getCPtr(SipRxData obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void setWholeMsg(String value) {
-    pjsua2JNI.SipRxData_wholeMsg_set(swigCPtr, this, value);
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public String getWholeMsg() {
-    return pjsua2JNI.SipRxData_wholeMsg_get(swigCPtr, this);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                pjsua2JNI.delete_SipRxData(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public void setSrcAddress(String value) {
-    pjsua2JNI.SipRxData_srcAddress_set(swigCPtr, this, value);
-  }
+    public String getInfo() {
+        return pjsua2JNI.SipRxData_info_get(swigCPtr, this);
+    }
 
-  public String getSrcAddress() {
-    return pjsua2JNI.SipRxData_srcAddress_get(swigCPtr, this);
-  }
+    public void setInfo(String value) {
+        pjsua2JNI.SipRxData_info_set(swigCPtr, this, value);
+    }
 
-  public void setPjRxData(SWIGTYPE_p_void value) {
-    pjsua2JNI.SipRxData_pjRxData_set(swigCPtr, this, SWIGTYPE_p_void.getCPtr(value));
-  }
+    public String getWholeMsg() {
+        return pjsua2JNI.SipRxData_wholeMsg_get(swigCPtr, this);
+    }
 
-  public SWIGTYPE_p_void getPjRxData() {
-    long cPtr = pjsua2JNI.SipRxData_pjRxData_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_void(cPtr, false);
-  }
+    public void setWholeMsg(String value) {
+        pjsua2JNI.SipRxData_wholeMsg_set(swigCPtr, this, value);
+    }
 
-  public SipRxData() {
-    this(pjsua2JNI.new_SipRxData(), true);
-  }
+    public String getSrcAddress() {
+        return pjsua2JNI.SipRxData_srcAddress_get(swigCPtr, this);
+    }
+
+    public void setSrcAddress(String value) {
+        pjsua2JNI.SipRxData_srcAddress_set(swigCPtr, this, value);
+    }
+
+    public SWIGTYPE_p_void getPjRxData() {
+        long cPtr = pjsua2JNI.SipRxData_pjRxData_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new SWIGTYPE_p_void(cPtr, false);
+    }
+
+    public void setPjRxData(SWIGTYPE_p_void value) {
+        pjsua2JNI.SipRxData_pjRxData_set(swigCPtr, this, SWIGTYPE_p_void.getCPtr(value));
+    }
 
 }
