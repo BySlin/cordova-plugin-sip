@@ -11,7 +11,7 @@
 
     <!-- android -->
     <platform name="android">
-        <framework src="src/android/plugin.gradle" custom="true" type="gradleReference"/>
+        <framework src="com.google.code.gson:gson:2.8.5"/>
 
         <config-file parent="/manifest" target="AndroidManifest.xml">
             <uses-permission android:name="android.permission.INTERNET"/>
