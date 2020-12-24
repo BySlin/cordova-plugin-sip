@@ -40,6 +40,7 @@ import static net.gotev.sipservice.SipServiceCommand.AGENT_NAME;
 
 /**
  * Sip Service.
+ *
  * @author gotev (Aleksandar Gotev)
  */
 public class SipService extends BackgroundService implements SipServiceConstants {
@@ -94,7 +95,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
 
                 if (action == null) return;
 
-                switch(action) {
+                switch (action) {
                     case ACTION_SET_ACCOUNT:
                         handleSetAccount(intent);
                         break;
@@ -179,7 +180,8 @@ public class SipService extends BackgroundService implements SipServiceConstants
                     case ACTION_MAKE_DIRECT_CALL:
                         handleMakeDirectCall(intent);
                         break;
-                    default: break;
+                    default:
+                        break;
                 }
 
                 if (mConfiguredAccounts.isEmpty() && mConfiguredGuestAccount == null) {
@@ -238,8 +240,8 @@ public class SipService extends BackgroundService implements SipServiceConstants
         }
 
         mBroadcastEmitter.callState(accountID, callID, sipCall.getCurrentState().swigValue(), callStatusCode,
-                                    sipCall.getConnectTimestamp(), sipCall.isLocalHold(),
-                                    sipCall.isLocalMute(), sipCall.isLocalVideoMute());
+                sipCall.getConnectTimestamp(), sipCall.isLocalHold(),
+                sipCall.isLocalMute(), sipCall.isLocalVideoMute());
     }
 
     private void handleSendDTMF(Intent intent) {
@@ -257,7 +259,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
             sipCall.dialDtmf(dtmf);
         } catch (Exception exc) {
             Logger.error(TAG, "Error while dialing dtmf: " + dtmf + ". AccountID: "
-                         + accountID + ", CallID: " + callID);
+                    + accountID + ", CallID: " + callID);
         }
     }
 
@@ -277,7 +279,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
             sipCall.acceptIncomingCall();
         } catch (Exception exc) {
             Logger.error(TAG, "Error while accepting incoming call. AccountID: "
-                         + accountID + ", CallID: " + callID);
+                    + accountID + ", CallID: " + callID);
         }
     }
 
@@ -333,7 +335,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
             sipCall.setMute(mute);
         } catch (Exception exc) {
             Logger.error(TAG, "Error while setting mute. AccountID: "
-                         + accountID + ", CallID: " + callID);
+                    + accountID + ", CallID: " + callID);
         }
     }
 
@@ -493,7 +495,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
         int regExpTimeout = intent.getIntExtra(PARAM_REG_EXP_TIMEOUT, 0);
         String regContactParams = intent.getStringExtra(PARAM_REG_CONTACT_PARAMS);
         boolean refresh = true;
-        if (!mActiveSipAccounts.isEmpty() && mActiveSipAccounts.containsKey(accountID)){
+        if (!mActiveSipAccounts.isEmpty() && mActiveSipAccounts.containsKey(accountID)) {
             try {
                 SipAccount sipAccount = mActiveSipAccounts.get(accountID);
                 if (regExpTimeout != 0 && regExpTimeout != sipAccount.getData().getRegExpirationTimeout()) {
@@ -521,7 +523,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
                 ex.printStackTrace();
             }
         } else {
-            Logger.debug(TAG, "account "+accountID+" not set");
+            Logger.debug(TAG, "account " + accountID + " not set");
         }
     }
 
@@ -667,7 +669,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
             } else {
                 mEndpoint.codecSetPriority("OPUS", (short) (CodecPriority.PRIORITY_MAX - 1));
                 mEndpoint.codecSetPriority("PCMA/8000", (short) (CodecPriority.PRIORITY_MAX - 2));
-                mEndpoint.codecSetPriority("PCMU/8000", (short) (CodecPriority.PRIORITY_MAX -3));
+                mEndpoint.codecSetPriority("PCMU/8000", (short) (CodecPriority.PRIORITY_MAX - 3));
                 mEndpoint.codecSetPriority("G729/8000", (short) CodecPriority.PRIORITY_DISABLED);
                 mEndpoint.codecSetPriority("speex/8000", (short) CodecPriority.PRIORITY_DISABLED);
                 mEndpoint.codecSetPriority("speex/16000", (short) CodecPriority.PRIORITY_DISABLED);
@@ -761,12 +763,12 @@ public class SipService extends BackgroundService implements SipServiceConstants
             CodecInfoVector codecs = mEndpoint.codecEnum();
             if (codecs == null || codecs.size() == 0) return null;
 
-            ArrayList<CodecPriority> codecPrioritiesList = new ArrayList<>((int)codecs.size());
+            ArrayList<CodecPriority> codecPrioritiesList = new ArrayList<>((int) codecs.size());
 
-            for (int i = 0; i < (int)codecs.size(); i++) {
+            for (int i = 0; i < (int) codecs.size(); i++) {
                 CodecInfo codecInfo = codecs.get(i);
                 CodecPriority newCodec = new CodecPriority(codecInfo.getCodecId(),
-                                                           codecInfo.getPriority());
+                        codecInfo.getPriority());
                 if (!codecPrioritiesList.contains(newCodec))
                     codecPrioritiesList.add(newCodec);
                 codecInfo.delete();
@@ -867,6 +869,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
 
     /**
      * Adds a new SIP Account and performs initial registration.
+     *
      * @param account SIP account to add
      */
     private void addAccount(SipAccountData account) throws Exception {
@@ -1022,12 +1025,12 @@ public class SipService extends BackgroundService implements SipServiceConstants
             }
 
             if (pjmediaOrientation != pjmedia_orient.PJMEDIA_ORIENT_UNKNOWN)
-            // set orientation to the correct current device
-            getVidDevManager().setCaptureOrient(
-                    sipCall.isFrontCamera()
-                            ? FRONT_CAMERA_CAPTURE_DEVICE
-                            : BACK_CAMERA_CAPTURE_DEVICE,
-                    pjmediaOrientation, true);
+                // set orientation to the correct current device
+                getVidDevManager().setCaptureOrient(
+                        sipCall.isFrontCamera()
+                                ? FRONT_CAMERA_CAPTURE_DEVICE
+                                : BACK_CAMERA_CAPTURE_DEVICE,
+                        pjmediaOrientation, true);
 
         } catch (Exception iex) {
             Logger.error(TAG, "Error while changing video orientation");
@@ -1113,8 +1116,8 @@ public class SipService extends BackgroundService implements SipServiceConstants
         }
 
         Logger.debug(TAG, "Making call to " + uri.getUserInfo());
-        String accountID = "sip:"+name+"@"+uri.getHost();
-        String sipUri = "sip:" + uri.getUserInfo()+"@"+uri.getHost();
+        String accountID = "sip:" + name + "@" + uri.getHost();
+        String sipUri = "sip:" + uri.getUserInfo() + "@" + uri.getHost();
 
         try {
             startStack();
@@ -1123,9 +1126,9 @@ public class SipService extends BackgroundService implements SipServiceConstants
                     .setUsername(name)
                     .setPort((uri.getPort() > 0) ? uri.getPort() : 5060)
                     .setRealm(uri.getHost());
-                    /* display name not yet implemented server side for direct calls */
-                    /* .setUsername("guest") */
-                    /* .setGuestDisplayName(name)*/
+            /* display name not yet implemented server side for direct calls */
+            /* .setUsername("guest") */
+            /* .setGuestDisplayName(name)*/
             SipAccount pjSipAndroidAccount = new SipAccount(this, sipAccountData);
             pjSipAndroidAccount.createGuest();
             mConfiguredGuestAccount = pjSipAndroidAccount.getData();

@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 /**
  * Represents a codec priority info.
+ *
  * @author gotev (Aleksandar Gotev)
  */
 public class CodecPriority implements Parcelable, Comparable<CodecPriority> {
@@ -82,14 +83,22 @@ public class CodecPriority implements Parcelable, Comparable<CodecPriority> {
         String name = mCodecId.split("/")[0];
 
         switch (name) {
-            case "G729": return G729_LABEL;
-            case "PCMU": return PCMU_LABEL;
-            case "PCMA": return PCMA_LABEL;
-            case "speex": return SPEEX_LABEL;
-            case "G722": return G722_LABEL;
-            case "G7221": return G7221_LABEL;
-            case "opus": return OPUS_LABEL;
-            default: return name;
+            case "G729":
+                return G729_LABEL;
+            case "PCMU":
+                return PCMU_LABEL;
+            case "PCMA":
+                return PCMA_LABEL;
+            case "speex":
+                return SPEEX_LABEL;
+            case "G722":
+                return G722_LABEL;
+            case "G7221":
+                return G7221_LABEL;
+            case "opus":
+                return OPUS_LABEL;
+            default:
+                return name;
         }
     }
 

@@ -11,6 +11,7 @@ import java.util.List;
 
 /**
  * Emits the sip service broadcast intents.
+ *
  * @author gotev (Aleksandar Gotev)
  */
 public class BroadcastEventEmitter implements SipServiceConstants {
@@ -45,11 +46,12 @@ public class BroadcastEventEmitter implements SipServiceConstants {
 
     /**
      * Emit an incoming call broadcast intent.
-     * @param accountID call's account IdUri
-     * @param callID call ID number
+     *
+     * @param accountID   call's account IdUri
+     * @param callID      call ID number
      * @param displayName the display name of the remote party
-     * @param remoteUri the IdUri of the remote party
-     * @param isVideo whether the call has video or not
+     * @param remoteUri   the IdUri of the remote party
+     * @param isVideo     whether the call has video or not
      */
     public void incomingCall(String accountID, int callID, String displayName, String remoteUri, boolean isVideo) {
         final Intent intent = new Intent();
@@ -67,7 +69,8 @@ public class BroadcastEventEmitter implements SipServiceConstants {
 
     /**
      * Emit a registration state broadcast intent.
-     * @param accountID account IdUri
+     *
+     * @param accountID             account IdUri
      * @param registrationStateCode SIP registration status code
      */
     public void registrationState(String accountID, int registrationStateCode) {
@@ -82,17 +85,18 @@ public class BroadcastEventEmitter implements SipServiceConstants {
 
     /**
      * Emit a call state broadcast intent.
-     * @param accountID call's account IdUri
-     * @param callID call ID number
-     * @param callStateCode SIP call state code
-     * @param callStateStatus SIP call state status
+     *
+     * @param accountID        call's account IdUri
+     * @param callID           call ID number
+     * @param callStateCode    SIP call state code
+     * @param callStateStatus  SIP call state status
      * @param connectTimestamp call start timestamp
-     * @param isLocalHold true if the call is held locally
-     * @param isLocalMute true if the call is muted locally
+     * @param isLocalHold      true if the call is held locally
+     * @param isLocalMute      true if the call is muted locally
      * @param isLocalVideoMute true if the video is muted locally
      */
-    public synchronized  void callState(String accountID, int callID, int callStateCode, int callStateStatus,
-                          long connectTimestamp, boolean isLocalHold, boolean isLocalMute, boolean isLocalVideoMute) {
+    public synchronized void callState(String accountID, int callID, int callStateCode, int callStateStatus,
+                                       long connectTimestamp, boolean isLocalHold, boolean isLocalMute, boolean isLocalVideoMute) {
         final Intent intent = new Intent();
 
         intent.setAction(getAction(BroadcastAction.CALL_STATE));
@@ -182,12 +186,12 @@ public class BroadcastEventEmitter implements SipServiceConstants {
     }
 
     private boolean sendExplicitBroadcast(Intent intent) {
-        PackageManager pm=mContext.getPackageManager();
-        List<ResolveInfo> matches=pm.queryBroadcastReceivers(intent, 0);
+        PackageManager pm = mContext.getPackageManager();
+        List<ResolveInfo> matches = pm.queryBroadcastReceivers(intent, 0);
         boolean sent = false;
 
         for (ResolveInfo resolveInfo : matches) {
-            ComponentName cn=
+            ComponentName cn =
                     new ComponentName(resolveInfo.activityInfo.applicationInfo.packageName,
                             resolveInfo.activityInfo.name);
 

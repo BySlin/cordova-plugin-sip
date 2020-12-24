@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 
 /**
  * Obtains display name and remote uri from a CallInfo object.
+ *
  * @author gotev (Aleksandar Gotev)
  */
 public class CallerInfo {

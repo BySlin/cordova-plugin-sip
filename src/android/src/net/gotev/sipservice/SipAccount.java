@@ -12,6 +12,7 @@ import java.util.Set;
 
 /**
  * Wrapper around PJSUA2 Account object.
+ *
  * @author gotev (Aleksandar Gotev)
  */
 public class SipAccount extends Account {
@@ -73,7 +74,7 @@ public class SipAccount extends Account {
 
         // check if there's already an ongoing call
         int totalCalls = 0;
-        for (SipAccount _sipAccount: SipService.getActiveSipAccounts().values()) {
+        for (SipAccount _sipAccount : SipService.getActiveSipAccounts().values()) {
             totalCalls += _sipAccount.getCallIDs().size();
         }
 
@@ -129,7 +130,7 @@ public class SipAccount extends Account {
     @Override
     public void onRegState(OnRegStateParam prm) {
         service.getBroadcastEmitter()
-               .registrationState(data.getIdUri(), prm.getCode().swigValue());
+                .registrationState(data.getIdUri(), prm.getCode().swigValue());
     }
 
     @Override
@@ -144,7 +145,7 @@ public class SipAccount extends Account {
                 service.getBroadcastEmitter().missedCall(contactInfo.getDisplayName(), contactInfo.getRemoteUri());
                 call.declineIncomingCall();
                 Logger.debug(LOG_TAG, "Decline call with ID: " + prm.getCallId());
-            } catch(Exception ex) {
+            } catch (Exception ex) {
                 Logger.error(LOG_TAG, "Error while getting missed call info", ex);
             }
             return;
@@ -152,7 +153,7 @@ public class SipAccount extends Account {
 
         // Send 486 Busy Here if there's an already ongoing call
         int totalCalls = 0;
-        for (SipAccount _sipAccount: SipService.getActiveSipAccounts().values()) {
+        for (SipAccount _sipAccount : SipService.getActiveSipAccounts().values()) {
             totalCalls += _sipAccount.getCallIDs().size();
         }
 
@@ -162,7 +163,7 @@ public class SipAccount extends Account {
                 service.getBroadcastEmitter().missedCall(contactInfo.getDisplayName(), contactInfo.getRemoteUri());
                 call.sendBusyHereToIncomingCall();
                 Logger.debug(LOG_TAG, "Sending busy to call ID: " + prm.getCallId());
-            } catch(Exception ex) {
+            } catch (Exception ex) {
                 Logger.error(LOG_TAG, "Error while getting missed call info", ex);
             }
             return;
@@ -190,7 +191,7 @@ public class SipAccount extends Account {
             boolean isVideo = (callInfo.getRemOfferer() && callInfo.getRemVideoCount() > 0);
 
             service.getBroadcastEmitter().incomingCall(data.getIdUri(), prm.getCallId(),
-                            displayName, remoteUri, isVideo);
+                    displayName, remoteUri, isVideo);
 
         } catch (Exception ex) {
             Logger.error(LOG_TAG, "Error while getting caller info", ex);

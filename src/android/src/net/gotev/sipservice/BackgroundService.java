@@ -7,6 +7,7 @@ import android.os.Process;
 
 /**
  * Service with a background worker thread.
+ *
  * @author gotev (Aleksandar Gotev)
  */
 class BackgroundService extends Service {

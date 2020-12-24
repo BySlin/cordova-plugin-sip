@@ -35,6 +35,7 @@ import org.pjsip.pjsua2.pjsua_call_vid_strm_op;
 
 /**
  * Wrapper around PJSUA2 Call object.
+ *
  * @author gotev (Aleksandar Gotev)
  */
 @SuppressWarnings("unused")
@@ -57,8 +58,9 @@ public class SipCall extends Call {
 
     /**
      * Incoming call constructor.
+     *
      * @param account the account which own this call
-     * @param callID the id of this call
+     * @param callID  the id of this call
      */
     public SipCall(SipAccount account, int callID) {
         super(account, callID);
@@ -69,6 +71,7 @@ public class SipCall extends Call {
 
     /**
      * Outgoing call constructor.
+     *
      * @param account account which owns this call
      */
     public SipCall(SipAccount account) {
@@ -106,7 +109,7 @@ public class SipCall extends Call {
             try {
                 callStatus = info.getLastStatusCode();
                 account.getService().setLastCallStatus(callStatus.swigValue());
-            } catch(Exception ex) {
+            } catch (Exception ex) {
                 Logger.error(LOG_TAG, "Error while getting call status", ex);
             }
 
@@ -136,22 +139,22 @@ public class SipCall extends Call {
                 }
 
                 // check whether the 183 has arrived or not
-            } else if (callState == pjsip_inv_state.PJSIP_INV_STATE_EARLY){
+            } else if (callState == pjsip_inv_state.PJSIP_INV_STATE_EARLY) {
                 pjsip_status_code statusCode = info.getLastStatusCode();
                 // check if 180 && call is outgoing (ROLE UAC)
-                if (statusCode == pjsip_status_code.PJSIP_SC_RINGING && info.getRole() == pjsip_role_e.PJSIP_ROLE_UAC){
+                if (statusCode == pjsip_status_code.PJSIP_SC_RINGING && info.getRole() == pjsip_role_e.PJSIP_ROLE_UAC) {
                     checkAndStopLocalRingBackTone();
                     toneGenerator = new ToneGenerator(AudioManager.STREAM_VOICE_CALL, 100);
                     toneGenerator.startTone(ToneGenerator.TONE_SUP_RINGTONE);
                     // check if 183
-                } else if (statusCode == pjsip_status_code.PJSIP_SC_PROGRESS){
+                } else if (statusCode == pjsip_status_code.PJSIP_SC_PROGRESS) {
                     checkAndStopLocalRingBackTone();
                 }
             }
 
             account.getService().getBroadcastEmitter()
                     .callState(account.getData().getIdUri(), callID, callState.swigValue(), callStatus != null ? callStatus.swigValue() : -1,
-                               connectTimestamp, localHold, localMute, localVideoMute);
+                            connectTimestamp, localHold, localMute, localVideoMute);
 
             if (callState == pjsip_inv_state.PJSIP_INV_STATE_DISCONNECTED) {
                 account.getService().setLastCallStatus(0);
@@ -211,6 +214,7 @@ public class SipCall extends Call {
 
     /**
      * Get the total duration of the call.
+     *
      * @return the duration in milliseconds or 0 if the call is not connected.
      */
     public long getConnectTimestamp() {
@@ -267,6 +271,7 @@ public class SipCall extends Call {
 
     /**
      * Utility method to mute/unmute the device microphone during a call.
+     *
      * @param mute true to mute the microphone, false to un-mute it
      */
     public void setMute(boolean mute) {
@@ -327,6 +332,7 @@ public class SipCall extends Call {
      * Utility method to transfer a call to a number in the same realm as the account to
      * which this call belongs to. If you want to transfer the call to a different realm, you
      * have to pass the full string in this format: sip:NUMBER@REALM. E.g. sip:200@mycompany.com
+     *
      * @param destination destination to which to transfer the call.
      * @throws Exception if an error occurs during the call transfer
      */
@@ -389,8 +395,8 @@ public class SipCall extends Call {
     }
 
     // check if Local RingBack Tone has started, if so, stop it.
-    private void checkAndStopLocalRingBackTone(){
-        if (toneGenerator != null){
+    private void checkAndStopLocalRingBackTone() {
+        if (toneGenerator != null) {
             toneGenerator.stopTone();
             toneGenerator.release();
             toneGenerator = null;
@@ -399,7 +405,7 @@ public class SipCall extends Call {
 
     // disable video programmatically
     @Override
-    public void makeCall(String dst_uri, CallOpParam prm) throws java.lang.Exception {
+    public void makeCall(String dst_uri, CallOpParam prm) throws Exception {
         setMediaParams(prm);
         if (!videoCall) {
             CallSetting callSetting = prm.getOpt();
@@ -540,11 +546,11 @@ public class SipCall extends Call {
     public void setVideoMute(boolean videoMute) {
         try {
             vidSetStream(videoMute
-                    ? pjsua_call_vid_strm_op.PJSUA_CALL_VID_STRM_STOP_TRANSMIT
-                    : pjsua_call_vid_strm_op.PJSUA_CALL_VID_STRM_START_TRANSMIT,
-                new CallVidSetStreamParam());
+                            ? pjsua_call_vid_strm_op.PJSUA_CALL_VID_STRM_STOP_TRANSMIT
+                            : pjsua_call_vid_strm_op.PJSUA_CALL_VID_STRM_START_TRANSMIT,
+                    new CallVidSetStreamParam());
             localVideoMute = videoMute;
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             Logger.error(LOG_TAG, "Error while toggling video transmission", ex);
         }
     }
@@ -582,7 +588,7 @@ public class SipCall extends Call {
     }
 
     private void sendCallStats(int duration, int callStatus, StreamInfo streamInfo, StreamStat streamStat) {
-        String audioCodec = streamInfo.getCodecName().toLowerCase()+"_"+streamInfo.getCodecClockRate();
+        String audioCodec = streamInfo.getCodecName().toLowerCase() + "_" + streamInfo.getCodecClockRate();
 
         RtcpStreamStat rxStat = streamStat.getRtcp().getRxStat();
         RtcpStreamStat txStat = streamStat.getRtcp().getTxStat();
@@ -598,20 +604,20 @@ public class SipCall extends Call {
                 txStat.getJitterUsec().getMin());
 
         RtpStreamStats rx = new RtpStreamStats(
-                (int)rxStat.getPkt(),
-                (int)rxStat.getDiscard(),
-                (int)rxStat.getLoss(),
-                (int)rxStat.getReorder(),
-                (int)rxStat.getDup(),
+                (int) rxStat.getPkt(),
+                (int) rxStat.getDiscard(),
+                (int) rxStat.getLoss(),
+                (int) rxStat.getReorder(),
+                (int) rxStat.getDup(),
                 rxJitter
         );
 
         RtpStreamStats tx = new RtpStreamStats(
-                (int)txStat.getPkt(),
-                (int)txStat.getDiscard(),
-                (int)txStat.getLoss(),
-                (int)txStat.getReorder(),
-                (int)txStat.getDup(),
+                (int) txStat.getPkt(),
+                (int) txStat.getDiscard(),
+                (int) txStat.getLoss(),
+                (int) txStat.getReorder(),
+                (int) txStat.getDup(),
                 txJitter
         );
 
