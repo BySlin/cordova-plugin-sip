@@ -84,11 +84,11 @@ public class AccountMediaConfig extends PersistentObject {
     return pjsua_ipv6_use.swigToEnum(pjsua2JNI.AccountMediaConfig_ipv6Use_get(swigCPtr, this));
   }
 
-  public void readObject(ContainerNode node) throws Exception {
+  public void readObject(ContainerNode node) throws java.lang.Exception {
     pjsua2JNI.AccountMediaConfig_readObject(swigCPtr, this, ContainerNode.getCPtr(node), node);
   }
 
-  public void writeObject(ContainerNode node) throws Exception {
+  public void writeObject(ContainerNode node) throws java.lang.Exception {
     pjsua2JNI.AccountMediaConfig_writeObject(swigCPtr, this, ContainerNode.getCPtr(node), node);
   }
 

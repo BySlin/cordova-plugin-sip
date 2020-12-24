@@ -11,7 +11,6 @@ import java.util.Objects;
 
 /**
  * Contains the account's configuration data.
- *
  * @author gotev (Aleksandar Gotev)
  */
 @SuppressWarnings("unused")
@@ -19,6 +18,21 @@ public class SipAccountData implements Parcelable {
 
     public static final String AUTH_TYPE_DIGEST = "digest";
     public static final String AUTH_TYPE_PLAIN = "plain";
+
+    private String username;
+    private String password;
+    private String realm;
+    private String host;
+    private long port = 5060;
+    private boolean tcpTransport = false;
+    private String authenticationType = AUTH_TYPE_DIGEST;
+    private String contactUriParams = "";
+    private int regExpirationTimeout = 300;     // 300s
+    private String guestDisplayName = "";
+    private String callId = "";
+
+    public SipAccountData() { }
+
     /*****          Parcelable overrides        ******/
     public static final Parcelable.Creator<SipAccountData> CREATOR =
             new Parcelable.Creator<SipAccountData>() {
@@ -32,34 +46,6 @@ public class SipAccountData implements Parcelable {
                     return new SipAccountData[size];
                 }
             };
-    private String username;
-    private String password;
-    private String realm;
-    private String host;
-    private long port = 5060;
-    private boolean tcpTransport = false;
-    private String authenticationType = AUTH_TYPE_DIGEST;
-    private String contactUriParams = "";
-    private int regExpirationTimeout = 300;     // 300s
-    private String guestDisplayName = "";
-    private String callId = "";
-
-    public SipAccountData() {
-    }
-
-    private SipAccountData(Parcel in) {
-        username = in.readString();
-        password = in.readString();
-        realm = in.readString();
-        host = in.readString();
-        port = in.readLong();
-        tcpTransport = in.readByte() == 1;
-        authenticationType = in.readString();
-        contactUriParams = in.readString();
-        regExpirationTimeout = in.readInt();
-        guestDisplayName = in.readString();
-        callId = in.readString();
-    }
 
     @Override
     public void writeToParcel(Parcel parcel, int arg1) {
@@ -74,6 +60,20 @@ public class SipAccountData implements Parcelable {
         parcel.writeInt(regExpirationTimeout);
         parcel.writeString(guestDisplayName);
         parcel.writeString(callId);
+    }
+
+    private SipAccountData(Parcel in) {
+        username = in.readString();
+        password = in.readString();
+        realm = in.readString();
+        host = in.readString();
+        port = in.readLong();
+        tcpTransport = in.readByte() == 1;
+        authenticationType = in.readString();
+        contactUriParams = in.readString();
+        regExpirationTimeout = in.readInt();
+        guestDisplayName = in.readString();
+        callId = in.readString();
     }
 
     @Override
@@ -146,22 +146,22 @@ public class SipAccountData implements Parcelable {
         return this;
     }
 
-    public String getContactUriParams() {
-        return contactUriParams;
-    }
-
-    public SipAccountData setContactUriParams(String contactUriParams) {
+    public SipAccountData setContactUriParams(String contactUriParams){
         this.contactUriParams = contactUriParams;
         return this;
     }
 
-    public int getRegExpirationTimeout() {
-        return this.regExpirationTimeout;
+    public String getContactUriParams(){
+        return contactUriParams;
     }
 
-    public SipAccountData setRegExpirationTimeout(int regExpirationTimeout) {
+    public SipAccountData setRegExpirationTimeout(int regExpirationTimeout){
         this.regExpirationTimeout = regExpirationTimeout;
         return this;
+    }
+
+    public int getRegExpirationTimeout(){
+        return this.regExpirationTimeout;
     }
 
     public String getGuestDisplayName() {
@@ -249,7 +249,7 @@ public class SipAccountData implements Parcelable {
         accountConfig.getMediaConfig().getTransportConfig().setQosType(pj_qos_type.PJ_QOS_TYPE_VIDEO);
         String idUri = getGuestDisplayName().isEmpty()
                 ? getIdUri()
-                : "\"" + getGuestDisplayName() + "\" <" + getIdUri() + ">";
+                : "\""+getGuestDisplayName()+"\" <"+getIdUri()+">";
         accountConfig.setIdUri(idUri);
         accountConfig.getSipConfig().getProxies().add(getProxyUri());
         accountConfig.getRegConfig().setRegisterOnAdd(false);
@@ -299,6 +299,15 @@ public class SipAccountData implements Parcelable {
         result = 31 * result + regExpirationTimeout;
         result = 31 * result + callId.hashCode();
         return result;
+    }
+
+    SipAccountData getDeepCopy() {
+        Parcel parcel = Parcel.obtain();
+        this.writeToParcel(parcel, 0);
+        parcel.setDataPosition(0);
+        SipAccountData temp = SipAccountData.CREATOR.createFromParcel(parcel);
+        parcel.recycle();
+        return temp;
     }
     /*          Object overrides end        */
 }

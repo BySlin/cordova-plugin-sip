@@ -8,7 +8,7 @@
 
 package org.pjsip.pjsua2;
 
-public class Error extends Exception {
+public class Error extends java.lang.Exception {
   private transient long swigCPtr;
   protected transient boolean swigCMemOwn;
 
@@ -40,7 +40,7 @@ public class Error extends Exception {
   public String getMessage() {
     return getTitle();
   }
-
+  
   // Disable serialization (check ticket #1868)
   private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
     throw new java.io.NotSerializableException("Check ticket #1868!");
