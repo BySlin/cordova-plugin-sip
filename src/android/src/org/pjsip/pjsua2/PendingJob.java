@@ -9,34 +9,34 @@
 package org.pjsip.pjsua2;
 
 public class PendingJob {
-    protected transient boolean swigCMemOwn;
-    private transient long swigCPtr;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
-    protected PendingJob(long cPtr, boolean cMemoryOwn) {
-        swigCMemOwn = cMemoryOwn;
-        swigCPtr = cPtr;
-    }
+  protected PendingJob(long cPtr, boolean cMemoryOwn) {
+    swigCMemOwn = cMemoryOwn;
+    swigCPtr = cPtr;
+  }
 
-    protected static long getCPtr(PendingJob obj) {
-        return (obj == null) ? 0 : obj.swigCPtr;
-    }
+  protected static long getCPtr(PendingJob obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
 
-    protected void finalize() {
-        delete();
-    }
+  protected void finalize() {
+    delete();
+  }
 
-    public synchronized void delete() {
-        if (swigCPtr != 0) {
-            if (swigCMemOwn) {
-                swigCMemOwn = false;
-                pjsua2JNI.delete_PendingJob(swigCPtr);
-            }
-            swigCPtr = 0;
-        }
+  public synchronized void delete() {
+    if (swigCPtr != 0) {
+      if (swigCMemOwn) {
+        swigCMemOwn = false;
+        pjsua2JNI.delete_PendingJob(swigCPtr);
+      }
+      swigCPtr = 0;
     }
+  }
 
-    public void execute(boolean is_pending) {
-        pjsua2JNI.PendingJob_execute(swigCPtr, this, is_pending);
-    }
+  public void execute(boolean is_pending) {
+    pjsua2JNI.PendingJob_execute(swigCPtr, this, is_pending);
+  }
 
 }

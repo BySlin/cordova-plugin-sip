@@ -20,6 +20,22 @@ public class BroadcastEventEmitter implements SipServiceConstants {
 
     private Context mContext;
 
+    /**
+     * Enumeration of the broadcast actions
+     */
+    public enum BroadcastAction {
+        REGISTRATION,
+        INCOMING_CALL,
+        CALL_STATE,
+        OUTGOING_CALL,
+        STACK_STATUS,
+        CODEC_PRIORITIES,
+        CODEC_PRIORITIES_SET_STATUS,
+        MISSED_CALL,
+        VIDEO_SIZE,
+        CALL_STATS
+    }
+
     public BroadcastEventEmitter(Context context) {
         mContext = context;
     }
@@ -64,7 +80,7 @@ public class BroadcastEventEmitter implements SipServiceConstants {
         intent.putExtra(PARAM_ACCOUNT_ID, accountID);
         intent.putExtra(PARAM_REGISTRATION_CODE, registrationStateCode);
 
-        sendExplicitBroadcast(intent);
+        mContext.sendBroadcast(intent);
     }
 
     /**
@@ -93,7 +109,7 @@ public class BroadcastEventEmitter implements SipServiceConstants {
         intent.putExtra(PARAM_LOCAL_MUTE, isLocalMute);
         intent.putExtra(PARAM_LOCAL_VIDEO_MUTE, isLocalVideoMute);
 
-        sendExplicitBroadcast(intent);
+        mContext.sendBroadcast(intent);
     }
 
     public void outgoingCall(String accountID, int callID, String number, boolean isVideo, boolean isVideoConference) {
@@ -115,7 +131,7 @@ public class BroadcastEventEmitter implements SipServiceConstants {
         intent.setAction(getAction(BroadcastAction.STACK_STATUS));
         intent.putExtra(PARAM_STACK_STARTED, started);
 
-        sendExplicitBroadcast(intent);
+        mContext.sendBroadcast(intent);
     }
 
     public void codecPriorities(ArrayList<CodecPriority> codecPriorities) {
@@ -124,7 +140,7 @@ public class BroadcastEventEmitter implements SipServiceConstants {
         intent.setAction(getAction(BroadcastAction.CODEC_PRIORITIES));
         intent.putParcelableArrayListExtra(PARAM_CODEC_PRIORITIES_LIST, codecPriorities);
 
-        sendExplicitBroadcast(intent);
+        mContext.sendBroadcast(intent);
     }
 
     public void codecPrioritiesSetStatus(boolean success) {
@@ -133,7 +149,7 @@ public class BroadcastEventEmitter implements SipServiceConstants {
         intent.setAction(getAction(BroadcastAction.CODEC_PRIORITIES_SET_STATUS));
         intent.putExtra(PARAM_SUCCESS, success);
 
-        sendExplicitBroadcast(intent);
+        mContext.sendBroadcast(intent);
     }
 
     void missedCall(String displayName, String uri) {
@@ -153,7 +169,7 @@ public class BroadcastEventEmitter implements SipServiceConstants {
         intent.putExtra(PARAM_INCOMING_VIDEO_WIDTH, width);
         intent.putExtra(PARAM_INCOMING_VIDEO_HEIGHT, height);
 
-        sendExplicitBroadcast(intent);
+        mContext.sendBroadcast(intent);
     }
 
     void callStats(int duration, String audioCodec, int callStateStatus, RtpStreamStats rx, RtpStreamStats tx) {
@@ -166,7 +182,7 @@ public class BroadcastEventEmitter implements SipServiceConstants {
         intent.putExtra(PARAM_CALL_STATS_RX_STREAM, rx);
         intent.putExtra(PARAM_CALL_STATS_TX_STREAM, tx);
 
-        sendExplicitBroadcast(intent);
+        mContext.sendBroadcast(intent);
     }
 
     private boolean sendExplicitBroadcast(Intent intent) {
@@ -185,21 +201,5 @@ public class BroadcastEventEmitter implements SipServiceConstants {
             sent = true;
         }
         return sent;
-    }
-
-    /**
-     * Enumeration of the broadcast actions
-     */
-    public enum BroadcastAction {
-        REGISTRATION,
-        INCOMING_CALL,
-        CALL_STATE,
-        OUTGOING_CALL,
-        STACK_STATUS,
-        CODEC_PRIORITIES,
-        CODEC_PRIORITIES_SET_STATUS,
-        MISSED_CALL,
-        VIDEO_SIZE,
-        CALL_STATS
     }
 }

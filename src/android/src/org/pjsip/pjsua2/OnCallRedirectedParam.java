@@ -9,51 +9,51 @@
 package org.pjsip.pjsua2;
 
 public class OnCallRedirectedParam {
-    protected transient boolean swigCMemOwn;
-    private transient long swigCPtr;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
-    protected OnCallRedirectedParam(long cPtr, boolean cMemoryOwn) {
-        swigCMemOwn = cMemoryOwn;
-        swigCPtr = cPtr;
-    }
+  protected OnCallRedirectedParam(long cPtr, boolean cMemoryOwn) {
+    swigCMemOwn = cMemoryOwn;
+    swigCPtr = cPtr;
+  }
 
-    public OnCallRedirectedParam() {
-        this(pjsua2JNI.new_OnCallRedirectedParam(), true);
-    }
+  protected static long getCPtr(OnCallRedirectedParam obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
 
-    protected static long getCPtr(OnCallRedirectedParam obj) {
-        return (obj == null) ? 0 : obj.swigCPtr;
-    }
+  protected void finalize() {
+    delete();
+  }
 
-    protected void finalize() {
-        delete();
+  public synchronized void delete() {
+    if (swigCPtr != 0) {
+      if (swigCMemOwn) {
+        swigCMemOwn = false;
+        pjsua2JNI.delete_OnCallRedirectedParam(swigCPtr);
+      }
+      swigCPtr = 0;
     }
+  }
 
-    public synchronized void delete() {
-        if (swigCPtr != 0) {
-            if (swigCMemOwn) {
-                swigCMemOwn = false;
-                pjsua2JNI.delete_OnCallRedirectedParam(swigCPtr);
-            }
-            swigCPtr = 0;
-        }
-    }
+  public void setTargetUri(String value) {
+    pjsua2JNI.OnCallRedirectedParam_targetUri_set(swigCPtr, this, value);
+  }
 
-    public String getTargetUri() {
-        return pjsua2JNI.OnCallRedirectedParam_targetUri_get(swigCPtr, this);
-    }
+  public String getTargetUri() {
+    return pjsua2JNI.OnCallRedirectedParam_targetUri_get(swigCPtr, this);
+  }
 
-    public void setTargetUri(String value) {
-        pjsua2JNI.OnCallRedirectedParam_targetUri_set(swigCPtr, this, value);
-    }
+  public void setE(SipEvent value) {
+    pjsua2JNI.OnCallRedirectedParam_e_set(swigCPtr, this, SipEvent.getCPtr(value), value);
+  }
 
-    public SipEvent getE() {
-        long cPtr = pjsua2JNI.OnCallRedirectedParam_e_get(swigCPtr, this);
-        return (cPtr == 0) ? null : new SipEvent(cPtr, false);
-    }
+  public SipEvent getE() {
+    long cPtr = pjsua2JNI.OnCallRedirectedParam_e_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new SipEvent(cPtr, false);
+  }
 
-    public void setE(SipEvent value) {
-        pjsua2JNI.OnCallRedirectedParam_e_set(swigCPtr, this, SipEvent.getCPtr(value), value);
-    }
+  public OnCallRedirectedParam() {
+    this(pjsua2JNI.new_OnCallRedirectedParam(), true);
+  }
 
 }

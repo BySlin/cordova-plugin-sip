@@ -9,74 +9,74 @@
 package org.pjsip.pjsua2;
 
 public class CallSetting {
-    protected transient boolean swigCMemOwn;
-    private transient long swigCPtr;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
-    protected CallSetting(long cPtr, boolean cMemoryOwn) {
-        swigCMemOwn = cMemoryOwn;
-        swigCPtr = cPtr;
-    }
+  protected CallSetting(long cPtr, boolean cMemoryOwn) {
+    swigCMemOwn = cMemoryOwn;
+    swigCPtr = cPtr;
+  }
 
-    public CallSetting(SWIGTYPE_p_pj_bool_t useDefaultValues) {
-        this(pjsua2JNI.new_CallSetting__SWIG_0(SWIGTYPE_p_pj_bool_t.getCPtr(useDefaultValues)), true);
-    }
+  protected static long getCPtr(CallSetting obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
 
-    public CallSetting() {
-        this(pjsua2JNI.new_CallSetting__SWIG_1(), true);
-    }
+  protected void finalize() {
+    delete();
+  }
 
-    protected static long getCPtr(CallSetting obj) {
-        return (obj == null) ? 0 : obj.swigCPtr;
+  public synchronized void delete() {
+    if (swigCPtr != 0) {
+      if (swigCMemOwn) {
+        swigCMemOwn = false;
+        pjsua2JNI.delete_CallSetting(swigCPtr);
+      }
+      swigCPtr = 0;
     }
+  }
 
-    protected void finalize() {
-        delete();
-    }
+  public void setFlag(long value) {
+    pjsua2JNI.CallSetting_flag_set(swigCPtr, this, value);
+  }
 
-    public synchronized void delete() {
-        if (swigCPtr != 0) {
-            if (swigCMemOwn) {
-                swigCMemOwn = false;
-                pjsua2JNI.delete_CallSetting(swigCPtr);
-            }
-            swigCPtr = 0;
-        }
-    }
+  public long getFlag() {
+    return pjsua2JNI.CallSetting_flag_get(swigCPtr, this);
+  }
 
-    public long getFlag() {
-        return pjsua2JNI.CallSetting_flag_get(swigCPtr, this);
-    }
+  public void setReqKeyframeMethod(long value) {
+    pjsua2JNI.CallSetting_reqKeyframeMethod_set(swigCPtr, this, value);
+  }
 
-    public void setFlag(long value) {
-        pjsua2JNI.CallSetting_flag_set(swigCPtr, this, value);
-    }
+  public long getReqKeyframeMethod() {
+    return pjsua2JNI.CallSetting_reqKeyframeMethod_get(swigCPtr, this);
+  }
 
-    public long getReqKeyframeMethod() {
-        return pjsua2JNI.CallSetting_reqKeyframeMethod_get(swigCPtr, this);
-    }
+  public void setAudioCount(long value) {
+    pjsua2JNI.CallSetting_audioCount_set(swigCPtr, this, value);
+  }
 
-    public void setReqKeyframeMethod(long value) {
-        pjsua2JNI.CallSetting_reqKeyframeMethod_set(swigCPtr, this, value);
-    }
+  public long getAudioCount() {
+    return pjsua2JNI.CallSetting_audioCount_get(swigCPtr, this);
+  }
 
-    public long getAudioCount() {
-        return pjsua2JNI.CallSetting_audioCount_get(swigCPtr, this);
-    }
+  public void setVideoCount(long value) {
+    pjsua2JNI.CallSetting_videoCount_set(swigCPtr, this, value);
+  }
 
-    public void setAudioCount(long value) {
-        pjsua2JNI.CallSetting_audioCount_set(swigCPtr, this, value);
-    }
+  public long getVideoCount() {
+    return pjsua2JNI.CallSetting_videoCount_get(swigCPtr, this);
+  }
 
-    public long getVideoCount() {
-        return pjsua2JNI.CallSetting_videoCount_get(swigCPtr, this);
-    }
+  public CallSetting(SWIGTYPE_p_pj_bool_t useDefaultValues) {
+    this(pjsua2JNI.new_CallSetting__SWIG_0(SWIGTYPE_p_pj_bool_t.getCPtr(useDefaultValues)), true);
+  }
 
-    public void setVideoCount(long value) {
-        pjsua2JNI.CallSetting_videoCount_set(swigCPtr, this, value);
-    }
+  public CallSetting() {
+    this(pjsua2JNI.new_CallSetting__SWIG_1(), true);
+  }
 
-    public boolean isEmpty() {
-        return pjsua2JNI.CallSetting_isEmpty(swigCPtr, this);
-    }
+  public boolean isEmpty() {
+    return pjsua2JNI.CallSetting_isEmpty(swigCPtr, this);
+  }
 
 }

@@ -9,71 +9,71 @@
 package org.pjsip.pjsua2;
 
 public class VideoDevInfoVector {
-    protected transient boolean swigCMemOwn;
-    private transient long swigCPtr;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
-    protected VideoDevInfoVector(long cPtr, boolean cMemoryOwn) {
-        swigCMemOwn = cMemoryOwn;
-        swigCPtr = cPtr;
-    }
+  protected VideoDevInfoVector(long cPtr, boolean cMemoryOwn) {
+    swigCMemOwn = cMemoryOwn;
+    swigCPtr = cPtr;
+  }
 
-    public VideoDevInfoVector() {
-        this(pjsua2JNI.new_VideoDevInfoVector__SWIG_0(), true);
-    }
+  protected static long getCPtr(VideoDevInfoVector obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
 
-    public VideoDevInfoVector(long n) {
-        this(pjsua2JNI.new_VideoDevInfoVector__SWIG_1(n), true);
-    }
+  protected void finalize() {
+    delete();
+  }
 
-    protected static long getCPtr(VideoDevInfoVector obj) {
-        return (obj == null) ? 0 : obj.swigCPtr;
+  public synchronized void delete() {
+    if (swigCPtr != 0) {
+      if (swigCMemOwn) {
+        swigCMemOwn = false;
+        pjsua2JNI.delete_VideoDevInfoVector(swigCPtr);
+      }
+      swigCPtr = 0;
     }
+  }
 
-    protected void finalize() {
-        delete();
-    }
+  public VideoDevInfoVector() {
+    this(pjsua2JNI.new_VideoDevInfoVector__SWIG_0(), true);
+  }
 
-    public synchronized void delete() {
-        if (swigCPtr != 0) {
-            if (swigCMemOwn) {
-                swigCMemOwn = false;
-                pjsua2JNI.delete_VideoDevInfoVector(swigCPtr);
-            }
-            swigCPtr = 0;
-        }
-    }
+  public VideoDevInfoVector(long n) {
+    this(pjsua2JNI.new_VideoDevInfoVector__SWIG_1(n), true);
+  }
 
-    public long size() {
-        return pjsua2JNI.VideoDevInfoVector_size(swigCPtr, this);
-    }
+  public long size() {
+    return pjsua2JNI.VideoDevInfoVector_size(swigCPtr, this);
+  }
 
-    public long capacity() {
-        return pjsua2JNI.VideoDevInfoVector_capacity(swigCPtr, this);
-    }
+  public long capacity() {
+    return pjsua2JNI.VideoDevInfoVector_capacity(swigCPtr, this);
+  }
 
-    public void reserve(long n) {
-        pjsua2JNI.VideoDevInfoVector_reserve(swigCPtr, this, n);
-    }
+  public void reserve(long n) {
+    pjsua2JNI.VideoDevInfoVector_reserve(swigCPtr, this, n);
+  }
 
-    public boolean isEmpty() {
-        return pjsua2JNI.VideoDevInfoVector_isEmpty(swigCPtr, this);
-    }
+  public boolean isEmpty() {
+    return pjsua2JNI.VideoDevInfoVector_isEmpty(swigCPtr, this);
+  }
 
-    public void clear() {
-        pjsua2JNI.VideoDevInfoVector_clear(swigCPtr, this);
-    }
+  public void clear() {
+    pjsua2JNI.VideoDevInfoVector_clear(swigCPtr, this);
+  }
 
-    public void add(VideoDevInfo x) {
-        pjsua2JNI.VideoDevInfoVector_add(swigCPtr, this, VideoDevInfo.getCPtr(x), x);
-    }
+  public void add(VideoDevInfo x) {
+    pjsua2JNI.VideoDevInfoVector_add(swigCPtr, this, VideoDevInfo.getCPtr(x), x);
+  }
 
-    public VideoDevInfo get(int i) {
-        long cPtr = pjsua2JNI.VideoDevInfoVector_get(swigCPtr, this, i);
-        return (cPtr == 0) ? null : new VideoDevInfo(cPtr, false);
-    }
+  public VideoDevInfo get(int i) {
+    long cPtr = pjsua2JNI.VideoDevInfoVector_get(swigCPtr, this, i);
+    return (cPtr == 0) ? null : new VideoDevInfo(cPtr, false);
+  }
 
-    public void set(int i, VideoDevInfo val) {
-        pjsua2JNI.VideoDevInfoVector_set(swigCPtr, this, i, VideoDevInfo.getCPtr(val), val);
-    }
+  public void set(int i, VideoDevInfo val) {
+    pjsua2JNI.VideoDevInfoVector_set(swigCPtr, this, i, VideoDevInfo.getCPtr(val), val);
+  }
 
 }

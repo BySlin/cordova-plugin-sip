@@ -9,70 +9,70 @@
 package org.pjsip.pjsua2;
 
 public class SipHeaderVector {
-    protected transient boolean swigCMemOwn;
-    private transient long swigCPtr;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
-    protected SipHeaderVector(long cPtr, boolean cMemoryOwn) {
-        swigCMemOwn = cMemoryOwn;
-        swigCPtr = cPtr;
-    }
+  protected SipHeaderVector(long cPtr, boolean cMemoryOwn) {
+    swigCMemOwn = cMemoryOwn;
+    swigCPtr = cPtr;
+  }
 
-    public SipHeaderVector() {
-        this(pjsua2JNI.new_SipHeaderVector__SWIG_0(), true);
-    }
+  protected static long getCPtr(SipHeaderVector obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
 
-    public SipHeaderVector(long n) {
-        this(pjsua2JNI.new_SipHeaderVector__SWIG_1(n), true);
-    }
+  protected void finalize() {
+    delete();
+  }
 
-    protected static long getCPtr(SipHeaderVector obj) {
-        return (obj == null) ? 0 : obj.swigCPtr;
+  public synchronized void delete() {
+    if (swigCPtr != 0) {
+      if (swigCMemOwn) {
+        swigCMemOwn = false;
+        pjsua2JNI.delete_SipHeaderVector(swigCPtr);
+      }
+      swigCPtr = 0;
     }
+  }
 
-    protected void finalize() {
-        delete();
-    }
+  public SipHeaderVector() {
+    this(pjsua2JNI.new_SipHeaderVector__SWIG_0(), true);
+  }
 
-    public synchronized void delete() {
-        if (swigCPtr != 0) {
-            if (swigCMemOwn) {
-                swigCMemOwn = false;
-                pjsua2JNI.delete_SipHeaderVector(swigCPtr);
-            }
-            swigCPtr = 0;
-        }
-    }
+  public SipHeaderVector(long n) {
+    this(pjsua2JNI.new_SipHeaderVector__SWIG_1(n), true);
+  }
 
-    public long size() {
-        return pjsua2JNI.SipHeaderVector_size(swigCPtr, this);
-    }
+  public long size() {
+    return pjsua2JNI.SipHeaderVector_size(swigCPtr, this);
+  }
 
-    public long capacity() {
-        return pjsua2JNI.SipHeaderVector_capacity(swigCPtr, this);
-    }
+  public long capacity() {
+    return pjsua2JNI.SipHeaderVector_capacity(swigCPtr, this);
+  }
 
-    public void reserve(long n) {
-        pjsua2JNI.SipHeaderVector_reserve(swigCPtr, this, n);
-    }
+  public void reserve(long n) {
+    pjsua2JNI.SipHeaderVector_reserve(swigCPtr, this, n);
+  }
 
-    public boolean isEmpty() {
-        return pjsua2JNI.SipHeaderVector_isEmpty(swigCPtr, this);
-    }
+  public boolean isEmpty() {
+    return pjsua2JNI.SipHeaderVector_isEmpty(swigCPtr, this);
+  }
 
-    public void clear() {
-        pjsua2JNI.SipHeaderVector_clear(swigCPtr, this);
-    }
+  public void clear() {
+    pjsua2JNI.SipHeaderVector_clear(swigCPtr, this);
+  }
 
-    public void add(SipHeader x) {
-        pjsua2JNI.SipHeaderVector_add(swigCPtr, this, SipHeader.getCPtr(x), x);
-    }
+  public void add(SipHeader x) {
+    pjsua2JNI.SipHeaderVector_add(swigCPtr, this, SipHeader.getCPtr(x), x);
+  }
 
-    public SipHeader get(int i) {
-        return new SipHeader(pjsua2JNI.SipHeaderVector_get(swigCPtr, this, i), false);
-    }
+  public SipHeader get(int i) {
+    return new SipHeader(pjsua2JNI.SipHeaderVector_get(swigCPtr, this, i), false);
+  }
 
-    public void set(int i, SipHeader val) {
-        pjsua2JNI.SipHeaderVector_set(swigCPtr, this, i, SipHeader.getCPtr(val), val);
-    }
+  public void set(int i, SipHeader val) {
+    pjsua2JNI.SipHeaderVector_set(swigCPtr, this, i, SipHeader.getCPtr(val), val);
+  }
 
 }

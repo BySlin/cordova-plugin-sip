@@ -5,6 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 
+import com.byslin.sip.JSONResult;
+import com.byslin.sip.Sip;
+
 import org.pjsip.pjsua2.pjsip_inv_state;
 import org.pjsip.pjsua2.pjsip_status_code;
 
@@ -138,6 +141,11 @@ public class BroadcastEventReceiver extends BroadcastReceiver implements SipServ
     public void onRegistration(String accountID, pjsip_status_code registrationStateCode) {
         Logger.debug(LOG_TAG, "onRegistration - accountID: " + accountID +
                 ", registrationStateCode: " + registrationStateCode);
+        Sip.sendPluginResult(accountID, JSONResult.builder()
+                .put("action", "onRegistration")
+                .put("accountID", accountID)
+                .put("registrationStateCode", registrationStateCode)
+                .build());
     }
 
     public void onIncomingCall(String accountID, int callID, String displayName, String remoteUri, boolean isVideo) {
@@ -145,6 +153,13 @@ public class BroadcastEventReceiver extends BroadcastReceiver implements SipServ
                 ", callID: " + callID +
                 ", displayName: " + displayName +
                 ", remoteUri: " + remoteUri);
+        Sip.sendPluginResult(accountID, JSONResult.builder()
+                .put("action", "onIncomingCall")
+                .put("accountID", accountID)
+                .put("callID", callID)
+                .put("displayName", displayName)
+                .put("remoteUri", remoteUri)
+                .build());
     }
 
     public void onCallState(String accountID, int callID, pjsip_inv_state callStateCode, pjsip_status_code callStatusCode,
@@ -157,12 +172,30 @@ public class BroadcastEventReceiver extends BroadcastReceiver implements SipServ
                 ", isLocalHold: " + isLocalHold +
                 ", isLocalMute: " + isLocalMute +
                 ", isLocalVideoMute: " + isLocalVideoMute);
+
+        Sip.sendPluginResult(accountID, JSONResult.builder()
+                .put("action", "onCallState")
+                .put("accountID", accountID)
+                .put("callID", callID)
+                .put("callStateCode", callStateCode)
+                .put("callStatusCode", callStatusCode)
+                .put("connectTimestamp", connectTimestamp)
+                .put("isLocalHold", isLocalHold)
+                .put("isLocalMute", isLocalMute)
+                .put("isLocalVideoMute", isLocalVideoMute)
+                .build());
     }
 
     public void onOutgoingCall(String accountID, int callID, String number, boolean isVideo, boolean isVideoConference) {
         Logger.debug(LOG_TAG, "onOutgoingCall - accountID: " + accountID +
                 ", callID: " + callID +
                 ", number: " + number);
+        Sip.sendPluginResult(accountID, JSONResult.builder()
+                .put("action", "onOutgoingCall")
+                .put("accountID", accountID)
+                .put("callID", callID)
+                .put("number", number)
+                .build());
     }
 
     public void onStackStatus(boolean started) {

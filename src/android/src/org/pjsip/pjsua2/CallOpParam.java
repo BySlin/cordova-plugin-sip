@@ -9,80 +9,80 @@
 package org.pjsip.pjsua2;
 
 public class CallOpParam {
-    protected transient boolean swigCMemOwn;
-    private transient long swigCPtr;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
-    protected CallOpParam(long cPtr, boolean cMemoryOwn) {
-        swigCMemOwn = cMemoryOwn;
-        swigCPtr = cPtr;
-    }
+  protected CallOpParam(long cPtr, boolean cMemoryOwn) {
+    swigCMemOwn = cMemoryOwn;
+    swigCPtr = cPtr;
+  }
 
-    public CallOpParam(boolean useDefaultCallSetting) {
-        this(pjsua2JNI.new_CallOpParam__SWIG_0(useDefaultCallSetting), true);
-    }
+  protected static long getCPtr(CallOpParam obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
 
-    public CallOpParam() {
-        this(pjsua2JNI.new_CallOpParam__SWIG_1(), true);
-    }
+  protected void finalize() {
+    delete();
+  }
 
-    protected static long getCPtr(CallOpParam obj) {
-        return (obj == null) ? 0 : obj.swigCPtr;
+  public synchronized void delete() {
+    if (swigCPtr != 0) {
+      if (swigCMemOwn) {
+        swigCMemOwn = false;
+        pjsua2JNI.delete_CallOpParam(swigCPtr);
+      }
+      swigCPtr = 0;
     }
+  }
 
-    protected void finalize() {
-        delete();
-    }
+  public void setOpt(CallSetting value) {
+    pjsua2JNI.CallOpParam_opt_set(swigCPtr, this, CallSetting.getCPtr(value), value);
+  }
 
-    public synchronized void delete() {
-        if (swigCPtr != 0) {
-            if (swigCMemOwn) {
-                swigCMemOwn = false;
-                pjsua2JNI.delete_CallOpParam(swigCPtr);
-            }
-            swigCPtr = 0;
-        }
-    }
+  public CallSetting getOpt() {
+    long cPtr = pjsua2JNI.CallOpParam_opt_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new CallSetting(cPtr, false);
+  }
 
-    public CallSetting getOpt() {
-        long cPtr = pjsua2JNI.CallOpParam_opt_get(swigCPtr, this);
-        return (cPtr == 0) ? null : new CallSetting(cPtr, false);
-    }
+  public void setStatusCode(pjsip_status_code value) {
+    pjsua2JNI.CallOpParam_statusCode_set(swigCPtr, this, value.swigValue());
+  }
 
-    public void setOpt(CallSetting value) {
-        pjsua2JNI.CallOpParam_opt_set(swigCPtr, this, CallSetting.getCPtr(value), value);
-    }
+  public pjsip_status_code getStatusCode() {
+    return pjsip_status_code.swigToEnum(pjsua2JNI.CallOpParam_statusCode_get(swigCPtr, this));
+  }
 
-    public pjsip_status_code getStatusCode() {
-        return pjsip_status_code.swigToEnum(pjsua2JNI.CallOpParam_statusCode_get(swigCPtr, this));
-    }
+  public void setReason(String value) {
+    pjsua2JNI.CallOpParam_reason_set(swigCPtr, this, value);
+  }
 
-    public void setStatusCode(pjsip_status_code value) {
-        pjsua2JNI.CallOpParam_statusCode_set(swigCPtr, this, value.swigValue());
-    }
+  public String getReason() {
+    return pjsua2JNI.CallOpParam_reason_get(swigCPtr, this);
+  }
 
-    public String getReason() {
-        return pjsua2JNI.CallOpParam_reason_get(swigCPtr, this);
-    }
+  public void setOptions(long value) {
+    pjsua2JNI.CallOpParam_options_set(swigCPtr, this, value);
+  }
 
-    public void setReason(String value) {
-        pjsua2JNI.CallOpParam_reason_set(swigCPtr, this, value);
-    }
+  public long getOptions() {
+    return pjsua2JNI.CallOpParam_options_get(swigCPtr, this);
+  }
 
-    public long getOptions() {
-        return pjsua2JNI.CallOpParam_options_get(swigCPtr, this);
-    }
+  public void setTxOption(SipTxOption value) {
+    pjsua2JNI.CallOpParam_txOption_set(swigCPtr, this, SipTxOption.getCPtr(value), value);
+  }
 
-    public void setOptions(long value) {
-        pjsua2JNI.CallOpParam_options_set(swigCPtr, this, value);
-    }
+  public SipTxOption getTxOption() {
+    long cPtr = pjsua2JNI.CallOpParam_txOption_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new SipTxOption(cPtr, false);
+  }
 
-    public SipTxOption getTxOption() {
-        long cPtr = pjsua2JNI.CallOpParam_txOption_get(swigCPtr, this);
-        return (cPtr == 0) ? null : new SipTxOption(cPtr, false);
-    }
+  public CallOpParam(boolean useDefaultCallSetting) {
+    this(pjsua2JNI.new_CallOpParam__SWIG_0(useDefaultCallSetting), true);
+  }
 
-    public void setTxOption(SipTxOption value) {
-        pjsua2JNI.CallOpParam_txOption_set(swigCPtr, this, SipTxOption.getCPtr(value), value);
-    }
+  public CallOpParam() {
+    this(pjsua2JNI.new_CallOpParam__SWIG_1(), true);
+  }
 
 }

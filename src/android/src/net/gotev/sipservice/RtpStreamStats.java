@@ -12,20 +12,6 @@ import android.os.Parcelable;
 @SuppressWarnings("unused")
 public class RtpStreamStats implements Parcelable {
 
-    // This is used to regenerate the object.
-    // All Parcelables must have a CREATOR that implements these two methods
-    public static final Parcelable.Creator<RtpStreamStats> CREATOR =
-            new Parcelable.Creator<RtpStreamStats>() {
-                @Override
-                public RtpStreamStats createFromParcel(final Parcel in) {
-                    return new RtpStreamStats(in);
-                }
-
-                @Override
-                public RtpStreamStats[] newArray(final int size) {
-                    return new RtpStreamStats[size];
-                }
-            };
     private int pkt;
     private int discard;
     private int loss;
@@ -41,6 +27,21 @@ public class RtpStreamStats implements Parcelable {
         this.dup = dup;
         this.jitter = jitter;
     }
+
+    // This is used to regenerate the object.
+    // All Parcelables must have a CREATOR that implements these two methods
+    public static final Parcelable.Creator<RtpStreamStats> CREATOR =
+            new Parcelable.Creator<RtpStreamStats>() {
+                @Override
+                public RtpStreamStats createFromParcel(final Parcel in) {
+                    return new RtpStreamStats(in);
+                }
+
+                @Override
+                public RtpStreamStats[] newArray(final int size) {
+                    return new RtpStreamStats[size];
+                }
+            };
 
     private RtpStreamStats(Parcel in) {
         this.pkt = in.readInt();

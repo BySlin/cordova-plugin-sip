@@ -11,10 +11,36 @@ package net.gotev.sipservice;
 @SuppressWarnings("unused")
 public class Logger {
 
-    private LogLevel mLogLevel = BuildConfig.DEBUG ? LogLevel.DEBUG : LogLevel.OFF;
+    public enum LogLevel {
+        DEBUG,
+        INFO,
+        ERROR,
+        OFF
+    }
+
+    public interface LoggerDelegate {
+        void error(String tag, String message);
+
+        void error(String tag, String message, Throwable exception);
+
+        void debug(String tag, String message);
+
+        void info(String tag, String message);
+    }
+
+    /**
+     * Log everything unless otherwise specified by either setLogLevel
+     * or by the delegate specified in setLoggerDelegate
+     */
+    private LogLevel mLogLevel = LogLevel.DEBUG;
+
     private LoggerDelegate mDelegate = new DefaultLoggerDelegate();
 
     private Logger() {
+    }
+
+    private static class SingletonHolder {
+        private static final Logger instance = new Logger();
     }
 
     public static void resetLoggerDelegate() {
@@ -60,26 +86,5 @@ public class Logger {
         if (SingletonHolder.instance.mLogLevel.compareTo(LogLevel.DEBUG) <= 0) {
             SingletonHolder.instance.mDelegate.debug(tag, message);
         }
-    }
-
-    public enum LogLevel {
-        DEBUG,
-        INFO,
-        ERROR,
-        OFF
-    }
-
-    public interface LoggerDelegate {
-        void error(String tag, String message);
-
-        void error(String tag, String message, Throwable exception);
-
-        void debug(String tag, String message);
-
-        void info(String tag, String message);
-    }
-
-    private static class SingletonHolder {
-        private static final Logger instance = new Logger();
     }
 }

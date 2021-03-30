@@ -9,51 +9,51 @@
 package org.pjsip.pjsua2;
 
 public class VideoWindowHandle {
-    protected transient boolean swigCMemOwn;
-    private transient long swigCPtr;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
-    protected VideoWindowHandle(long cPtr, boolean cMemoryOwn) {
-        swigCMemOwn = cMemoryOwn;
-        swigCPtr = cPtr;
-    }
+  protected VideoWindowHandle(long cPtr, boolean cMemoryOwn) {
+    swigCMemOwn = cMemoryOwn;
+    swigCPtr = cPtr;
+  }
 
-    public VideoWindowHandle() {
-        this(pjsua2JNI.new_VideoWindowHandle(), true);
-    }
+  protected static long getCPtr(VideoWindowHandle obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
 
-    protected static long getCPtr(VideoWindowHandle obj) {
-        return (obj == null) ? 0 : obj.swigCPtr;
-    }
+  protected void finalize() {
+    delete();
+  }
 
-    protected void finalize() {
-        delete();
+  public synchronized void delete() {
+    if (swigCPtr != 0) {
+      if (swigCMemOwn) {
+        swigCMemOwn = false;
+        pjsua2JNI.delete_VideoWindowHandle(swigCPtr);
+      }
+      swigCPtr = 0;
     }
+  }
 
-    public synchronized void delete() {
-        if (swigCPtr != 0) {
-            if (swigCMemOwn) {
-                swigCMemOwn = false;
-                pjsua2JNI.delete_VideoWindowHandle(swigCPtr);
-            }
-            swigCPtr = 0;
-        }
-    }
+  public void setType(SWIGTYPE_p_pjmedia_vid_dev_hwnd_type value) {
+    pjsua2JNI.VideoWindowHandle_type_set(swigCPtr, this, SWIGTYPE_p_pjmedia_vid_dev_hwnd_type.getCPtr(value));
+  }
 
-    public SWIGTYPE_p_pjmedia_vid_dev_hwnd_type getType() {
-        return new SWIGTYPE_p_pjmedia_vid_dev_hwnd_type(pjsua2JNI.VideoWindowHandle_type_get(swigCPtr, this), true);
-    }
+  public SWIGTYPE_p_pjmedia_vid_dev_hwnd_type getType() {
+    return new SWIGTYPE_p_pjmedia_vid_dev_hwnd_type(pjsua2JNI.VideoWindowHandle_type_get(swigCPtr, this), true);
+  }
 
-    public void setType(SWIGTYPE_p_pjmedia_vid_dev_hwnd_type value) {
-        pjsua2JNI.VideoWindowHandle_type_set(swigCPtr, this, SWIGTYPE_p_pjmedia_vid_dev_hwnd_type.getCPtr(value));
-    }
+  public void setHandle(WindowHandle value) {
+    pjsua2JNI.VideoWindowHandle_handle_set(swigCPtr, this, WindowHandle.getCPtr(value), value);
+  }
 
-    public WindowHandle getHandle() {
-        long cPtr = pjsua2JNI.VideoWindowHandle_handle_get(swigCPtr, this);
-        return (cPtr == 0) ? null : new WindowHandle(cPtr, false);
-    }
+  public WindowHandle getHandle() {
+    long cPtr = pjsua2JNI.VideoWindowHandle_handle_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new WindowHandle(cPtr, false);
+  }
 
-    public void setHandle(WindowHandle value) {
-        pjsua2JNI.VideoWindowHandle_handle_set(swigCPtr, this, WindowHandle.getCPtr(value), value);
-    }
+  public VideoWindowHandle() {
+    this(pjsua2JNI.new_VideoWindowHandle(), true);
+  }
 
 }

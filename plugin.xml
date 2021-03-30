@@ -5,9 +5,13 @@
     <description>Cordova for pjsip</description>
     <license>MIT</license>
 
+    <js-module name="SIP" src="www/cordova-plugins-sip.js">
+        <clobbers target="cordova.plugins.sip"/>
+    </js-module>
+
     <!-- android -->
     <platform name="android">
-        <framework src="com.google.code.gson:gson:2.8.5"/>
+        <framework src="com.google.code.gson:gson:2.8.6"/>
 
         <config-file parent="/manifest" target="AndroidManifest.xml">
             <uses-permission android:name="android.permission.INTERNET"/>
@@ -20,71 +24,74 @@
             <uses-permission android:name="android.permission.VIBRATE"/>
             <uses-permission android:name="android.permission.USE_SIP"/>
             <uses-permission android:name="android.permission.CAMERA"/>
-
             <uses-feature android:glEsVersion="0x00020000" android:required="false"/>
-
             <uses-feature android:name="android.hardware.audio.low_latency"
                           android:required="false"/>
-
-            <application>
-                <service android:name="net.gotev.sipservice.SipService" android:enabled="true"
-                         android:exported="true"/>
-            </application>
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <service android:name="net.gotev.sipservice.SipService" android:enabled="true"
+                     android:exported="true"/>
+            <receiver android:name="net.gotev.sipservice.BroadcastEventReceiver">
+                <intent-filter>
+                    <action android:name="net.gotev.REGISTRATION"/>
+                    <action android:name="net.gotev.INCOMING_CALL"/>
+                    <action android:name="net.gotev.CALL_STATE"/>
+                    <action android:name="net.gotev.OUTGOING_CALL"/>
+                    <action android:name="net.gotev.STACK_STATUS"/>
+                    <action android:name="net.gotev.CODEC_PRIORITIES"/>
+                    <action android:name="net.gotev.CODEC_PRIORITIES_SET_STATUS"/>
+                    <action android:name="net.gotev.MISSED_CALL"/>
+                    <action android:name="net.gotev.VIDEO_SIZE"/>
+                    <action android:name="net.gotev.CALL_STATS"/>
+                </intent-filter>
+            </receiver>
         </config-file>
 
         <config-file parent="/*" target="config.xml">
-            <feature name="SipService">
+            <feature name="Sip">
                 <param name="android-package" value="com.byslin.sip.Sip"/>
+                <param name="onload" value="true"/>
             </feature>
         </config-file>
 
+        <source-file src="src/android/src/com/byslin/sip/Sip.java"
+                     target-dir="src/com/byslin/sip"/>
+        <source-file src="src/android/src/com/byslin/sip/JSONResult.java"
+                     target-dir="src/com/byslin/sip"/>
+
         <source-file src="src/android/src/net/gotev/sipservice/BackgroundService.java"
                      target-dir="src/net/gotev/sipservice"/>
-
         <source-file src="src/android/src/net/gotev/sipservice/BroadcastEventEmitter.java"
                      target-dir="src/net/gotev/sipservice"/>
-
         <source-file src="src/android/src/net/gotev/sipservice/BroadcastEventReceiver.java"
                      target-dir="src/net/gotev/sipservice"/>
-
         <source-file src="src/android/src/net/gotev/sipservice/CallerInfo.java"
                      target-dir="src/net/gotev/sipservice"/>
-
         <source-file src="src/android/src/net/gotev/sipservice/CodecPriority.java"
                      target-dir="src/net/gotev/sipservice"/>
-
         <source-file src="src/android/src/net/gotev/sipservice/DefaultLoggerDelegate.java"
                      target-dir="src/net/gotev/sipservice"/>
-
         <source-file src="src/android/src/net/gotev/sipservice/Jitter.java"
                      target-dir="src/net/gotev/sipservice"/>
-
         <source-file src="src/android/src/net/gotev/sipservice/Logger.java"
                      target-dir="src/net/gotev/sipservice"/>
         <source-file src="src/android/src/net/gotev/sipservice/RtpStreamStats.java"
                      target-dir="src/net/gotev/sipservice"/>
-
         <source-file src="src/android/src/net/gotev/sipservice/SipAccount.java"
                      target-dir="src/net/gotev/sipservice"/>
-
         <source-file src="src/android/src/net/gotev/sipservice/SipAccountData.java"
                      target-dir="src/net/gotev/sipservice"/>
-
         <source-file src="src/android/src/net/gotev/sipservice/SipCall.java"
                      target-dir="src/net/gotev/sipservice"/>
-
         <source-file src="src/android/src/net/gotev/sipservice/SipService.java"
                      target-dir="src/net/gotev/sipservice"/>
-
         <source-file src="src/android/src/net/gotev/sipservice/SipServiceCommand.java"
                      target-dir="src/net/gotev/sipservice"/>
-
         <source-file src="src/android/src/net/gotev/sipservice/SipServiceConstants.java"
                      target-dir="src/net/gotev/sipservice"/>
 
         <source-file src="src/android/src/org/pjsip/PjCamera.java" target-dir="src/org/pjsip"/>
         <source-file src="src/android/src/org/pjsip/PjCameraInfo.java" target-dir="src/org/pjsip"/>
-
         <source-file src="src/android/src/org/pjsip/pjsua2/Account.java"
                      target-dir="src/org/pjsip/pjsua2"/>
         <source-file src="src/android/src/org/pjsip/pjsua2/AccountCallConfig.java"
@@ -558,8 +565,5 @@
         <source-file src="src/android/libs/x86_64/libopenh264.so" target-dir="libs/x86_64"/>
         <source-file src="src/android/libs/x86_64/libpjsua2.so" target-dir="libs/x86_64"/>
 
-        <js-module name="SIP" src="www/cordova-plugins-sip.js">
-            <merges target="cordova.plugins.sip"/>
-        </js-module>
     </platform>
 </plugin>

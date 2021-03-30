@@ -19,19 +19,7 @@ public class SipAccountData implements Parcelable {
 
     public static final String AUTH_TYPE_DIGEST = "digest";
     public static final String AUTH_TYPE_PLAIN = "plain";
-    /*****          Parcelable overrides        ******/
-    public static final Parcelable.Creator<SipAccountData> CREATOR =
-            new Parcelable.Creator<SipAccountData>() {
-                @Override
-                public SipAccountData createFromParcel(final Parcel in) {
-                    return new SipAccountData(in);
-                }
 
-                @Override
-                public SipAccountData[] newArray(final int size) {
-                    return new SipAccountData[size];
-                }
-            };
     private String username;
     private String password;
     private String realm;
@@ -47,19 +35,19 @@ public class SipAccountData implements Parcelable {
     public SipAccountData() {
     }
 
-    private SipAccountData(Parcel in) {
-        username = in.readString();
-        password = in.readString();
-        realm = in.readString();
-        host = in.readString();
-        port = in.readLong();
-        tcpTransport = in.readByte() == 1;
-        authenticationType = in.readString();
-        contactUriParams = in.readString();
-        regExpirationTimeout = in.readInt();
-        guestDisplayName = in.readString();
-        callId = in.readString();
-    }
+    /*****          Parcelable overrides        ******/
+    public static final Parcelable.Creator<SipAccountData> CREATOR =
+            new Parcelable.Creator<SipAccountData>() {
+                @Override
+                public SipAccountData createFromParcel(final Parcel in) {
+                    return new SipAccountData(in);
+                }
+
+                @Override
+                public SipAccountData[] newArray(final int size) {
+                    return new SipAccountData[size];
+                }
+            };
 
     @Override
     public void writeToParcel(Parcel parcel, int arg1) {
@@ -74,6 +62,20 @@ public class SipAccountData implements Parcelable {
         parcel.writeInt(regExpirationTimeout);
         parcel.writeString(guestDisplayName);
         parcel.writeString(callId);
+    }
+
+    private SipAccountData(Parcel in) {
+        username = in.readString();
+        password = in.readString();
+        realm = in.readString();
+        host = in.readString();
+        port = in.readLong();
+        tcpTransport = in.readByte() == 1;
+        authenticationType = in.readString();
+        contactUriParams = in.readString();
+        regExpirationTimeout = in.readInt();
+        guestDisplayName = in.readString();
+        callId = in.readString();
     }
 
     @Override
@@ -146,22 +148,22 @@ public class SipAccountData implements Parcelable {
         return this;
     }
 
-    public String getContactUriParams() {
-        return contactUriParams;
-    }
-
     public SipAccountData setContactUriParams(String contactUriParams) {
         this.contactUriParams = contactUriParams;
         return this;
     }
 
-    public int getRegExpirationTimeout() {
-        return this.regExpirationTimeout;
+    public String getContactUriParams() {
+        return contactUriParams;
     }
 
     public SipAccountData setRegExpirationTimeout(int regExpirationTimeout) {
         this.regExpirationTimeout = regExpirationTimeout;
         return this;
+    }
+
+    public int getRegExpirationTimeout() {
+        return this.regExpirationTimeout;
     }
 
     public String getGuestDisplayName() {
@@ -189,7 +191,7 @@ public class SipAccountData implements Parcelable {
                 username, 0, password);
     }
 
-    String getIdUri() {
+    public String getIdUri() {
         if ("*".equals(realm))
             return "sip:" + username;
 
@@ -299,6 +301,15 @@ public class SipAccountData implements Parcelable {
         result = 31 * result + regExpirationTimeout;
         result = 31 * result + callId.hashCode();
         return result;
+    }
+
+    SipAccountData getDeepCopy() {
+        Parcel parcel = Parcel.obtain();
+        this.writeToParcel(parcel, 0);
+        parcel.setDataPosition(0);
+        SipAccountData temp = SipAccountData.CREATOR.createFromParcel(parcel);
+        parcel.recycle();
+        return temp;
     }
     /*          Object overrides end        */
 }

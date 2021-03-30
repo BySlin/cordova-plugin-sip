@@ -59,10 +59,6 @@ public class SipService extends BackgroundService implements SipServiceConstants
     private volatile boolean mStarted;
     private int callStatus;
 
-    public static ConcurrentHashMap<String, SipAccount> getActiveSipAccounts() {
-        return mActiveSipAccounts;
-    }
-
     @Override
     public IBinder onBind(Intent intent) {
         return null;
@@ -643,6 +639,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
             mEndpoint.libCreate();
 
             EpConfig epConfig = new EpConfig();
+            epConfig.getUaConfig().setMaxCalls(1);
             epConfig.getUaConfig().setUserAgent(AGENT_NAME);
             epConfig.getMedConfig().setHasIoqueue(true);
             epConfig.getMedConfig().setClockRate(16000);
@@ -1151,5 +1148,9 @@ public class SipService extends BackgroundService implements SipServiceConstants
             Logger.error(TAG, "Error while making a direct call as Guest", ex);
             mBroadcastEmitter.outgoingCall(accountID, -1, uri.getUserInfo(), false, false);
         }
+    }
+
+    public static ConcurrentHashMap<String, SipAccount> getActiveSipAccounts() {
+        return mActiveSipAccounts;
     }
 }

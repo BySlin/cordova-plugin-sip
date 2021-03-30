@@ -55,17 +55,6 @@ public class SipCall extends Call {
 
     private VideoWindow mVideoWindow;
     private VideoPreview mVideoPreview;
-    private Runnable sendKeyFrameRunnable = new Runnable() {
-        @Override
-        public void run() {
-            try {
-                vidSetStream(pjsua_call_vid_strm_op.PJSUA_CALL_VID_STRM_SEND_KEYFRAME, new CallVidSetStreamParam());
-                startSendingKeyFrame();
-            } catch (Exception ex) {
-                Logger.error(LOG_TAG, "error while sending periodic keyframe");
-            }
-        }
-    };
 
     /**
      * Incoming call constructor.
@@ -121,6 +110,7 @@ public class SipCall extends Call {
                 callStatus = info.getLastStatusCode();
                 account.getService().setLastCallStatus(callStatus.swigValue());
             } catch (Exception ex) {
+                Logger.error(LOG_TAG, "Error while getting call status", ex);
             }
 
             if (callState == pjsip_inv_state.PJSIP_INV_STATE_DISCONNECTED) {
@@ -136,7 +126,8 @@ public class SipCall extends Call {
                                 getStreamInfo(0),
                                 getStreamStat(0));
                     } catch (Exception ex) {
-                        Logger.error(LOG_TAG, "Unknown disconnection", ex);
+                        Logger.error(LOG_TAG, "Error while sending call stats", ex);
+                        throw ex;
                     }
                 }
             } else if (callState == pjsip_inv_state.PJSIP_INV_STATE_CONFIRMED) {
@@ -414,7 +405,7 @@ public class SipCall extends Call {
 
     // disable video programmatically
     @Override
-    public void makeCall(String dst_uri, CallOpParam prm) throws java.lang.Exception {
+    public void makeCall(String dst_uri, CallOpParam prm) throws Exception {
         setMediaParams(prm);
         if (!videoCall) {
             CallSetting callSetting = prm.getOpt();
@@ -576,6 +567,18 @@ public class SipCall extends Call {
         this.frontCamera = frontCamera;
     }
 
+    private Runnable sendKeyFrameRunnable = new Runnable() {
+        @Override
+        public void run() {
+            try {
+                vidSetStream(pjsua_call_vid_strm_op.PJSUA_CALL_VID_STRM_SEND_KEYFRAME, new CallVidSetStreamParam());
+                startSendingKeyFrame();
+            } catch (Exception ex) {
+                Logger.error(LOG_TAG, "error while sending periodic keyframe");
+            }
+        }
+    };
+
     private void startSendingKeyFrame() {
         account.getService().enqueueDelayedJob(sendKeyFrameRunnable, SipServiceConstants.DELAYED_JOB_DEFAULT_DELAY);
     }
@@ -596,9 +599,9 @@ public class SipCall extends Call {
                 rxStat.getJitterUsec().getMin());
 
         Jitter txJitter = new Jitter(
-                rxStat.getJitterUsec().getMax(),
-                rxStat.getJitterUsec().getMean(),
-                rxStat.getJitterUsec().getMin());
+                txStat.getJitterUsec().getMax(),
+                txStat.getJitterUsec().getMean(),
+                txStat.getJitterUsec().getMin());
 
         RtpStreamStats rx = new RtpStreamStats(
                 (int) rxStat.getPkt(),

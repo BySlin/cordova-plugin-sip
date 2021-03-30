@@ -10,6 +10,26 @@ import android.os.Parcelable;
  */
 public class CodecPriority implements Parcelable, Comparable<CodecPriority> {
 
+    public static int PRIORITY_MAX = 254;
+    public static int PRIORITY_MIN = 1;
+    public static int PRIORITY_DISABLED = 0;
+
+    private static final String G729_LABEL = "G.729";
+    private static final String PCMU_LABEL = "PCMU";
+    private static final String PCMA_LABEL = "PCMA";
+    private static final String SPEEX_LABEL = "Speex";
+    private static final String G722_LABEL = "G.722";
+    private static final String G7221_LABEL = "G.722.1";
+    private static final String OPUS_LABEL = "Opus";
+
+    private String mCodecId;
+    private int mPriority;
+
+    CodecPriority(String codecId, short priority) {
+        mCodecId = codecId;
+        mPriority = priority;
+    }
+
     // This is used to regenerate the object.
     // All Parcelables must have a CREATOR that implements these two methods
     public static final Parcelable.Creator<CodecPriority> CREATOR =
@@ -24,23 +44,6 @@ public class CodecPriority implements Parcelable, Comparable<CodecPriority> {
                     return new CodecPriority[size];
                 }
             };
-    private static final String G729_LABEL = "G.729";
-    private static final String PCMU_LABEL = "PCMU";
-    private static final String PCMA_LABEL = "PCMA";
-    private static final String SPEEX_LABEL = "Speex";
-    private static final String G722_LABEL = "G.722";
-    private static final String G7221_LABEL = "G.722.1";
-    private static final String OPUS_LABEL = "Opus";
-    public static int PRIORITY_MAX = 254;
-    public static int PRIORITY_MIN = 1;
-    public static int PRIORITY_DISABLED = 0;
-    private String mCodecId;
-    private int mPriority;
-
-    CodecPriority(String codecId, short priority) {
-        mCodecId = codecId;
-        mPriority = priority;
-    }
 
     private CodecPriority(Parcel in) {
         mCodecId = in.readString();
@@ -58,7 +61,7 @@ public class CodecPriority implements Parcelable, Comparable<CodecPriority> {
         return 0;
     }
 
-    String getCodecId() {
+    public String getCodecId() {
         return mCodecId;
     }
 

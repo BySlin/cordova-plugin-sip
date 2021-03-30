@@ -1,102 +1,69 @@
-module.exports =
-{
-    login: function (username, password, domain, successCallback, errorCallback) {
-        cordova.exec(
-            successCallback,
-            errorCallback,
-            "Linphone",
-            "login",
-            [username, password, domain]
-        );
-    },
-    logout: function (successCallback, errorCallback) {
-        cordova.exec(
-            successCallback,
-            errorCallback,
-            "Linphone",
-            "logout",
-            []
-        );
-    },
-    accept: function (value, successCallback, errorCallback) {
-        cordova.exec(
-            successCallback,
-            errorCallback,
-            "Linphone",
-            "acceptCall",
-            [value]
-        );
-    },
-    listenCall: function (successCallback, errorCallback) {
-        cordova.exec(
-                successCallback,
-                errorCallback,
-                "Linphone",
-                "listenCall",
-                []
-            );
-    },
-    call: function (address, displayName, successCallback, errorCallback) {
-        cordova.exec(
-            successCallback,
-            errorCallback,
-            "Linphone",
-            "call",
-            [address, displayName]
-        );
-    },
-    videocall: function (address, displayName, successCallback, errorCallback) {
-        cordova.exec(
-            successCallback,
-            errorCallback,
-            "Linphone",
-            "videocall",
-            [address, displayName]
-        );
-    },
-    hangup: function (successCallback, errorCallback) {
-        cordova.exec(
-            successCallback,
-            errorCallback,
-            "Linphone",
-            "hangup",
-            []
-        );
-    },
-    toggleVideo: function (successCallback, errorCallback) {
-        cordova.exec(
-            successCallback,
-            errorCallback,
-            "Linphone",
-            "toggleVideo",
-            []
-        );
-    },
-    toggleSpeaker: function (successCallback, errorCallback) {
-        cordova.exec(
-            successCallback,
-            errorCallback,
-            "Linphone",
-            "toggleSpeaker",
-            []
-        );
-    },
-    toggleMute: function (successCallback, errorCallback) {
-        cordova.exec(
-            successCallback,
-            errorCallback,
-            "Linphone",
-            "toggleMute",
-            []
-        );
-    },
-    sendDtmf: function (number, successCallback, errorCallback) {
-        cordova.exec(
-            successCallback,
-            errorCallback,
-            "Linphone",
-            "sendDtmf",
-            [number]
-        );
+function Sip(
+  username,
+  password,
+  host,
+  port,
+  regExpirationTimeout,
+  isTcp,
+  listener
+) {
+  var accountID = "";
+  var callID = "";
+
+  this.onEvent = function(data) {
+    if (data.callID != null) {
+      callID = data.callID;
     }
-};
+    if (data.accountID != null) {
+      accountID = data.accountID;
+    }
+    listener(data);
+  };
+
+  this.makeCall = function(number) {
+    cordova.exec(null, null, "Sip", "makeCall", [accountID, number]);
+  };
+
+  this.hangUpCall = function() {
+    cordova.exec(null, null, "Sip", "hangUpCall", [accountID, callID]);
+  };
+
+  this.hangUpCalls = function () {
+    cordova.exec(null, null, "Sip", "hangUpActiveCalls", [accountID]);
+  };
+
+  this.getRegistrationStatus = function() {
+    cordova.exec(null, null, "Sip", "getRegistrationStatus", [accountID]);
+  };
+
+  this.sendDTMF = function(dtmf) {
+    cordova.exec(null, null, "Sip", "sendDTMF", [accountID, callID, dtmf]);
+  };
+
+  this.acceptIncomingCall = function() {
+    cordova.exec(null, null, "Sip", "acceptIncomingCall", [accountID, callID]);
+  };
+
+  this.transferCall = function(number) {
+    cordova.exec(null, null, "Sip", "transferCall", [
+      accountID,
+      callID,
+      number
+    ]);
+  };
+
+  this.unregister = function() {
+    cordova.exec(null, null, "Sip", "removeAccount", [accountID]);
+  };
+
+  cordova.exec(this.onEvent, null, "Sip", "setAccount", [
+    username,
+    password,
+    host,
+    port,
+    regExpirationTimeout,
+    isTcp
+  ]);
+}
+
+module.exports = Sip;

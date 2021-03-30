@@ -9,75 +9,75 @@
 package org.pjsip.pjsua2;
 
 public class OnRegStateParam {
-    protected transient boolean swigCMemOwn;
-    private transient long swigCPtr;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
-    protected OnRegStateParam(long cPtr, boolean cMemoryOwn) {
-        swigCMemOwn = cMemoryOwn;
-        swigCPtr = cPtr;
-    }
+  protected OnRegStateParam(long cPtr, boolean cMemoryOwn) {
+    swigCMemOwn = cMemoryOwn;
+    swigCPtr = cPtr;
+  }
 
-    public OnRegStateParam() {
-        this(pjsua2JNI.new_OnRegStateParam(), true);
-    }
+  protected static long getCPtr(OnRegStateParam obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
 
-    protected static long getCPtr(OnRegStateParam obj) {
-        return (obj == null) ? 0 : obj.swigCPtr;
-    }
+  protected void finalize() {
+    delete();
+  }
 
-    protected void finalize() {
-        delete();
+  public synchronized void delete() {
+    if (swigCPtr != 0) {
+      if (swigCMemOwn) {
+        swigCMemOwn = false;
+        pjsua2JNI.delete_OnRegStateParam(swigCPtr);
+      }
+      swigCPtr = 0;
     }
+  }
 
-    public synchronized void delete() {
-        if (swigCPtr != 0) {
-            if (swigCMemOwn) {
-                swigCMemOwn = false;
-                pjsua2JNI.delete_OnRegStateParam(swigCPtr);
-            }
-            swigCPtr = 0;
-        }
-    }
+  public void setStatus(int value) {
+    pjsua2JNI.OnRegStateParam_status_set(swigCPtr, this, value);
+  }
 
-    public int getStatus() {
-        return pjsua2JNI.OnRegStateParam_status_get(swigCPtr, this);
-    }
+  public int getStatus() {
+    return pjsua2JNI.OnRegStateParam_status_get(swigCPtr, this);
+  }
 
-    public void setStatus(int value) {
-        pjsua2JNI.OnRegStateParam_status_set(swigCPtr, this, value);
-    }
+  public void setCode(pjsip_status_code value) {
+    pjsua2JNI.OnRegStateParam_code_set(swigCPtr, this, value.swigValue());
+  }
 
-    public pjsip_status_code getCode() {
-        return pjsip_status_code.swigToEnum(pjsua2JNI.OnRegStateParam_code_get(swigCPtr, this));
-    }
+  public pjsip_status_code getCode() {
+    return pjsip_status_code.swigToEnum(pjsua2JNI.OnRegStateParam_code_get(swigCPtr, this));
+  }
 
-    public void setCode(pjsip_status_code value) {
-        pjsua2JNI.OnRegStateParam_code_set(swigCPtr, this, value.swigValue());
-    }
+  public void setReason(String value) {
+    pjsua2JNI.OnRegStateParam_reason_set(swigCPtr, this, value);
+  }
 
-    public String getReason() {
-        return pjsua2JNI.OnRegStateParam_reason_get(swigCPtr, this);
-    }
+  public String getReason() {
+    return pjsua2JNI.OnRegStateParam_reason_get(swigCPtr, this);
+  }
 
-    public void setReason(String value) {
-        pjsua2JNI.OnRegStateParam_reason_set(swigCPtr, this, value);
-    }
+  public void setRdata(SipRxData value) {
+    pjsua2JNI.OnRegStateParam_rdata_set(swigCPtr, this, SipRxData.getCPtr(value), value);
+  }
 
-    public SipRxData getRdata() {
-        long cPtr = pjsua2JNI.OnRegStateParam_rdata_get(swigCPtr, this);
-        return (cPtr == 0) ? null : new SipRxData(cPtr, false);
-    }
+  public SipRxData getRdata() {
+    long cPtr = pjsua2JNI.OnRegStateParam_rdata_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new SipRxData(cPtr, false);
+  }
 
-    public void setRdata(SipRxData value) {
-        pjsua2JNI.OnRegStateParam_rdata_set(swigCPtr, this, SipRxData.getCPtr(value), value);
-    }
+  public void setExpiration(int value) {
+    pjsua2JNI.OnRegStateParam_expiration_set(swigCPtr, this, value);
+  }
 
-    public int getExpiration() {
-        return pjsua2JNI.OnRegStateParam_expiration_get(swigCPtr, this);
-    }
+  public int getExpiration() {
+    return pjsua2JNI.OnRegStateParam_expiration_get(swigCPtr, this);
+  }
 
-    public void setExpiration(int value) {
-        pjsua2JNI.OnRegStateParam_expiration_set(swigCPtr, this, value);
-    }
+  public OnRegStateParam() {
+    this(pjsua2JNI.new_OnRegStateParam(), true);
+  }
 
 }
