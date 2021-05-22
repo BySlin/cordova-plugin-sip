@@ -3,6 +3,7 @@ function Sip(
   password,
   host,
   port,
+  realm,
   regExpirationTimeout,
   isTcp,
   listener
@@ -61,6 +62,7 @@ function Sip(
     password,
     host,
     port,
+    realm,
     regExpirationTimeout,
     isTcp
   ]);

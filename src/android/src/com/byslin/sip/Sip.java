@@ -47,13 +47,14 @@ public class Sip extends CordovaPlugin {
             String password = args.getString(1);
             String host = args.getString(2);
             int port = args.getInt(3);
-            int regExpirationTimeout = args.getInt(4);
-            boolean isTcp = args.getBoolean(5);
+            String realm = args.getString(4);
+            int regExpirationTimeout = args.getInt(5);
+            boolean isTcp = args.getBoolean(6);
             SipAccountData sipAccountData = new SipAccountData()
                     .setUsername(username)
                     .setPassword(password)
                     .setHost(host)
-                    .setRealm(host)
+                    .setRealm(realm)
                     .setPort(port)
                     .setRegExpirationTimeout(regExpirationTimeout)
                     .setTcpTransport(isTcp);
