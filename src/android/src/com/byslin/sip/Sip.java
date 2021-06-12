@@ -38,7 +38,7 @@ public class Sip extends CordovaPlugin {
   public void initialize(CordovaInterface cordova, CordovaWebView webView) {
     super.initialize(cordova, webView);
     mContext = cordova.getActivity();
-    //new SipBroadcastEventReceiver().register(mContext);
+    new SipBroadcastEventReceiver().register(mContext);
   }
 
   @Override
