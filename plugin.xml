@@ -30,7 +30,7 @@
         </config-file>
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
             <service
-                    android:name=".SipService"
+                    android:name="net.gotev.sipservice.SipService"
                     android:enabled="true"
                     android:exported="false"/>
         </config-file>
