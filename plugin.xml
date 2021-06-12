@@ -29,22 +29,10 @@
                           android:required="false"/>
         </config-file>
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
-            <service android:name="net.gotev.sipservice.SipService" android:enabled="true"
-                     android:exported="true"/>
-            <receiver android:name="net.gotev.sipservice.BroadcastEventReceiver">
-                <intent-filter>
-                    <action android:name="net.gotev.REGISTRATION"/>
-                    <action android:name="net.gotev.INCOMING_CALL"/>
-                    <action android:name="net.gotev.CALL_STATE"/>
-                    <action android:name="net.gotev.OUTGOING_CALL"/>
-                    <action android:name="net.gotev.STACK_STATUS"/>
-                    <action android:name="net.gotev.CODEC_PRIORITIES"/>
-                    <action android:name="net.gotev.CODEC_PRIORITIES_SET_STATUS"/>
-                    <action android:name="net.gotev.MISSED_CALL"/>
-                    <action android:name="net.gotev.VIDEO_SIZE"/>
-                    <action android:name="net.gotev.CALL_STATS"/>
-                </intent-filter>
-            </receiver>
+            <service
+                    android:name=".SipService"
+                    android:enabled="true"
+                    android:exported="false"/>
         </config-file>
 
         <config-file parent="/*" target="config.xml">
