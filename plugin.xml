@@ -47,6 +47,8 @@
                      target-dir="src/com/byslin/sip"/>
         <source-file src="src/android/src/com/byslin/sip/JSONResult.java"
                      target-dir="src/com/byslin/sip"/>
+        <source-file src="src/android/src/com/byslin/sip/SipBroadcastEventReceiver.java"
+                     target-dir="src/com/byslin/sip"/>
 
         <source-file src="src/android/src/net/gotev/sipservice/BackgroundService.java"
                      target-dir="src/net/gotev/sipservice"/>
