@@ -12,6 +12,7 @@
     <!-- android -->
     <platform name="android">
         <framework src="com.google.code.gson:gson:2.8.6"/>
+        <framework src="src/android/libs/sip.gradle" custom="true" type="gradleReference"/>
 
         <config-file parent="/manifest" target="AndroidManifest.xml">
             <uses-permission android:name="android.permission.INTERNET"/>

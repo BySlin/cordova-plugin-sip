@@ -1,0 +1,7 @@
+repositories {
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    implementation 'com.github.VoiSmart:crypto:0.1.0'
+}
