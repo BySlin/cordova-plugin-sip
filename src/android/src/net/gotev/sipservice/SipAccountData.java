@@ -35,8 +35,8 @@ public class SipAccountData implements Parcelable {
     public SipAccountData() { }
 
     /*****          Parcelable overrides        ******/
-    public static final Parcelable.Creator<SipAccountData> CREATOR =
-            new Parcelable.Creator<SipAccountData>() {
+    public static final Creator<SipAccountData> CREATOR =
+            new Creator<SipAccountData>() {
                 @Override
                 public SipAccountData createFromParcel(final Parcel in) {
                     return new SipAccountData(in);
@@ -190,7 +190,7 @@ public class SipAccountData implements Parcelable {
                 username, 0, password);
     }
 
-    String getIdUri() {
+    public String getIdUri() {
         if ("*".equals(realm))
             return "sip:" + username;
 

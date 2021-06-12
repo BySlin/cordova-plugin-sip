@@ -21,8 +21,8 @@ public class Jitter implements Parcelable {
         this.min = min;
     }
 
-    public static final Parcelable.Creator<Jitter> CREATOR =
-            new Parcelable.Creator<Jitter>() {
+    public static final Creator<Jitter> CREATOR =
+            new Creator<Jitter>() {
                 @Override
                 public Jitter createFromParcel(final Parcel in) {
                     return new Jitter(in);

@@ -30,8 +30,8 @@ public class RtpStreamStats implements Parcelable {
 
     // This is used to regenerate the object.
     // All Parcelables must have a CREATOR that implements these two methods
-    public static final Parcelable.Creator<RtpStreamStats> CREATOR =
-            new Parcelable.Creator<RtpStreamStats>() {
+    public static final Creator<RtpStreamStats> CREATOR =
+            new Creator<RtpStreamStats>() {
                 @Override
                 public RtpStreamStats createFromParcel(final Parcel in) {
                     return new RtpStreamStats(in);

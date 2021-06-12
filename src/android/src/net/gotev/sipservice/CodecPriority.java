@@ -31,8 +31,8 @@ public class CodecPriority implements Parcelable, Comparable<CodecPriority> {
 
     // This is used to regenerate the object.
     // All Parcelables must have a CREATOR that implements these two methods
-    public static final Parcelable.Creator<CodecPriority> CREATOR =
-            new Parcelable.Creator<CodecPriority>() {
+    public static final Creator<CodecPriority> CREATOR =
+            new Creator<CodecPriority>() {
                 @Override
                 public CodecPriority createFromParcel(final Parcel in) {
                     return new CodecPriority(in);

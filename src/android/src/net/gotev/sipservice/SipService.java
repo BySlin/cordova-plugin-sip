@@ -640,7 +640,6 @@ public class SipService extends BackgroundService implements SipServiceConstants
             mEndpoint.libCreate();
 
             EpConfig epConfig = new EpConfig();
-            epConfig.getUaConfig().setMaxCalls(1);
             epConfig.getUaConfig().setUserAgent(AGENT_NAME);
             epConfig.getMedConfig().setHasIoqueue(true);
             epConfig.getMedConfig().setClockRate(16000);
