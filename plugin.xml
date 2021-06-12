@@ -389,7 +389,6 @@
         <source-file src="src/android/src/org/pjsip/pjsua2/SWIGTYPE_p_unsigned_char.java"
                      target-dir="src/org/pjsip/pjsua2"/>
         <source-file src="src/android/src/org/pjsip/pjsua2/SWIGTYPE_p_void.java" target-dir="src/org/pjsip/pjsua2"/>
-        <source-file src="src/android/src/org/pjsip/pjsua2/test.js" target-dir="src/org/pjsip/pjsua2"/>
         <source-file src="src/android/src/org/pjsip/pjsua2/TimerEvent.java" target-dir="src/org/pjsip/pjsua2"/>
         <source-file src="src/android/src/org/pjsip/pjsua2/TimeVal.java" target-dir="src/org/pjsip/pjsua2"/>
         <source-file src="src/android/src/org/pjsip/pjsua2/TlsConfig.java" target-dir="src/org/pjsip/pjsua2"/>
