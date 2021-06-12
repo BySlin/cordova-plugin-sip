@@ -34,6 +34,21 @@
                     android:name="net.gotev.sipservice.SipService"
                     android:enabled="true"
                     android:exported="false"/>
+            <receiver android:name="com.byslin.sip.SipBroadcastEventReceiver">
+                <intent-filter>
+                    <action android:name="com.voismart.REGISTRATION"/>
+                    <action android:name="com.voismart.INCOMING_CALL"/>
+                    <action android:name="com.voismart.CALL_STATE"/>
+                    <action android:name="com.voismart.OUTGOING_CALL"/>
+                    <action android:name="com.voismart.STACK_STATUS"/>
+                    <action android:name="com.voismart.CODEC_PRIORITIES"/>
+                    <action android:name="com.voismart.CODEC_PRIORITIES_SET_STATUS"/>
+                    <action android:name="com.voismart.MISSED_CALL"/>
+                    <action android:name="com.voismart.VIDEO_SIZE"/>
+                    <action android:name="com.voismart.CALL_STATS"/>
+                    <action android:name="com.voismart.CALL_RECONNECTION_STATE"/>
+                </intent-filter>
+            </receiver>
         </config-file>
 
         <config-file parent="/*" target="config.xml">
