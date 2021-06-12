@@ -5,19 +5,19 @@ import android.os.Parcelable;
 
 /**
  * sipservice
- * <p>
+ *
  * Created by aenonGit on 19/04/19.
  * Copyright © 2019 VoiSmart S.r.l. All rights reserved.
  */
 @SuppressWarnings("unused")
 public class RtpStreamStats implements Parcelable {
 
-    private int pkt;
-    private int discard;
-    private int loss;
-    private int reorder;
-    private int dup;
-    private Jitter jitter;
+    private final int pkt;
+    private final int discard;
+    private final int loss;
+    private final int reorder;
+    private final int dup;
+    private final Jitter jitter;
 
     RtpStreamStats(int pkts, int discard, int loss, int reorder, int dup, Jitter jitter) {
         this.pkt = pkts;
@@ -68,12 +68,12 @@ public class RtpStreamStats implements Parcelable {
 
     @Override
     public String toString() {
-        return "Pkts: " + pkt + "\n"
-                + "Discard: " + discard + "\n"
-                + "Loss: " + loss + "\n"
-                + "Reorder: " + reorder + "\n"
-                + "Duplicate: " + dup + "\n"
-                + "Jitter: " + jitter.toString() + "\n";
+        return "Pkts: "+pkt+"\n"
+                +"Discard: "+discard+"\n"
+                +"Loss: "+loss+"\n"
+                +"Reorder: "+reorder+"\n"
+                +"Duplicate: "+dup+"\n"
+                +"Jitter: "+jitter.toString()+"\n";
     }
 
     public int getPkts() {

@@ -5,15 +5,15 @@ import android.os.Parcelable;
 
 /**
  * connect
- * <p>
+ *
  * Created by aenonGit on 23/04/19.
  * Copyright © 2019 VoiSmart S.r.l. All rights reserved.
  */
 @SuppressWarnings("unused")
 public class Jitter implements Parcelable {
-    private int max;
-    private int mean;
-    private int min;
+    private final int max;
+    private final int mean;
+    private final int min;
 
     Jitter(int max, int mean, int min) {
         this.max = max;
@@ -53,7 +53,7 @@ public class Jitter implements Parcelable {
 
     @Override
     public String toString() {
-        return "Max: " + max + " Mean: " + mean + " Min: " + min;
+        return "Max: "+max+" Mean: "+mean+" Min: "+min;
     }
 
     public int getMax() {

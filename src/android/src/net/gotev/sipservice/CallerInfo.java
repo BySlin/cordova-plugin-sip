@@ -7,15 +7,14 @@ import java.util.regex.Pattern;
 
 /**
  * Obtains display name and remote uri from a CallInfo object.
- *
  * @author gotev (Aleksandar Gotev)
  */
 public class CallerInfo {
 
     private static final String UNKNOWN = "Unknown";
 
-    private String displayName;
-    private String remoteUri;
+    private final String displayName;
+    private final String remoteUri;
 
     public CallerInfo(final CallInfo callInfo) {
         String temp = callInfo.getRemoteUri();

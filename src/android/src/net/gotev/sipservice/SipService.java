@@ -1,22 +1,19 @@
 package net.gotev.sipservice;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.view.Surface;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
 import org.pjsip.pjsua2.AudDevManager;
 import org.pjsip.pjsua2.CallVidSetStreamParam;
 import org.pjsip.pjsua2.CodecFmtpVector;
 import org.pjsip.pjsua2.CodecInfo;
-import org.pjsip.pjsua2.CodecInfoVector;
+import org.pjsip.pjsua2.CodecInfoVector2;
 import org.pjsip.pjsua2.Endpoint;
 import org.pjsip.pjsua2.EpConfig;
+import org.pjsip.pjsua2.IpChangeParam;
 import org.pjsip.pjsua2.MediaFormatVideo;
 import org.pjsip.pjsua2.TransportConfig;
 import org.pjsip.pjsua2.VidCodecParam;
@@ -28,7 +25,6 @@ import org.pjsip.pjsua2.pjsip_transport_type_e;
 import org.pjsip.pjsua2.pjsua_call_vid_strm_op;
 import org.pjsip.pjsua2.pjsua_destroy_flag;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -40,22 +36,18 @@ import static net.gotev.sipservice.SipServiceCommand.AGENT_NAME;
 
 /**
  * Sip Service.
- *
  * @author gotev (Aleksandar Gotev)
  */
 public class SipService extends BackgroundService implements SipServiceConstants {
 
     private static final String TAG = SipService.class.getSimpleName();
 
-    private static final String PREFS_NAME = TAG + "prefs";
-    private static final String PREFS_KEY_ACCOUNTS = "accounts";
-    private static final String PREFS_KEY_CODEC_PRIORITIES = "codec_priorities";
-    private static final String PREFS_KEY_DND = "dnd_pref";
-    private static ConcurrentHashMap<String, SipAccount> mActiveSipAccounts = new ConcurrentHashMap<>();
     private List<SipAccountData> mConfiguredAccounts = new ArrayList<>();
     private SipAccountData mConfiguredGuestAccount;
+    private static final ConcurrentHashMap<String, SipAccount> mActiveSipAccounts = new ConcurrentHashMap<>();
     private BroadcastEventEmitter mBroadcastEmitter;
     private Endpoint mEndpoint;
+    private SharedPreferencesHelper mSharedPreferencesHelper;
     private volatile boolean mStarted;
     private int callStatus;
 
@@ -74,7 +66,8 @@ public class SipService extends BackgroundService implements SipServiceConstants
                 Logger.debug(TAG, "Creating SipService with priority: " + Thread.currentThread().getPriority());
 
                 loadNativeLibraries();
-
+                mSharedPreferencesHelper = SharedPreferencesHelper.getInstance(SipService.this)
+                        .init(SipService.this);
                 mBroadcastEmitter = new BroadcastEventEmitter(SipService.this);
                 loadConfiguredAccounts();
                 addAllConfiguredAccounts();
@@ -95,7 +88,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
 
                 if (action == null) return;
 
-                switch (action) {
+                switch(action) {
                     case ACTION_SET_ACCOUNT:
                         handleSetAccount(intent);
                         break;
@@ -180,8 +173,10 @@ public class SipService extends BackgroundService implements SipServiceConstants
                     case ACTION_MAKE_DIRECT_CALL:
                         handleMakeDirectCall(intent);
                         break;
-                    default:
+                    case ACTION_RECONNECT_CALL:
+                        handleReconnectCall();
                         break;
+                    default: break;
                 }
 
                 if (mConfiguredAccounts.isEmpty() && mConfiguredGuestAccount == null) {
@@ -216,7 +211,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
     private void notifyCallDisconnected(String accountID, int callID) {
 
         mBroadcastEmitter.callState(accountID, callID,
-                pjsip_inv_state.PJSIP_INV_STATE_DISCONNECTED.swigValue(),
+                pjsip_inv_state.PJSIP_INV_STATE_DISCONNECTED,
                 callStatus, 0,
                 false, false, false);
     }
@@ -234,14 +229,14 @@ public class SipService extends BackgroundService implements SipServiceConstants
 
         int callStatusCode = callStatus;
         try {
-            callStatusCode = sipCall.getInfo().getLastStatusCode().swigValue();
+            callStatusCode = sipCall.getInfo().getLastStatusCode();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
 
-        mBroadcastEmitter.callState(accountID, callID, sipCall.getCurrentState().swigValue(), callStatusCode,
-                sipCall.getConnectTimestamp(), sipCall.isLocalHold(),
-                sipCall.isLocalMute(), sipCall.isLocalVideoMute());
+        mBroadcastEmitter.callState(accountID, callID, sipCall.getCurrentState(), callStatusCode,
+                                    sipCall.getConnectTimestamp(), sipCall.isLocalHold(),
+                                    sipCall.isLocalMute(), sipCall.isLocalVideoMute());
     }
 
     private void handleSendDTMF(Intent intent) {
@@ -259,7 +254,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
             sipCall.dialDtmf(dtmf);
         } catch (Exception exc) {
             Logger.error(TAG, "Error while dialing dtmf: " + dtmf + ". AccountID: "
-                    + accountID + ", CallID: " + callID);
+                         + accountID + ", CallID: " + callID);
         }
     }
 
@@ -279,7 +274,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
             sipCall.acceptIncomingCall();
         } catch (Exception exc) {
             Logger.error(TAG, "Error while accepting incoming call. AccountID: "
-                    + accountID + ", CallID: " + callID);
+                         + accountID + ", CallID: " + callID);
         }
     }
 
@@ -335,7 +330,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
             sipCall.setMute(mute);
         } catch (Exception exc) {
             Logger.error(TAG, "Error while setting mute. AccountID: "
-                    + accountID + ", CallID: " + callID);
+                         + accountID + ", CallID: " + callID);
         }
     }
 
@@ -495,7 +490,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
         int regExpTimeout = intent.getIntExtra(PARAM_REG_EXP_TIMEOUT, 0);
         String regContactParams = intent.getStringExtra(PARAM_REG_CONTACT_PARAMS);
         boolean refresh = true;
-        if (!mActiveSipAccounts.isEmpty() && mActiveSipAccounts.containsKey(accountID)) {
+        if (!mActiveSipAccounts.isEmpty() && mActiveSipAccounts.containsKey(accountID)){
             try {
                 SipAccount sipAccount = mActiveSipAccounts.get(accountID);
                 if (regExpTimeout != 0 && regExpTimeout != sipAccount.getData().getRegExpirationTimeout()) {
@@ -523,7 +518,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
                 ex.printStackTrace();
             }
         } else {
-            Logger.debug(TAG, "account " + accountID + " not set");
+            Logger.debug(TAG, "account "+accountID+" not set");
         }
     }
 
@@ -608,14 +603,20 @@ public class SipService extends BackgroundService implements SipServiceConstants
 
     private void loadNativeLibraries() {
         try {
+            System.loadLibrary("c++_shared");
+            Logger.debug(TAG, "libc++_shared loaded");
+        } catch (UnsatisfiedLinkError error) {
+            Logger.error(TAG, "Error while loading libc++_shared native library", error);
+            throw new RuntimeException(error);
+        }
+
+        try {
             System.loadLibrary("openh264");
             Logger.debug(TAG, "OpenH264 loaded");
         } catch (UnsatisfiedLinkError error) {
             Logger.error(TAG, "Error while loading OpenH264 native library", error);
             throw new RuntimeException(error);
         }
-
-        // libYUV removed -> integrated from pjsip 2.6 and later
 
         try {
             System.loadLibrary("pjsua2");
@@ -635,11 +636,10 @@ public class SipService extends BackgroundService implements SipServiceConstants
 
         try {
             Logger.debug(TAG, "Starting PJSIP");
-            mEndpoint = new Endpoint();
+            mEndpoint = new SipEndpoint(this);
             mEndpoint.libCreate();
 
             EpConfig epConfig = new EpConfig();
-            epConfig.getUaConfig().setMaxCalls(1);
             epConfig.getUaConfig().setUserAgent(AGENT_NAME);
             epConfig.getMedConfig().setHasIoqueue(true);
             epConfig.getMedConfig().setClockRate(16000);
@@ -669,7 +669,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
             } else {
                 mEndpoint.codecSetPriority("OPUS", (short) (CodecPriority.PRIORITY_MAX - 1));
                 mEndpoint.codecSetPriority("PCMA/8000", (short) (CodecPriority.PRIORITY_MAX - 2));
-                mEndpoint.codecSetPriority("PCMU/8000", (short) (CodecPriority.PRIORITY_MAX - 3));
+                mEndpoint.codecSetPriority("PCMU/8000", (short) (CodecPriority.PRIORITY_MAX -3));
                 mEndpoint.codecSetPriority("G729/8000", (short) CodecPriority.PRIORITY_DISABLED);
                 mEndpoint.codecSetPriority("speex/8000", (short) CodecPriority.PRIORITY_DISABLED);
                 mEndpoint.codecSetPriority("speex/16000", (short) CodecPriority.PRIORITY_DISABLED);
@@ -734,7 +734,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
              */
             Runtime.getRuntime().gc();
 
-            mEndpoint.libDestroy(pjsua_destroy_flag.PJSUA_DESTROY_NO_NETWORK.swigValue());
+            mEndpoint.libDestroy(pjsua_destroy_flag.PJSUA_DESTROY_NO_NETWORK);
             mEndpoint.delete();
             mEndpoint = null;
 
@@ -760,15 +760,15 @@ public class SipService extends BackgroundService implements SipServiceConstants
         }
 
         try {
-            CodecInfoVector codecs = mEndpoint.codecEnum();
+            CodecInfoVector2 codecs = mEndpoint.codecEnum2();
             if (codecs == null || codecs.size() == 0) return null;
 
-            ArrayList<CodecPriority> codecPrioritiesList = new ArrayList<>((int) codecs.size());
+            ArrayList<CodecPriority> codecPrioritiesList = new ArrayList<>(codecs.size());
 
-            for (int i = 0; i < (int) codecs.size(); i++) {
+            for (int i = 0; i < codecs.size(); i++) {
                 CodecInfo codecInfo = codecs.get(i);
                 CodecPriority newCodec = new CodecPriority(codecInfo.getCodecId(),
-                        codecInfo.getPriority());
+                                                           codecInfo.getPriority());
                 if (!codecPrioritiesList.contains(newCodec))
                     codecPrioritiesList.add(newCodec);
                 codecInfo.delete();
@@ -836,7 +836,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
 
         SipAccount account = mActiveSipAccounts.get(accountID);
         try {
-            mBroadcastEmitter.registrationState(accountID, account.getInfo().getRegStatus().swigValue());
+            mBroadcastEmitter.registrationState(accountID, account.getInfo().getRegStatus());
         } catch (Exception exc) {
             Logger.error(TAG, "Error while getting registration status for " + accountID, exc);
         }
@@ -869,7 +869,6 @@ public class SipService extends BackgroundService implements SipServiceConstants
 
     /**
      * Adds a new SIP Account and performs initial registration.
-     *
      * @param account SIP account to add
      */
     private void addAccount(SipAccountData account) throws Exception {
@@ -908,40 +907,19 @@ public class SipService extends BackgroundService implements SipServiceConstants
     }
 
     private void persistConfiguredAccounts() {
-        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        prefs.edit().putString(PREFS_KEY_ACCOUNTS, new Gson().toJson(mConfiguredAccounts)).apply();
+        mSharedPreferencesHelper.persistConfiguredAccounts(mConfiguredAccounts);
     }
 
     private void persistConfiguredCodecPriorities(ArrayList<CodecPriority> codecPriorities) {
-        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        prefs.edit().putString(PREFS_KEY_CODEC_PRIORITIES, new Gson().toJson(codecPriorities)).apply();
-    }
-
-    private ArrayList<CodecPriority> getConfiguredCodecPriorities() {
-        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-
-        String codecPriorities = prefs.getString(PREFS_KEY_CODEC_PRIORITIES, "");
-        if (codecPriorities.isEmpty()) {
-            return null;
-        }
-
-        Type listType = new TypeToken<ArrayList<CodecPriority>>() {
-        }.getType();
-        return new Gson().fromJson(codecPriorities, listType);
+        mSharedPreferencesHelper.persistConfiguredCodecPriorities(codecPriorities);
     }
 
     private void loadConfiguredAccounts() {
-        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        mConfiguredAccounts = mSharedPreferencesHelper.retrieveConfiguredAccounts();
+    }
 
-        String accounts = prefs.getString(PREFS_KEY_ACCOUNTS, "");
-
-        if (accounts.isEmpty()) {
-            mConfiguredAccounts = new ArrayList<>();
-        } else {
-            Type listType = new TypeToken<ArrayList<SipAccountData>>() {
-            }.getType();
-            mConfiguredAccounts = new Gson().fromJson(accounts, listType);
-        }
+    private ArrayList<CodecPriority> getConfiguredCodecPriorities() {
+        return mSharedPreferencesHelper.retrieveConfiguredCodecPriorities();
     }
 
     protected synchronized AudDevManager getAudDevManager() {
@@ -962,13 +940,11 @@ public class SipService extends BackgroundService implements SipServiceConstants
 
     private void handleSetDND(Intent intent) {
         boolean dnd = intent.getBooleanExtra(PARAM_DND, false);
-        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        prefs.edit().putBoolean(PREFS_KEY_DND, dnd).apply();
+        mSharedPreferencesHelper.setDND(dnd);
     }
 
     public boolean isDND() {
-        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        return prefs.getBoolean(PREFS_KEY_DND, false);
+        return mSharedPreferencesHelper.isDND();
     }
 
     private void handleSetIncomingVideoFeed(Intent intent) {
@@ -986,7 +962,6 @@ public class SipService extends BackgroundService implements SipServiceConstants
             sipCall.setIncomingVideoFeed(surface);
         }
     }
-
     private void handleSetSelfVideoOrientation(Intent intent) {
         String accountID = intent.getStringExtra(PARAM_ACCOUNT_ID);
         int callID = intent.getIntExtra(PARAM_CALL_ID, 0);
@@ -1005,7 +980,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
 
     void setSelfVideoOrientation(SipCall sipCall, int orientation) {
         try {
-            pjmedia_orient pjmediaOrientation;
+            int pjmediaOrientation;
 
             switch (orientation) {
                 case Surface.ROTATION_0:   // Portrait
@@ -1025,12 +1000,12 @@ public class SipService extends BackgroundService implements SipServiceConstants
             }
 
             if (pjmediaOrientation != pjmedia_orient.PJMEDIA_ORIENT_UNKNOWN)
-                // set orientation to the correct current device
-                getVidDevManager().setCaptureOrient(
-                        sipCall.isFrontCamera()
-                                ? FRONT_CAMERA_CAPTURE_DEVICE
-                                : BACK_CAMERA_CAPTURE_DEVICE,
-                        pjmediaOrientation, true);
+            // set orientation to the correct current device
+            getVidDevManager().setCaptureOrient(
+                    sipCall.isFrontCamera()
+                            ? FRONT_CAMERA_CAPTURE_DEVICE
+                            : BACK_CAMERA_CAPTURE_DEVICE,
+                    pjmediaOrientation, true);
 
         } catch (Exception iex) {
             Logger.error(TAG, "Error while changing video orientation");
@@ -1116,8 +1091,8 @@ public class SipService extends BackgroundService implements SipServiceConstants
         }
 
         Logger.debug(TAG, "Making call to " + uri.getUserInfo());
-        String accountID = "sip:" + name + "@" + uri.getHost();
-        String sipUri = "sip:" + uri.getUserInfo() + "@" + uri.getHost();
+        String accountID = "sip:"+name+"@"+uri.getHost();
+        String sipUri = "sip:" + uri.getUserInfo()+"@"+uri.getHost();
 
         try {
             startStack();
@@ -1126,9 +1101,9 @@ public class SipService extends BackgroundService implements SipServiceConstants
                     .setUsername(name)
                     .setPort((uri.getPort() > 0) ? uri.getPort() : 5060)
                     .setRealm(uri.getHost());
-            /* display name not yet implemented server side for direct calls */
-            /* .setUsername("guest") */
-            /* .setGuestDisplayName(name)*/
+                    /* display name not yet implemented server side for direct calls */
+                    /* .setUsername("guest") */
+                    /* .setGuestDisplayName(name)*/
             SipAccount pjSipAndroidAccount = new SipAccount(this, sipAccountData);
             pjSipAndroidAccount.createGuest();
             mConfiguredGuestAccount = pjSipAndroidAccount.getData();
@@ -1147,6 +1122,16 @@ public class SipService extends BackgroundService implements SipServiceConstants
         } catch (Exception ex) {
             Logger.error(TAG, "Error while making a direct call as Guest", ex);
             mBroadcastEmitter.outgoingCall(accountID, -1, uri.getUserInfo(), false, false);
+        }
+    }
+
+    private void handleReconnectCall() {
+        try {
+            getBroadcastEmitter().callReconnectionState(CallReconnectionState.PROGRESS);
+            mEndpoint.handleIpChange(new IpChangeParam());
+            Logger.info(TAG, "Call reconnection started");
+        } catch (Exception exc) {
+            Logger.error(TAG, "Error while reconnecting the call", exc);
         }
     }
 

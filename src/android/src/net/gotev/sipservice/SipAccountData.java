@@ -5,13 +5,13 @@ import android.os.Parcelable;
 
 import org.pjsip.pjsua2.AccountConfig;
 import org.pjsip.pjsua2.AuthCredInfo;
+import org.pjsip.pjsua2.pj_constants_;
 import org.pjsip.pjsua2.pj_qos_type;
 
 import java.util.Objects;
 
 /**
  * Contains the account's configuration data.
- *
  * @author gotev (Aleksandar Gotev)
  */
 @SuppressWarnings("unused")
@@ -32,8 +32,7 @@ public class SipAccountData implements Parcelable {
     private String guestDisplayName = "";
     private String callId = "";
 
-    public SipAccountData() {
-    }
+    public SipAccountData() { }
 
     /*****          Parcelable overrides        ******/
     public static final Parcelable.Creator<SipAccountData> CREATOR =
@@ -148,21 +147,21 @@ public class SipAccountData implements Parcelable {
         return this;
     }
 
-    public SipAccountData setContactUriParams(String contactUriParams) {
+    public SipAccountData setContactUriParams(String contactUriParams){
         this.contactUriParams = contactUriParams;
         return this;
     }
 
-    public String getContactUriParams() {
+    public String getContactUriParams(){
         return contactUriParams;
     }
 
-    public SipAccountData setRegExpirationTimeout(int regExpirationTimeout) {
+    public SipAccountData setRegExpirationTimeout(int regExpirationTimeout){
         this.regExpirationTimeout = regExpirationTimeout;
         return this;
     }
 
-    public int getRegExpirationTimeout() {
+    public int getRegExpirationTimeout(){
         return this.regExpirationTimeout;
     }
 
@@ -191,7 +190,7 @@ public class SipAccountData implements Parcelable {
                 username, 0, password);
     }
 
-    public String getIdUri() {
+    String getIdUri() {
         if ("*".equals(realm))
             return "sip:" + username;
 
@@ -239,6 +238,10 @@ public class SipAccountData implements Parcelable {
         accountConfig.getSipConfig().getProxies().add(getProxyUri());
         accountConfig.getSipConfig().setContactUriParams(contactUriParams);
 
+        // nat configs to allow call reconnection across networks
+        accountConfig.getNatConfig().setSdpNatRewriteUse(pj_constants_.PJ_TRUE);
+        accountConfig.getNatConfig().setViaRewriteUse(pj_constants_.PJ_TRUE);
+
         // account media  stuff configs
         accountConfig.getMediaConfig().getTransportConfig().setQosType(pj_qos_type.PJ_QOS_TYPE_VOICE);
         setVideoConfig(accountConfig);
@@ -251,7 +254,7 @@ public class SipAccountData implements Parcelable {
         accountConfig.getMediaConfig().getTransportConfig().setQosType(pj_qos_type.PJ_QOS_TYPE_VIDEO);
         String idUri = getGuestDisplayName().isEmpty()
                 ? getIdUri()
-                : "\"" + getGuestDisplayName() + "\" <" + getIdUri() + ">";
+                : "\""+getGuestDisplayName()+"\" <"+getIdUri()+">";
         accountConfig.setIdUri(idUri);
         accountConfig.getSipConfig().getProxies().add(getProxyUri());
         accountConfig.getRegConfig().setRegisterOnAdd(false);
